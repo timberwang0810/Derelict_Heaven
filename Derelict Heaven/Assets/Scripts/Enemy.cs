@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
+    private float originalSpeed;
     public bool faceLeft = true;
     public bool isStationary;
     public float range;
@@ -17,12 +18,15 @@ public class Enemy : MonoBehaviour
 
     private CharacterController2D controller;
 
+    public Vector3 spawn;
+
     private void Start()
     {
         if (!isStationary)
         {
             controller = GetComponent<CharacterController2D>();
         }
+        spawn = transform.position;
     }
 
     // Update is called once per frame
@@ -47,6 +51,7 @@ public class Enemy : MonoBehaviour
                     speed *= 2;
                     gameObject.layer = 10; // Layer that ignores turn around trigger
                     StartCoroutine(FreezeForSeconds(1));
+                    StartCoroutine(AggroTime(3));
                 }
             }
         }
@@ -57,6 +62,14 @@ public class Enemy : MonoBehaviour
         isStationary = true;
         yield return new WaitForSeconds(seconds);
         isStationary = false;
+    }
+
+    private IEnumerator AggroTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        lockedOnPlayer = false;
+        speed /= 2;
+        gameObject.layer = 9;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

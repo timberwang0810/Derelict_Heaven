@@ -29,10 +29,12 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalMove > 0.0f)
         {
             dir = false;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         if (horizontalMove < 0.0f)
         {
             dir = true;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
 
     }
