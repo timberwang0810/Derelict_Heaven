@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // TODO: Put the form enum in GameManager so enemy can also access
     public enum Form {original, charger};
     public Form myForm = Form.original;
     public PlayerMovement controller;
