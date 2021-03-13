@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3935380224381806284}
   - component: {fileID: 2691102406967606755}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: TurnAroundTrigger
   m_TagString: TurnAround
   m_Icon: {fileID: 0}

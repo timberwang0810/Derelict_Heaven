@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     public float speed;
     public bool faceLeft = true;
     public bool isStationary;
+    public float range;
     public int score;
 
+    public LayerMask chargeTrigger;
+
     private bool isInTrigger = false;
+    private bool lockedOnPlayer = false;
 
     private CharacterController2D controller;
 
@@ -33,8 +36,19 @@ public class Enemy : MonoBehaviour
             if (faceLeft) { horizontalMove *= -1.0f; }
 
             controller.Move(horizontalMove, false, false);
-        }
 
+            if (!lockedOnPlayer)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, chargeTrigger);
+                if (hit.collider != null && hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("hit");
+                    lockedOnPlayer = true;
+                    speed *= 2;
+                    gameObject.layer = 10; // Layer that ignores turn around trigger
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
