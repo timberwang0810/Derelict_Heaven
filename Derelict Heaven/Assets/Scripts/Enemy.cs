@@ -46,9 +46,17 @@ public class Enemy : MonoBehaviour
                     lockedOnPlayer = true;
                     speed *= 2;
                     gameObject.layer = 10; // Layer that ignores turn around trigger
+                    StartCoroutine(FreezeForSeconds(1));
                 }
             }
         }
+    }
+
+    private IEnumerator FreezeForSeconds(float seconds)
+    {
+        isStationary = true;
+        yield return new WaitForSeconds(seconds);
+        isStationary = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

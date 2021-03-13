@@ -944,7 +944,7 @@ MonoBehaviour:
   speed: 10
   faceLeft: 0
   isStationary: 0
-  range: 10
+  range: 6
   score: 0
   chargeTrigger:
     serializedVersion: 2
