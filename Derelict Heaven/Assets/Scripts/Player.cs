@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
 
     private void returnEnemy()
     {
-        GameObject newEnemy = (GameObject) Instantiate(Resources.Load("Charger"));
+        GameObject newEnemy = Instantiate(GameManager.S.Charger);
         newEnemy.transform.position = possessing.GetComponent<Enemy>().spawn;
         Destroy(possessing);
     }

@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager S;
 
+    // Enemy Prefabs
+    public GameObject Charger;
+
     // UI Variables
     [Header("UI Components")]
     public GameObject chatPanel;
