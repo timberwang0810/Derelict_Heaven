@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState { menu, getReady, playing, paused, oops, gameOver };
+    public GameState gameState;
     public static GameManager S;
 
-    // UI Variables
-    [Header("UI Components")]
-    public GameObject chatPanel;
+    // Enemy Prefabs
+    public GameObject Charger;
 
     private void Awake()
     {
@@ -28,20 +28,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chatPanel.SetActive(false);
+        DontDestroyOnLoad(this);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
 
-    public IEnumerator ShowPopUpForSeconds(string message, float duration)
-    {
-        chatPanel.GetComponentInChildren<TextMeshProUGUI>().text = message;
-        chatPanel.SetActive(true);
-        yield return new WaitForSeconds(duration);
-        chatPanel.SetActive(false);
     }
 }
