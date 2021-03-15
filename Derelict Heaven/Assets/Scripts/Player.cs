@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
             Vector3 newPos = collision.transform.position;
             transform.position = newPos;
-            StartCoroutine(GameManager.S.ShowPopUpForSeconds("Press 'c' to activate enemy ability!", 5));
+            StartCoroutine(UIManager.S.ShowPopUpForSeconds("Press 'c' to activate enemy ability!", 5));
         }
     }
 

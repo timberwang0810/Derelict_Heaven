@@ -21,7 +21,6 @@ public abstract class Enemy : MonoBehaviour
             controller = GetComponent<CharacterController2D>();
         }
         spawn = transform.position;
-        Debug.Log("speed: " + speed);
         EnemyStart();
     }
 
