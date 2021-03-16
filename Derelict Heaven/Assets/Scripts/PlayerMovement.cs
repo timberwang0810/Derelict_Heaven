@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = false;
 
     bool dir = false;
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,14 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
         }
 
+        if (Input.GetKey("space") && GetComponent<Player>().myForm == Player.Form.original)
+        {
+            rb.gravityScale = 0.3f;
+        }
+        if (Input.GetKeyUp("space") || rb.velocity.y > 0)
+        {
+            rb.gravityScale = 2;
+        }
     }
 
     private void FixedUpdate()
