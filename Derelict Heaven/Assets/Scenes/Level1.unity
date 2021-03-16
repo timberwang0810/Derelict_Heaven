@@ -1598,6 +1598,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 10af4798e2bc66f4f913b6c4830d8570, type: 2}
+    - target: {fileID: 5125294672341979449, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5125294672341979450, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.76
