@@ -65,8 +65,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        return;
+        if (collision.gameObject.tag == "Enemy" && possessor.enabled)
         {
+            Debug.Log("possessing");
             possessor.enabled = false;
             possessing = collision.gameObject;
             collision.gameObject.SetActive(false);

@@ -65,6 +65,11 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    protected virtual void EnemyTriggerExitEvent(Collider2D collision)
+    {
+        isInTrigger = false;
+    }
+
     protected IEnumerator FreezeForSeconds(float seconds)
     {
         isStationary = true;
@@ -78,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isInTrigger = false;
+        EnemyTriggerExitEvent(collision);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
