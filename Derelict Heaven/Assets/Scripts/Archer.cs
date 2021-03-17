@@ -78,7 +78,7 @@ public class Archer : Enemy
       
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
             aimLaser.enabled = true;
             aimLaser.SetPosition(0, transform.position);
             aimLaser.SetPosition(1, hit.collider.gameObject.transform.position);
@@ -94,7 +94,7 @@ public class Archer : Enemy
     {
         Vector2 direction = target.transform.position - transform.position;
         direction.Normalize();
-        Vector2 instantiateLocation = new Vector2(transform.position.x + direction.x, transform.position.y);
+        Vector2 instantiateLocation = new Vector2(transform.position.x + direction.x, transform.position.y + direction.y);
 
         GameObject arrowObject = Instantiate(projectile, instantiateLocation, Quaternion.identity);
 

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4748247779472224367}
   - component: {fileID: 4748247779472224361}
   - component: {fileID: 4748247779472224360}
-  m_Layer: 0
+  - component: {fileID: -4203115903198441475}
+  m_Layer: 10
   m_Name: FireArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,3 +122,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &-4203115903198441475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4748247779472224364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e303fad4c50452299db56e87d8e239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 2
