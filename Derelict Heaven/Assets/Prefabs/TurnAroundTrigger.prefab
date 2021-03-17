@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3935380224381806284}
   - component: {fileID: 2691102406967606755}
+  - component: {fileID: 8599491127431355756}
   m_Layer: 11
   m_Name: TurnAroundTrigger
   m_TagString: TurnAround
@@ -57,3 +58,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5410503, y: 2.864482}
   m_EdgeRadius: 0
+--- !u!114 &8599491127431355756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935380224381806285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6286eab1871534ecbb8b9a169651e8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

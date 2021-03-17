@@ -36,12 +36,10 @@ public class Charger : Enemy
         }
     }
 
-    protected override void EnemyTriggerEvent(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         ResetState();
-        base.EnemyTriggerEvent(collision);
     }
-
     protected override void EnemyCollisionEnterEvent(Collision2D collision)
     {
         if (collision.gameObject.tag == "BreakableWall" && lockedOnPlayer)
@@ -65,7 +63,6 @@ public class Charger : Enemy
 
     public override void ResetState()
     {
-        Debug.Log("called");
         lockedOnPlayer = false;
         speed = originalSpeed;
     }
