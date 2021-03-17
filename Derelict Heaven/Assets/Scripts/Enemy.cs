@@ -44,18 +44,15 @@ public abstract class Enemy : MonoBehaviour
         EnemyPhysicsUpdate();
     }
 
+    public void TurnAround()
+    {
+        faceLeft = !faceLeft;
+    }
+
     public abstract void ResetState();
     protected abstract void EnemyStart();
     protected abstract void EnemyUpdate();
     protected abstract void EnemyPhysicsUpdate();
-    protected virtual void EnemyTriggerEvent(Collider2D collision)
-    {
-        if (!isInTrigger && (collision.gameObject.tag == "TurnAround"))
-        {
-            faceLeft = !faceLeft;
-            isInTrigger = true;
-        }
-    }
     protected virtual void EnemyCollisionEnterEvent(Collision2D collision)
     {
         if (collision.gameObject.tag == "BreakableWall")
@@ -65,11 +62,6 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected virtual void EnemyTriggerExitEvent(Collider2D collision)
-    {
-        isInTrigger = false;
-    }
-
     protected IEnumerator FreezeForSeconds(float seconds)
     {
         isStationary = true;
@@ -77,14 +69,6 @@ public abstract class Enemy : MonoBehaviour
         isStationary = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        EnemyTriggerEvent(collision);
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        EnemyTriggerExitEvent(collision);
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         EnemyCollisionEnterEvent(collision);

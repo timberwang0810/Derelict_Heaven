@@ -11,15 +11,15 @@ public class Archer : Enemy
 
     public GameObject projectile;
     public float shotSpeed;
+    public float inaccurateOffset;
     private float coolDownTimer;
     private GameObject playerObject;
 
     private LineRenderer aimLaser;
 
-    private int triggerCount;
     public override void ResetState()
     {
-        throw new System.NotImplementedException();
+        // nothing
     }
 
     protected override void EnemyPhysicsUpdate()
@@ -29,7 +29,7 @@ public class Archer : Enemy
 
     protected override void EnemyStart()
     {
-        gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(xRange, yRange);
+        gameObject.GetComponentInChildren<CapsuleCollider2D>().size = new Vector2(xRange, yRange);
         aimLaser = gameObject.GetComponent<LineRenderer>();
         aimLaser.positionCount = 2;
         aimLaser.material = new Material(Shader.Find("Sprites/Default"));
@@ -48,33 +48,15 @@ public class Archer : Enemy
 
     }
 
-    protected override void EnemyTriggerEvent(Collider2D collision)
+    public void FoundPlayer(GameObject player)
     {
-        triggerCount = Mathf.Clamp(triggerCount + 1, 0, 2);
-        if (triggerCount == 2)
-        {
-            base.EnemyTriggerEvent(collision);
-        }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("saved");
-            playerObject = collision.gameObject;
-        }
-    }
-
-    protected override void EnemyTriggerExitEvent(Collider2D collision)
-    {
-        triggerCount = Mathf.Clamp(triggerCount - 1, 0, 2);
-        base.EnemyTriggerExitEvent(collision);
-        if (triggerCount == 0 && collision.gameObject.CompareTag("Player"))
-        {
-            playerObject = null;
-        }
+        playerObject = player;
     }
 
     private void AimAtTarget(GameObject target)
     {
         RaycastHit2D hit = Physics2D.Linecast(transform.position, target.transform.position, aimImpedeLayers);
+        Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
       
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
         {
@@ -86,13 +68,15 @@ public class Archer : Enemy
         }
         else
         {
+            Debug.Log(hit.collider.gameObject.name);
             aimLaser.enabled = false;
         }
     }
 
     private void ShootAtTarget(GameObject target)
     {
-        Vector2 direction = target.transform.position - transform.position;
+        Vector2 offsetLocation = (Vector2) target.transform.position + new Vector2(Random.Range(-inaccurateOffset, inaccurateOffset), Random.Range(-inaccurateOffset, inaccurateOffset));
+        Vector2 direction = offsetLocation - (Vector2)transform.position;
         direction.Normalize();
         Vector2 instantiateLocation = new Vector2(transform.position.x + direction.x, transform.position.y + direction.y);
 

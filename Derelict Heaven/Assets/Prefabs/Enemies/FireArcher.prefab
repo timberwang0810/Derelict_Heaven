@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1674165941554394332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 802131260602455585}
+  - component: {fileID: 4450048323165015363}
+  - component: {fileID: 7130616705650427689}
+  m_Layer: 9
+  m_Name: AimDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &802131260602455585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674165941554394332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9078381884581619063}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4450048323165015363
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674165941554394332}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 4, y: 2}
+  m_Direction: 1
+--- !u!114 &7130616705650427689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674165941554394332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d6177ce6bd041448d9f345ad732550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9078381884581619065
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +74,6 @@ GameObject:
   - component: {fileID: 9078381884581619066}
   - component: {fileID: 9078381884581619067}
   - component: {fileID: 8840938675049919938}
-  - component: {fileID: 2312226907362008308}
   - component: {fileID: 1483619612472007218}
   m_Layer: 9
   m_Name: FireArcher
@@ -36,6 +95,7 @@ Transform:
   m_Children:
   - {fileID: 9078381886429289168}
   - {fileID: 9078381884781514743}
+  - {fileID: 802131260602455585}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,22 +240,7 @@ MonoBehaviour:
     m_Bits: 2359
   projectile: {fileID: 4748247779472224364, guid: 94f0c26fabf4d4e18843a5d9d2d39eb3, type: 3}
   shotSpeed: 10
---- !u!70 &2312226907362008308
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9078381884581619065}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4, y: 2}
-  m_Direction: 1
+  inaccurateOffset: 1
 --- !u!120 &1483619612472007218
 LineRenderer:
   m_ObjectHideFlags: 0
