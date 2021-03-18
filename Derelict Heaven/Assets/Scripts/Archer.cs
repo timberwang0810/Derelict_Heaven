@@ -22,6 +22,16 @@ public class Archer : Enemy
         // nothing
     }
 
+    public override GameManager.Form GetForm()
+    {
+        return GameManager.Form.archer;
+    }
+
+    public GameObject GetArrowObject()
+    {
+        return projectile;
+    }
+
     protected override void EnemyPhysicsUpdate()
     {
         // nothing

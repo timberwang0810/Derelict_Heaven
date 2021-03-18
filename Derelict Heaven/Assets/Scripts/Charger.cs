@@ -12,6 +12,11 @@ public class Charger : Enemy
     private float originalSpeed;
     private bool lockedOnPlayer = false;
 
+    public override GameManager.Form GetForm()
+    {
+        return GameManager.Form.charger;
+    }
+
     protected override void EnemyStart()
     {
         originalSpeed = speed;

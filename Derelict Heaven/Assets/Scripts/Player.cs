@@ -17,7 +17,13 @@ public class Player : MonoBehaviour
     private BoxCollider2D possessor;
     private GameObject possessing;
 
+    // Archer enemy variables
     private Rigidbody2D rb;
+    private GameObject arrowPrefab;
+    private float shotSpeed;
+    private float shotCoolDown;
+    private float coolDownTimer;
+
     private bool loading = true;
 
     private float originalSpeed;
@@ -58,6 +64,24 @@ public class Player : MonoBehaviour
                 controller.speed = originalSpeed;
             }
         });
+        enemyFunctions.Add(GameManager.Form.archer, () => {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+                dir.Normalize();
+                if (arrowPrefab)
+                {
+                    Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
+                    GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.identity);
+                    arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
+                }
+            }
+            else if (Input.GetKeyUp("c"))
+            {
+                controller.speed = originalSpeed;
+            }
+        });
         loading = false;
     }
 
@@ -79,17 +103,27 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && possessor.enabled)
         {
             Debug.Log("possessing");
+            Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
             possessor.enabled = false;
             possessing = collision.gameObject;
             collision.gameObject.SetActive(false);
+            GameManager.Form form = enemyScript.GetForm();
 
             changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
                          collision.gameObject.GetComponent<CircleCollider2D>().radius,
-                         GameManager.Form.charger);
+                         form);
+            if (form == GameManager.Form.archer)
+            {
+                Archer archerScript = collision.gameObject.GetComponent<Archer>();
+                arrowPrefab = archerScript.GetArrowObject();
+                shotSpeed = archerScript.shotSpeed;
+                shotCoolDown = archerScript.shotCoolDown;
+                coolDownTimer = 0;
+            }
 
             Vector3 newPos = collision.transform.position;
             transform.position = newPos;
-            StartCoroutine(UIManager.S.ShowPopUpForSeconds("Press 'c' to activate enemy ability!", 5));
+            StartCoroutine(UIManager.S.ShowPopUpForSeconds("Gotta add this tmrw!", 5));
         }
     }
 

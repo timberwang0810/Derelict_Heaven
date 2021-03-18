@@ -49,9 +49,11 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void ResetState();
+    public abstract GameManager.Form GetForm();
     protected abstract void EnemyStart();
     protected abstract void EnemyUpdate();
     protected abstract void EnemyPhysicsUpdate();
+
     protected virtual void EnemyCollisionEnterEvent(Collision2D collision)
     {
         if (collision.gameObject.tag == "BreakableWall")

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public enum GameState { menu, getReady, playing, paused, oops, gameOver };
-    public enum Form { original, charger };
+    public enum Form { original, charger, archer };
     public GameState gameState;
     public static GameManager S;
 

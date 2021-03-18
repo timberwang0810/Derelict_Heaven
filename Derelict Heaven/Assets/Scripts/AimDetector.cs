@@ -18,7 +18,8 @@ public class AimDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Exited");
-            GetComponentInParent<Archer>().FoundPlayer(null);
+            if (transform.parent.gameObject.activeSelf) GetComponentInParent<Archer>().FoundPlayer(null);
+
         }
     }
 }
