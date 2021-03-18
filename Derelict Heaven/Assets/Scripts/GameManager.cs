@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public static GameManager S;
 
-    // Possessed Enemy Functionaties Variables
-    
+        
 
     // Enemy Prefabs
     public GameObject Charger;

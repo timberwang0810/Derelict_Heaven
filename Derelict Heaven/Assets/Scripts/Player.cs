@@ -5,10 +5,15 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    // TODO: Put the form enum in GameManager so enemy can also access
     public GameManager.Form myForm = GameManager.Form.original;
     public PlayerMovement controller;
     private Dictionary<GameManager.Form, Action> enemyFunctions;
+    private Dictionary<GameManager.Form, string> formCommands = new Dictionary<GameManager.Form, string>()
+    {
+        { GameManager.Form.original, "Returned to normal!" },
+        { GameManager.Form.charger, "Press 'c' to charge forward!" },
+        { GameManager.Form.archer, "Press LMB to shoot arrows!" }
+    };
 
     private SpriteRenderer renderer;
     private Sprite originalSprite;
@@ -40,7 +45,7 @@ public class Player : MonoBehaviour
         PopulateFunctions();
     }
 
-
+    // Populate the mapping of enemy forms to its specific actions
     private void PopulateFunctions()
     {
         enemyFunctions = new Dictionary<GameManager.Form, Action>();
@@ -65,7 +70,8 @@ public class Player : MonoBehaviour
             }
         });
         enemyFunctions.Add(GameManager.Form.archer, () => {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            coolDownTimer += Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Mouse0) && coolDownTimer >= shotCoolDown)
             {
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
@@ -75,11 +81,8 @@ public class Player : MonoBehaviour
                     Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
                     GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.identity);
                     arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
+                    coolDownTimer = 0;
                 }
-            }
-            else if (Input.GetKeyUp("c"))
-            {
-                controller.speed = originalSpeed;
             }
         });
         loading = false;
@@ -112,18 +115,19 @@ public class Player : MonoBehaviour
             changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
                          collision.gameObject.GetComponent<CircleCollider2D>().radius,
                          form);
+
+            // Pass enemy variables to the player
             if (form == GameManager.Form.archer)
             {
                 Archer archerScript = collision.gameObject.GetComponent<Archer>();
                 arrowPrefab = archerScript.GetArrowObject();
                 shotSpeed = archerScript.shotSpeed;
                 shotCoolDown = archerScript.shotCoolDown;
-                coolDownTimer = 0;
+                coolDownTimer = shotCoolDown;
             }
 
             Vector3 newPos = collision.transform.position;
             transform.position = newPos;
-            StartCoroutine(UIManager.S.ShowPopUpForSeconds("Gotta add this tmrw!", 5));
         }
     }
 
@@ -145,6 +149,7 @@ public class Player : MonoBehaviour
         renderer.sprite = s;
         GetComponent<CircleCollider2D>().radius = rad;
         myForm = f;
+        UIManager.S.ShowPopUpForSeconds(formCommands[f], 5);
     }
 
     private void returnEnemy()
