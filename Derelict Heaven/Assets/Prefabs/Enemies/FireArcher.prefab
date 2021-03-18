@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   faceLeft: 1
-  isStationary: 1
+  isStationary: 0
   score: 100
   spawn: {x: 0, y: 0, z: 0}
   xRange: 4
@@ -237,7 +237,7 @@ MonoBehaviour:
   shotCoolDown: 5
   aimImpedeLayers:
     serializedVersion: 2
-    m_Bits: 2359
+    m_Bits: 311
   projectile: {fileID: 4748247779472224364, guid: 94f0c26fabf4d4e18843a5d9d2d39eb3, type: 3}
   shotSpeed: 10
   inaccurateOffset: 1
@@ -292,7 +292,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.038095236
         inSlope: 0
         outSlope: 0
         tangentMode: 0

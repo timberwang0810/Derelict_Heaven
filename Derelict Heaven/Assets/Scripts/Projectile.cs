@@ -11,4 +11,12 @@ public class Projectile : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
         Destroy(this.gameObject, destroyTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Torch")
+        {
+            collision.gameObject.GetComponent<Torch>().lightTorch();
+        }
+    }
 }
