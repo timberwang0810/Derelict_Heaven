@@ -95,8 +95,8 @@ public class Player : MonoBehaviour
         enemyFunctions[myForm].Invoke();
         if (myForm != GameManager.Form.original && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            changeValues(originalSprite, originalRadius, GameManager.Form.original);
             returnEnemy();
+            changeValues(originalSprite, originalRadius, GameManager.Form.original);  
             possessing = null;
         }
     }
@@ -154,7 +154,18 @@ public class Player : MonoBehaviour
 
     private void returnEnemy()
     {
-        GameObject newEnemy = Instantiate(GameManager.S.Charger);
+        GameObject newEnemy;
+        if (myForm == GameManager.Form.charger)
+        {
+            newEnemy = Instantiate(GameManager.S.Charger);
+        } else if (myForm == GameManager.Form.archer)
+        {
+            newEnemy = Instantiate(GameManager.S.Archer);
+        } else
+        {
+            throw new Exception("no enemy of this type");
+        }
+        
         newEnemy.transform.position = possessing.GetComponent<Enemy>().spawn;
         Destroy(possessing);
     }

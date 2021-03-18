@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     // Enemy Prefabs
     public GameObject Charger;
+    public GameObject Archer;
 
     private void Awake()
     {
