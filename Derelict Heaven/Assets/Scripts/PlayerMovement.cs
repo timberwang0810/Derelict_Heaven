@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if (Input.GetKey("space") && GetComponent<Player>().myForm == Player.Form.original)
+        if (Input.GetKey("space") && GetComponent<Player>().myForm == GameManager.Form.original)
         {
             rb.gravityScale = 0.3f;
         }

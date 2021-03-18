@@ -8,7 +8,6 @@ public abstract class Enemy : MonoBehaviour
     public bool faceLeft = true;
     public bool isStationary;
     public int score;
-    private bool isInTrigger = false;
 
     private CharacterController2D controller;
 
@@ -58,7 +57,6 @@ public abstract class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "BreakableWall")
         {
             faceLeft = !faceLeft;
-            isInTrigger = true;
         }
     }
 
