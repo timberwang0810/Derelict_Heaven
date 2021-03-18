@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             dir = true;
         }
 
-        if (Input.GetKey("space") && GetComponent<Player>().myForm == Player.Form.original)
+        if (Input.GetKey("space") && GetComponent<Player>().myForm == GameManager.Form.original)
         {
             rb.gravityScale = 0.3f;
         }

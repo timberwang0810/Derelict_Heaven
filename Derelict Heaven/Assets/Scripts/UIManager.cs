@@ -29,8 +29,12 @@ public class UIManager : MonoBehaviour
         chatPanel.SetActive(false);
     }
 
+    public void ShowPopUpForSeconds(string message, float duration)
+    {
+        StartCoroutine(ShowPopUpForSecondsCoroutine(message, duration));
+    }
 
-    public IEnumerator ShowPopUpForSeconds(string message, float duration)
+    private IEnumerator ShowPopUpForSecondsCoroutine(string message, float duration)
     {
         chatPanel.GetComponentInChildren<TextMeshProUGUI>().text = message;
         chatPanel.SetActive(true);
