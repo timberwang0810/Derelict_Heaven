@@ -50,9 +50,9 @@ public class Archer : Enemy
 
     protected override void EnemyUpdate()
     {
-        coolDownTimer += Time.deltaTime;
         if (playerObject)
         {
+            coolDownTimer += Time.deltaTime;
             AimAtTarget(playerObject);
         }
 
@@ -61,6 +61,7 @@ public class Archer : Enemy
     public void FoundPlayer(GameObject player)
     {
         playerObject = player;
+        if (!player) aimLaser.enabled = false;
     }
 
     private void AimAtTarget(GameObject target)
@@ -80,6 +81,7 @@ public class Archer : Enemy
         {
             Debug.Log(hit.collider.gameObject.name);
             aimLaser.enabled = false;
+            coolDownTimer = shotCoolDown / 2;
         }
     }
 
