@@ -31,13 +31,16 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (controller == null)
+        {
+            controller = GetComponent<CharacterController2D>();
+        }
         //if (GameManager.S.gameState != GameManager.GameState.playing) return;
         if (!isStationary)
         {
             float horizontalMove = speed * Time.fixedDeltaTime;
-
+           
             if (faceLeft) { horizontalMove *= -1.0f; }
-
             controller.Move(horizontalMove, false, false);
         }
         EnemyPhysicsUpdate();
