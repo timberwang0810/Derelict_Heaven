@@ -206,7 +206,8 @@ GameObject:
   - component: {fileID: 5125294672341979589}
   - component: {fileID: 1146012036578403554}
   - component: {fileID: 7324773728814468130}
-  - component: {fileID: 5932818999424500014}
+  - component: {fileID: 5704360433817042283}
+  - component: {fileID: 7832936498836115936}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -376,6 +377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myForm: 0
   controller: {fileID: 0}
+  chargerAnim: {fileID: 22100000, guid: 092b1b2cd84a4c64c877df2bb413addd, type: 2}
+  angelAnim: {fileID: 9100000, guid: 61731e7d973c5064380be930b64288e2, type: 2}
 --- !u!61 &7324773728814468130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -402,7 +405,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.3}
   m_EdgeRadius: 0
---- !u!95 &5932818999424500014
+--- !u!70 &5704360433817042283
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125294672341979454}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.03, y: 1.3333334}
+  m_Direction: 0
+--- !u!95 &7832936498836115936
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

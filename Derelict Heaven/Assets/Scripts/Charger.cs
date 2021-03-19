@@ -11,6 +11,12 @@ public class Charger : Enemy
 
     private float originalSpeed;
     private bool lockedOnPlayer = false;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public override GameManager.Form GetForm()
     {
@@ -34,6 +40,7 @@ public class Charger : Enemy
             RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, chargeTrigger);
             if (hit.collider != null && hit.collider.gameObject.tag == "Player")
             {
+                animator.SetTrigger("chargeup");
                 lockedOnPlayer = true;
                 speed *= 2;
                 StartCoroutine(FreezeForSeconds(1));
@@ -42,14 +49,24 @@ public class Charger : Enemy
         }
     }
 
+    public void SetChargeTrue()
+    {
+        animator.SetBool("charging", true);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ResetState();
+        if (collision.gameObject.tag != "TurnAround")
+        {
+            ResetState();
+        }
     }
     protected override void EnemyCollisionEnterEvent(Collision2D collision)
     {
         if (collision.gameObject.tag == "BreakableWall" && lockedOnPlayer)
         {
+            animator.SetTrigger("impact");
+            animator.SetBool("charging", false);
             Vector2 pushBackForce = new Vector2(faceLeft ? 3 : -3, 3);
             gameObject.GetComponent<Rigidbody2D>().AddForce(pushBackForce, ForceMode2D.Impulse);
             Destroy(collision.gameObject);
@@ -71,5 +88,6 @@ public class Charger : Enemy
     {
         lockedOnPlayer = false;
         speed = originalSpeed;
+        animator.SetBool("charging", false);
     }
 }

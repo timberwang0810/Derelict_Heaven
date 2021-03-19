@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
 using System;
 
 public class Player : MonoBehaviour
@@ -28,10 +29,15 @@ public class Player : MonoBehaviour
     private float shotSpeed;
     private float shotCoolDown;
     private float coolDownTimer;
+    private CapsuleCollider2D enemyCol;
 
     private bool loading = true;
 
     private float originalSpeed;
+    
+    public AnimatorOverrideController chargerAnim;
+    public AnimatorController angelAnim;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +48,8 @@ public class Player : MonoBehaviour
         originalSprite = renderer.sprite;
         originalRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
+        enemyCol = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
         PopulateFunctions();
     }
 
@@ -63,10 +71,12 @@ public class Player : MonoBehaviour
             if (Input.GetKey("c"))
             {
                 controller.speed = originalSpeed * 2;
+                if (rb.velocity.magnitude > 0) animator.SetBool("charge", true);
             }
             else if (Input.GetKeyUp("c"))
             {
                 controller.speed = originalSpeed;
+                animator.SetBool("charge", false);
             }
         });
         enemyFunctions.Add(GameManager.Form.archer, () => {
@@ -96,7 +106,7 @@ public class Player : MonoBehaviour
         if (myForm != GameManager.Form.original && Input.GetKeyDown(KeyCode.LeftShift))
         {
             returnEnemy();
-            changeValues(originalSprite, originalRadius, GameManager.Form.original);  
+            changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), GameManager.Form.original);  
             possessing = null;
         }
     }
@@ -113,7 +123,8 @@ public class Player : MonoBehaviour
             GameManager.Form form = enemyScript.GetForm();
 
             changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
-                         collision.gameObject.GetComponent<CircleCollider2D>().radius,
+                         collision.gameObject.GetComponent<CapsuleCollider2D>().size,
+                         collision.gameObject.GetComponent<CapsuleCollider2D>().offset,
                          form);
 
             // Pass enemy variables to the player
@@ -144,10 +155,24 @@ public class Player : MonoBehaviour
 
     /** dont change scale, it messes with character controller
      */
-    private void changeValues(Sprite s, float rad, GameManager.Form f)
+    private void changeValues(Sprite s, Vector2 size, Vector2 offset, GameManager.Form f)
     {
-        renderer.sprite = s;
-        GetComponent<CircleCollider2D>().radius = rad;
+        if (f == GameManager.Form.original)
+        {
+            GetComponent<CircleCollider2D>().enabled = true;
+            enemyCol.enabled = false;
+            animator.runtimeAnimatorController = angelAnim;
+        } else
+        {
+            if (f == GameManager.Form.charger)
+            {
+                animator.runtimeAnimatorController = chargerAnim;
+            }
+            GetComponent<CircleCollider2D>().enabled = false;
+            enemyCol.enabled = true;
+            enemyCol.size = size;
+            enemyCol.offset = offset;
+        }
         myForm = f;
         UIManager.S.ShowPopUpForSeconds(formCommands[f], 5);
     }

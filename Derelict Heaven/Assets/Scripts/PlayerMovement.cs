@@ -11,17 +11,21 @@ public class PlayerMovement : MonoBehaviour
 
     bool dir = false;
     private Rigidbody2D rb;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+        if (horizontalMove != 0) animator.SetBool("walking", true);
+        else animator.SetBool("walking", false);
 
         if (Input.GetButtonDown("Jump"))
         {
