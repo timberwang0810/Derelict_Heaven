@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     // Enemy Prefabs
     public GameObject Charger;
     public GameObject Archer;
+    public GameObject Pressurizer;
 
     // Game Variables
     public int maxLives;

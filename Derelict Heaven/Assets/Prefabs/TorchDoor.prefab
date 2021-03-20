@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4039439648048028286}
   - component: {fileID: 6093033490321438185}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpritePack_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,9 +91,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8344873872044263511}
-  - component: {fileID: 8577594696889154065}
   - component: {fileID: 4899194598940303755}
-  m_Layer: 0
+  - component: {fileID: 7351986603402590365}
+  m_Layer: 14
   m_Name: TorchDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,18 +117,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8577594696889154065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797263657668034706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66b53be2408ddd438e564f8dc6ac8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &4899194598940303755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,6 +143,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &7351986603402590365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797263657668034706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb55bfa9aa6894e598f6736b245fbcec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6071035053834521073
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7299132693910276044}
   - component: {fileID: 7878536807047068897}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpritePack_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6940285080291893808}
   - component: {fileID: 8589940778636869438}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpritePack_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -206,17 +206,20 @@ public class Player : MonoBehaviour
     private void returnEnemy()
     {
         GameObject newEnemy;
-        if (myForm == Form.charger)
+        switch (myForm)
         {
-            newEnemy = Instantiate(GameManager.S.Charger);
-        } else if (myForm == Form.archer)
-        {
-            newEnemy = Instantiate(GameManager.S.Archer);
-        } else
-        {
-            throw new Exception("no enemy of this type");
+            case Form.charger:
+                newEnemy = Instantiate(GameManager.S.Charger);
+                break;
+            case Form.archer:
+                newEnemy = Instantiate(GameManager.S.Archer);
+                break;
+            case Form.pressurizer:
+                newEnemy = Instantiate(GameManager.S.Pressurizer);
+                break;
+            default:
+                throw new Exception("no enemy of this type");
         }
-        
         newEnemy.transform.position = possessing.GetComponent<Enemy>().spawn;
         Destroy(possessing);
     }
