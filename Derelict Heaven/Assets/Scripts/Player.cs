@@ -111,6 +111,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public GameManager.Form GetForm()
+    {
+        return myForm;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy" && possessor.enabled)

@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    private bool activated = false;
+    public Mechanism connectedMechanism;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!activated && collision.gameObject.CompareTag("Enemy") && collision.gameObject.GetComponent<Enemy>().GetForm() == GameManager.Form.pressurizer)
+        if ((collision.gameObject.CompareTag("Enemy") && collision.gameObject.GetComponent<Enemy>().GetForm() == GameManager.Form.pressurizer)
+            || (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().GetForm() == GameManager.Form.pressurizer))
         {
-            activated = true;
-            Debug.Log("activated");
+            connectedMechanism.Activate();
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        activated = false;
+        if ((collision.gameObject.CompareTag("Enemy") && collision.gameObject.GetComponent<Enemy>().GetForm() == GameManager.Form.pressurizer)
+            || (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().GetForm() == GameManager.Form.pressurizer))
+        {
+            connectedMechanism.Deactivate();
+        }
     }
 }
