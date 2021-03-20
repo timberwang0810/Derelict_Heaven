@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Archer : Enemy
 {
-    public float xRange;
-    public float yRange;
     public float shotCoolDown;
     public LayerMask aimImpedeLayers;
 
@@ -22,9 +20,9 @@ public class Archer : Enemy
         // nothing
     }
 
-    public override GameManager.Form GetForm()
+    public override Form GetForm()
     {
-        return GameManager.Form.archer;
+        return Form.archer;
     }
 
     public GameObject GetArrowObject()
@@ -39,7 +37,6 @@ public class Archer : Enemy
 
     protected override void EnemyStart()
     {
-        gameObject.GetComponentInChildren<CapsuleCollider2D>().size = new Vector2(xRange, yRange);
         aimLaser = gameObject.GetComponent<LineRenderer>();
         aimLaser.positionCount = 2;
         aimLaser.material = new Material(Shader.Find("Sprites/Default"));

@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.S.gameState != GameManager.GameState.playing) return;
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         if (horizontalMove != 0) animator.SetBool("walking", true);
         else animator.SetBool("walking", false);
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             dir = true;
         }
 
-        if (Input.GetKey("space") && GetComponent<Player>().myForm == GameManager.Form.original)
+        if (Input.GetKey("space") && GetComponent<Player>().myForm == Form.original)
         {
             rb.gravityScale = 0.3f;
         }
@@ -53,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.S.gameState != GameManager.GameState.playing) return;
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         if (jump)
         {

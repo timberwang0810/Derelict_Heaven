@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Pressurizer : Enemy
 {
-    public override GameManager.Form GetForm()
+    public override Form GetForm()
     {
-        return GameManager.Form.pressurizer;
+        return Form.pressurizer;
     }
 
     public override void ResetState()

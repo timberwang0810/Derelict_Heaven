@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Torch : MonoBehaviour
 {
-    public bool lit;
-    public GameObject assignedDoor;
-
-    void Awake()
-    {
-        assignedDoor.GetComponent<TorchDoor>().AddTorch(gameObject);
-    }
+    private bool lit;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +20,16 @@ public class Torch : MonoBehaviour
 
     public void lightTorch()
     {
+        if (lit) return;
         Debug.Log("ive been lit");
         lit = true;
-        assignedDoor.GetComponent<TorchDoor>().AddLitTorch();
+        GetComponentInParent<TorchSet>().OnTorchLit();
+    }
+
+    public void putOutTorch()
+    {
+        if (!lit) return;
+        lit = false;
+        GetComponentInParent<TorchSet>().OnTorchUnlit();
     }
 }
