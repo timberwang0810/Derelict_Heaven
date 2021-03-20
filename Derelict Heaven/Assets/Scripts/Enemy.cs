@@ -7,7 +7,6 @@ public abstract class Enemy : MonoBehaviour
     public float speed;
     public bool faceLeft = true;
     public bool isStationary;
-    public int score;
 
     private CharacterController2D controller;
 
@@ -25,12 +24,14 @@ public abstract class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.S.gameState != GameManager.GameState.playing) return;
         EnemyUpdate();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (GameManager.S.gameState != GameManager.GameState.playing) return;
         if (controller == null)
         {
             controller = GetComponent<CharacterController2D>();
@@ -62,6 +63,10 @@ public abstract class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "BreakableWall")
         {
             faceLeft = !faceLeft;
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            GameManager.S.OnLivesLost();
         }
     }
 

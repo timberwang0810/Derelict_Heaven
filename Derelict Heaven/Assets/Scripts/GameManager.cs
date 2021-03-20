@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public static GameManager S;
 
-        
-
     // Enemy Prefabs
     public GameObject Charger;
     public GameObject Archer;
+
+    // Game Variables
+    public int maxLives;
+    private int lives;
 
     private void Awake()
     {
@@ -41,5 +43,36 @@ public class GameManager : MonoBehaviour
     {
         
 
+    }
+
+    public void StartNewGame()
+    {
+        gameState = GameState.getReady;
+        // TODO: put any setup + coroutines here
+        ResetLevel();
+    }
+
+    public void ResetLevel()
+    {
+        // Reset any variables necessary in the level
+        gameState = GameState.playing;
+    }
+
+    public void OnLivesLost()
+    {
+        lives--;
+        if (lives <= 0) OnLevelLost();
+    }
+
+    public void OnLevelLost()
+    {
+        gameState = GameState.gameOver;
+        UIManager.S.ShowPopUpForSeconds("You Lost!", 3);
+    }
+
+    public void OnLevelWon()
+    {
+        gameState = GameState.gameOver;
+        UIManager.S.ShowPopUpForSeconds("You Won!", 3);
     }
 }

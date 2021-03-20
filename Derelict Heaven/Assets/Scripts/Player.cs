@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (loading) return;
+        if (loading || GameManager.S.gameState != GameManager.GameState.playing) return;
         enemyFunctions[myForm].Invoke();
         if (myForm != GameManager.Form.original && Input.GetKeyDown(KeyCode.LeftShift))
         {
