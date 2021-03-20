@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
     public bool faceLeft = true;
     public bool isStationary;
 
+
     private CharacterController2D controller;
 
     public Vector3 spawn;
@@ -53,7 +54,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void ResetState();
-    public abstract GameManager.Form GetForm();
+    public abstract Form GetForm();
     protected abstract void EnemyStart();
     protected abstract void EnemyUpdate();
     protected abstract void EnemyPhysicsUpdate();

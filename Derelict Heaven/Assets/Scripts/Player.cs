@@ -6,15 +6,15 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public GameManager.Form myForm = GameManager.Form.original;
+    public Form myForm = Form.original;
     public PlayerMovement controller;
-    private Dictionary<GameManager.Form, Action> enemyFunctions;
-    private Dictionary<GameManager.Form, string> formCommands = new Dictionary<GameManager.Form, string>()
+    private Dictionary<Form, Action> enemyFunctions;
+    private Dictionary<Form, string> formCommands = new Dictionary<Form, string>()
     {
-        { GameManager.Form.original, "Returned to normal!" },
-        { GameManager.Form.charger, "Press 'c' to charge forward!" },
-        { GameManager.Form.archer, "Press LMB to shoot arrows!" },
-        { GameManager.Form.pressurizer, "" }
+        { Form.original, "Returned to normal!" },
+        { Form.charger, "Press 'c' to charge forward!" },
+        { Form.archer, "Press LMB to shoot arrows!" },
+        { Form.pressurizer, "" }
     };
 
     private SpriteRenderer renderer;
@@ -57,10 +57,10 @@ public class Player : MonoBehaviour
     // Populate the mapping of enemy forms to its specific actions
     private void PopulateFunctions()
     {
-        enemyFunctions = new Dictionary<GameManager.Form, Action>
+        enemyFunctions = new Dictionary<Form, Action>
         {
             {
-                GameManager.Form.original,
+                Form.original,
                 () =>
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
                 }
             },
             {
-                GameManager.Form.charger,
+                Form.charger,
                 () =>
                 {
                     if (Input.GetKey("c"))
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
                 }
             },
             {
-                GameManager.Form.archer,
+                Form.archer,
                 () =>
                 {
                     coolDownTimer += Time.deltaTime;
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
                 }
             },
             {
-                GameManager.Form.pressurizer,
+                Form.pressurizer,
                 () =>
                 {
 
@@ -125,15 +125,15 @@ public class Player : MonoBehaviour
     {
         if (loading || GameManager.S.gameState != GameManager.GameState.playing) return;
         enemyFunctions[myForm].Invoke();
-        if (myForm != GameManager.Form.original && Input.GetKeyDown(KeyCode.LeftShift))
+        if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift))
         {
             returnEnemy();
-            changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), GameManager.Form.original);  
+            changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);  
             possessing = null;
         }
     }
 
-    public GameManager.Form GetForm()
+    public Form GetForm()
     {
         return myForm;
     }
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
             possessor.enabled = false;
             possessing = collision.gameObject;
             collision.gameObject.SetActive(false);
-            GameManager.Form form = enemyScript.GetForm();
+            Form form = enemyScript.GetForm();
 
             changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
                          collision.gameObject.GetComponent<CapsuleCollider2D>().size,
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
                          form);
 
             // Pass enemy variables to the player
-            if (form == GameManager.Form.archer)
+            if (form == Form.archer)
             {
                 Archer archerScript = collision.gameObject.GetComponent<Archer>();
                 arrowPrefab = archerScript.GetArrowObject();
@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "BreakableWall")
         {
-            if (myForm == GameManager.Form.charger && controller.speed == originalSpeed * 2)
+            if (myForm == Form.charger && controller.speed == originalSpeed * 2)
             {
                 Destroy(collision.gameObject);
             }
@@ -181,16 +181,16 @@ public class Player : MonoBehaviour
 
     /** dont change scale, it messes with character controller
      */
-    private void changeValues(Sprite s, Vector2 size, Vector2 offset, GameManager.Form f)
+    private void changeValues(Sprite s, Vector2 size, Vector2 offset, Form f)
     {
-        if (f == GameManager.Form.original)
+        if (f == Form.original)
         {
             GetComponent<CircleCollider2D>().enabled = true;
             enemyCol.enabled = false;
             animator.runtimeAnimatorController = angelAnim;
         } else
         {
-            if (f == GameManager.Form.charger)
+            if (f == Form.charger)
             {
                 animator.runtimeAnimatorController = chargerAnim;
             }
@@ -206,10 +206,10 @@ public class Player : MonoBehaviour
     private void returnEnemy()
     {
         GameObject newEnemy;
-        if (myForm == GameManager.Form.charger)
+        if (myForm == Form.charger)
         {
             newEnemy = Instantiate(GameManager.S.Charger);
-        } else if (myForm == GameManager.Form.archer)
+        } else if (myForm == Form.archer)
         {
             newEnemy = Instantiate(GameManager.S.Archer);
         } else

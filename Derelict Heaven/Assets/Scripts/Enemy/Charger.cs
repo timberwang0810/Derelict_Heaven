@@ -18,9 +18,9 @@ public class Charger : Enemy
         animator = GetComponent<Animator>();
     }
 
-    public override GameManager.Form GetForm()
+    public override Form GetForm()
     {
-        return GameManager.Form.charger;
+        return Form.charger;
     }
 
     protected override void EnemyStart()

@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public enum GameState { menu, getReady, playing, paused, oops, gameOver };
-    public enum Form { original, charger, archer, pressurizer };
     public GameState gameState;
     public static GameManager S;
 
@@ -74,5 +73,6 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.gameOver;
         UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+        // TODO: Go to next level or end
     }
 }

@@ -22,9 +22,9 @@ public class Archer : Enemy
         // nothing
     }
 
-    public override GameManager.Form GetForm()
+    public override Form GetForm()
     {
-        return GameManager.Form.archer;
+        return Form.archer;
     }
 
     public GameObject GetArrowObject()
