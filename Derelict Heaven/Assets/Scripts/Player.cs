@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     {
         { GameManager.Form.original, "Returned to normal!" },
         { GameManager.Form.charger, "Press 'c' to charge forward!" },
-        { GameManager.Form.archer, "Press LMB to shoot arrows!" }
+        { GameManager.Form.archer, "Press LMB to shoot arrows!" },
+        { GameManager.Form.pressurizer, "" }
     };
 
     private SpriteRenderer renderer;
@@ -56,45 +57,66 @@ public class Player : MonoBehaviour
     // Populate the mapping of enemy forms to its specific actions
     private void PopulateFunctions()
     {
-        enemyFunctions = new Dictionary<GameManager.Form, Action>();
-        enemyFunctions.Add(GameManager.Form.original, () => {
-            if (Input.GetKey(KeyCode.LeftShift))
+        enemyFunctions = new Dictionary<GameManager.Form, Action>
+        {
             {
-                possessor.enabled = true;
-            }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                possessor.enabled = false;
-            }
-        });
-        enemyFunctions.Add(GameManager.Form.charger, () => {
-            if (Input.GetKey("c"))
-            {
-                controller.speed = originalSpeed * 2;
-                if (rb.velocity.magnitude > 0) animator.SetBool("charge", true);
-            }
-            else if (Input.GetKeyUp("c"))
-            {
-                controller.speed = originalSpeed;
-                animator.SetBool("charge", false);
-            }
-        });
-        enemyFunctions.Add(GameManager.Form.archer, () => {
-            coolDownTimer += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Mouse0) && coolDownTimer >= shotCoolDown)
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-                dir.Normalize();
-                if (arrowPrefab)
+                GameManager.Form.original,
+                () =>
                 {
-                    Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
-                    GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.identity);
-                    arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
-                    coolDownTimer = 0;
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        possessor.enabled = true;
+                    }
+                    if (Input.GetKeyUp(KeyCode.LeftShift))
+                    {
+                        possessor.enabled = false;
+                    }
+                }
+            },
+            {
+                GameManager.Form.charger,
+                () =>
+                {
+                    if (Input.GetKey("c"))
+                    {
+                        controller.speed = originalSpeed * 2;
+                        if (rb.velocity.magnitude > 0) animator.SetBool("charge", true);
+                    }
+                    else if (Input.GetKeyUp("c"))
+                    {
+                        controller.speed = originalSpeed;
+                        animator.SetBool("charge", false);
+                    }
+                }
+            },
+            {
+                GameManager.Form.archer,
+                () =>
+                {
+                    coolDownTimer += Time.deltaTime;
+                    if (Input.GetKeyDown(KeyCode.Mouse0) && coolDownTimer >= shotCoolDown)
+                    {
+                        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+                        dir.Normalize();
+                        if (arrowPrefab)
+                        {
+                            Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
+                            GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.identity);
+                            arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
+                            coolDownTimer = 0;
+                        }
+                    }
+                }
+            },
+            {
+                GameManager.Form.pressurizer,
+                () =>
+                {
+
                 }
             }
-        });
+        };
         loading = false;
     }
 
@@ -120,7 +142,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && possessor.enabled)
         {
-            Debug.Log("possessing");
             Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
             possessor.enabled = false;
             possessing = collision.gameObject;
