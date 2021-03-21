@@ -378,6 +378,7 @@ MonoBehaviour:
   myForm: 0
   controller: {fileID: 0}
   chargerAnim: {fileID: 22100000, guid: 092b1b2cd84a4c64c877df2bb413addd, type: 2}
+  archerAnim: {fileID: 22100000, guid: 5e2d483fcb2f033499f422397d1202d0, type: 2}
   angelAnim: {fileID: 9100000, guid: 61731e7d973c5064380be930b64288e2, type: 2}
 --- !u!61 &7324773728814468130
 BoxCollider2D:

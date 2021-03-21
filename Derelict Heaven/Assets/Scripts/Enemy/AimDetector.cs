@@ -10,6 +10,7 @@ public class AimDetector : MonoBehaviour
         {
             Debug.Log("Entered");
             GetComponentInParent<Archer>().FoundPlayer(collision.gameObject);
+            GetComponentInParent<Archer>().ChangeAnimSight(true);
         }
     }
 
@@ -18,8 +19,12 @@ public class AimDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Exited");
-            if (transform.parent.gameObject.activeSelf) GetComponentInParent<Archer>().FoundPlayer(null);
-
+            if (transform.parent.gameObject.activeSelf)
+            {
+                GetComponentInParent<Archer>().FoundPlayer(null);
+                GetComponentInParent<Archer>().firstShot = true;
+                GetComponentInParent<Archer>().ChangeAnimSight(false);
+            }
         }
     }
 }

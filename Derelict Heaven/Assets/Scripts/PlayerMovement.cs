@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.S.gameState != GameManager.GameState.playing) return;
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+        if (GetComponent<Player>().myForm == Form.archer) horizontalMove = 0;
         if (horizontalMove != 0) animator.SetBool("walking", true);
         else animator.SetBool("walking", false);
 
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (GameManager.S.gameState != GameManager.GameState.playing) return;
+        if (GetComponent<Player>().myForm == Form.archer) return;
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         if (jump)
         {

@@ -46,7 +46,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4, y: 2}
+  m_Size: {x: 20, y: 10}
   m_Direction: 1
 --- !u!114 &7130616705650427689
 MonoBehaviour:
@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 8840938675049919938}
   - component: {fileID: 1483619612472007218}
   - component: {fileID: 5057039229538718451}
+  - component: {fileID: 4512302004979390806}
   m_Layer: 9
   m_Name: FireArcher
   m_TagString: Enemy
@@ -91,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 9078381884581619065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.04, y: 2.92, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9078381886429289168}
   - {fileID: 9078381884781514743}
@@ -139,8 +140,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.93333334, g: 0.53260577, b: 0.11764705, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 61e20beaff1c1e041b5a321a04d58e53, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -215,8 +216,6 @@ MonoBehaviour:
   faceLeft: 1
   isStationary: 0
   spawn: {x: 0, y: 0, z: 0}
-  xRange: 4
-  yRange: 2
   shotCoolDown: 5
   aimImpedeLayers:
     serializedVersion: 2
@@ -224,6 +223,7 @@ MonoBehaviour:
   projectile: {fileID: 4748247779472224364, guid: 94f0c26fabf4d4e18843a5d9d2d39eb3, type: 3}
   shotSpeed: 10
   inaccurateOffset: 1
+  firstShot: 1
 --- !u!120 &1483619612472007218
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -336,8 +336,27 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1.28, y: 1.92}
   m_Direction: 0
+--- !u!95 &4512302004979390806
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078381884581619065}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 904f01f5f4404654e8a8dc00e798258e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9078381884781514740
 GameObject:
   m_ObjectHideFlags: 0
