@@ -41,8 +41,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameState == GameState.playing)
+            {
+                UIManager.S.ShowPausePanel();
+                gameState = GameState.paused;
+                Time.timeScale = 0;
+            }
 
+            else if (gameState == GameState.paused)
+            {
+                UIManager.S.HidePausePanel();
+                gameState = GameState.playing;
+                Time.timeScale = 1;
+            }
+        }
     }
 
     public void StartNewGame()
