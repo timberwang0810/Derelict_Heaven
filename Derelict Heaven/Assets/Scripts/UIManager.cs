@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager S;
 
     public GameObject chatPanel;
+    public GameObject pausePanel;
 
     private void Awake()
     {
@@ -27,12 +28,23 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         chatPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     public void ShowPopUpForSeconds(string message, float duration)
     {
         if (message == "") return;
         StartCoroutine(ShowPopUpForSecondsCoroutine(message, duration));
+    }
+
+    public void ShowPausePanel()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void HidePausePanel()
+    {
+        pausePanel.SetActive(false);
     }
 
     private IEnumerator ShowPopUpForSecondsCoroutine(string message, float duration)
