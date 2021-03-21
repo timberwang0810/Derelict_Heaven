@@ -14,6 +14,14 @@ public class Archer : Enemy
     private GameObject playerObject;
 
     private LineRenderer aimLaser;
+    private Animator animator;
+    public bool firstShot = true;
+
+    void Start()
+    {
+        base.Start();
+        animator = GetComponent<Animator>();
+    }
 
     public override void ResetState()
     {
@@ -63,6 +71,14 @@ public class Archer : Enemy
 
     private void AimAtTarget(GameObject target)
     {
+        if (firstShot)
+        {
+            animator.SetTrigger("ready");
+        } else
+        {
+            animator.SetTrigger("reload");
+        }
+
         RaycastHit2D hit = Physics2D.Linecast(transform.position, target.transform.position, aimImpedeLayers);
         Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
       
@@ -82,8 +98,14 @@ public class Archer : Enemy
         }
     }
 
+    private void TriggerHold()
+    {
+        animator.SetTrigger("hold");
+    }
+
     private void ShootAtTarget(GameObject target)
     {
+        animator.SetTrigger("shoot");
         Vector2 offsetLocation = (Vector2) target.transform.position + new Vector2(Random.Range(-inaccurateOffset, inaccurateOffset), Random.Range(-inaccurateOffset, inaccurateOffset));
         Vector2 direction = offsetLocation - (Vector2)transform.position;
         direction.Normalize();
@@ -94,5 +116,10 @@ public class Archer : Enemy
         arrowObject.GetComponent<Rigidbody2D>().velocity = direction * shotSpeed;
         coolDownTimer = 0;
         aimLaser.enabled = false;
+    }
+
+    public void ChangeAnimSight(bool status)
+    {
+        animator.SetBool("sighted", status);
     }
 }

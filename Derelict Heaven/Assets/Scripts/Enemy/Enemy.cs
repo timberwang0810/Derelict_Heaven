@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
 
     public Vector3 spawn;
 
-    private void Start()
+    protected void Start()
     {
         if (!isStationary)
         {

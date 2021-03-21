@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     private float originalRadius;
 
     private BoxCollider2D possessor;
-    private GameObject possessing;
 
     // Archer enemy variables
     private Rigidbody2D rb;
@@ -37,8 +36,11 @@ public class Player : MonoBehaviour
     private float originalSpeed;
     
     public AnimatorOverrideController chargerAnim;
+    public AnimatorOverrideController archerAnim;
     public AnimatorController angelAnim;
     private Animator animator;
+
+    public GameObject returnQueue;
 
     // Start is called before the first frame update
     void Start()
@@ -94,15 +96,20 @@ public class Player : MonoBehaviour
                 () =>
                 {
                     coolDownTimer += Time.deltaTime;
-                    if (Input.GetKeyDown(KeyCode.Mouse0) && coolDownTimer >= shotCoolDown)
+                    if (Input.GetKeyDown(KeyCode.Mouse0)) // && coolDownTimer >= shotCoolDown) commented out for testing
                     {
+                        animator.SetTrigger("shoot");
                         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                         Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
                         dir.Normalize();
+                        if (mousePos.x > transform.position.x) renderer.flipX = false;
+                        else renderer.flipX = true;
+
                         if (arrowPrefab)
                         {
                             Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
                             GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.identity);
+                            arrowObject.layer = 8;
                             arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
                             coolDownTimer = 0;
                         }
@@ -124,12 +131,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (loading || GameManager.S.gameState != GameManager.GameState.playing) return;
+        
         enemyFunctions[myForm].Invoke();
         if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            returnEnemy();
+            returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);  
-            possessing = null;
         }
     }
 
@@ -144,9 +151,11 @@ public class Player : MonoBehaviour
         {
             Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
             possessor.enabled = false;
-            possessing = collision.gameObject;
+            
             collision.gameObject.SetActive(false);
             Form form = enemyScript.GetForm();
+
+            returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, collision.gameObject.GetComponent<Enemy>().spawn);
 
             changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
                          collision.gameObject.GetComponent<CapsuleCollider2D>().size,
@@ -165,6 +174,7 @@ public class Player : MonoBehaviour
 
             Vector3 newPos = collision.transform.position;
             transform.position = newPos;
+            Destroy(collision.gameObject);
         }
     }
 
@@ -193,6 +203,10 @@ public class Player : MonoBehaviour
             if (f == Form.charger)
             {
                 animator.runtimeAnimatorController = chargerAnim;
+            } else if (f == Form.archer)
+            {
+                animator.runtimeAnimatorController = archerAnim;
+                animator.SetBool("walking", false);
             }
             GetComponent<CircleCollider2D>().enabled = false;
             enemyCol.enabled = true;
@@ -201,26 +215,5 @@ public class Player : MonoBehaviour
         }
         myForm = f;
         UIManager.S.ShowPopUpForSeconds(formCommands[f], 5);
-    }
-
-    private void returnEnemy()
-    {
-        GameObject newEnemy;
-        switch (myForm)
-        {
-            case Form.charger:
-                newEnemy = Instantiate(GameManager.S.Charger);
-                break;
-            case Form.archer:
-                newEnemy = Instantiate(GameManager.S.Archer);
-                break;
-            case Form.pressurizer:
-                newEnemy = Instantiate(GameManager.S.Pressurizer);
-                break;
-            default:
-                throw new Exception("no enemy of this type");
-        }
-        newEnemy.transform.position = possessing.GetComponent<Enemy>().spawn;
-        Destroy(possessing);
     }
 }

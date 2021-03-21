@@ -15,6 +15,7 @@ public class Charger : Enemy
 
     void Start()
     {
+        base.Start();
         animator = GetComponent<Animator>();
     }
 
