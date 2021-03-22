@@ -13,8 +13,13 @@ public class Charger : Enemy
     private bool lockedOnPlayer = false;
     private Animator animator;
 
+    public AudioSource walkAudio;
+    public AudioSource runAudio;
+
     void Start()
     {
+        walkAudio.Stop();
+        runAudio.Stop();
         base.Start();
         animator = GetComponent<Animator>();
     }
@@ -28,6 +33,7 @@ public class Charger : Enemy
     {
         originalSpeed = speed;
         Debug.Log("original speed: " + originalSpeed);
+        walkAudio.Play();
     }
     protected override void EnemyUpdate()
     {
@@ -44,6 +50,8 @@ public class Charger : Enemy
                 animator.SetTrigger("chargeup");
                 lockedOnPlayer = true;
                 speed *= 2;
+                walkAudio.Stop();
+                runAudio.Play();
                 StartCoroutine(FreezeForSeconds(1));
                 StartCoroutine(AggroTime(aggroTime));
             }
@@ -90,5 +98,7 @@ public class Charger : Enemy
         lockedOnPlayer = false;
         speed = originalSpeed;
         animator.SetBool("charging", false);
+        runAudio.Stop();
+        walkAudio.Play();
     }
 }

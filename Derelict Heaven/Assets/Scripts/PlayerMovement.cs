@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private GameObject floater;
 
+    public AudioSource ChargerWalking;
+    public AudioSource ChargerRunning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         if (GetComponent<Player>().myForm == Form.archer) horizontalMove = 0;
         if (horizontalMove != 0) animator.SetBool("walking", true);
+        if (horizontalMove !=0 && GetComponent<Player>().myForm == Form.charger) { }
         else animator.SetBool("walking", false);
 
         floater.SetActive(controller.CheckGrounded());
@@ -36,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            SoundManager.S.OnJumpSound();
             
         }
 
