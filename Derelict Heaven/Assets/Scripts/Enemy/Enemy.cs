@@ -9,7 +9,7 @@ public abstract class Enemy : MonoBehaviour
     public bool isStationary;
 
 
-    private CharacterController2D controller;
+    protected CharacterController2D controller;
 
     public Vector3 spawn;
 
@@ -33,12 +33,8 @@ public abstract class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         if (GameManager.S.gameState != GameManager.GameState.playing) return;
-        if (controller == null)
-        {
-            controller = GetComponent<CharacterController2D>();
-        }
-        //if (GameManager.S.gameState != GameManager.GameState.playing) return;
-        if (!isStationary)
+
+        if (!isStationary && !(this is Archer))
         {
             float horizontalMove = speed * Time.fixedDeltaTime;
            
