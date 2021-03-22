@@ -12,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     bool dir = false;
     private Rigidbody2D rb;
     private Animator animator;
+    private GameObject floater;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        floater = gameObject.transform.GetChild(3).gameObject;
     }
 
     // Update is called once per frame
@@ -29,9 +31,12 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalMove != 0) animator.SetBool("walking", true);
         else animator.SetBool("walking", false);
 
+        floater.SetActive(controller.CheckGrounded());
+
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            
         }
 
         if (horizontalMove > 0.0f)
@@ -65,5 +70,10 @@ public class PlayerMovement : MonoBehaviour
             transform.position = curPos;
         }
         jump = false;
+    }
+
+    public void ControllerMove(int move)
+    {
+        controller.Move(move, false, false);
     }
 }

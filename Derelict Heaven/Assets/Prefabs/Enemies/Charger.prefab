@@ -183,7 +183,6 @@ MonoBehaviour:
   speed: 10
   faceLeft: 0
   isStationary: 0
-  score: 100
   spawn: {x: 0, y: 0, z: 0}
   range: 6
   aggroTime: 10
@@ -223,7 +222,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.04, y: 0}
-  m_Size: {x: 1.16, y: 1.88}
+  m_Size: {x: 0.84, y: 1.4}
   m_Direction: 0
 --- !u!1 &5124579845546652159
 GameObject:

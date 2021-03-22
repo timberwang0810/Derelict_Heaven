@@ -7,7 +7,9 @@ public class Door : Mechanism
     public override void Activate()
     {
         Debug.Log("Door Activated");
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        // disable entire thing for now
+        gameObject.SetActive(false);
     }
 
     public override void Deactivate()

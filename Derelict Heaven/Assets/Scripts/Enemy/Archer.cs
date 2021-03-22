@@ -16,11 +16,13 @@ public class Archer : Enemy
     private LineRenderer aimLaser;
     private Animator animator;
     public bool firstShot = true;
+    private SpriteRenderer renderer;
 
     void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     public override void ResetState()
@@ -71,6 +73,9 @@ public class Archer : Enemy
 
     private void AimAtTarget(GameObject target)
     {
+        if (transform.position.x > target.transform.position.x) controller.Move(-1, false, false);
+        else controller.Move(1, false, false);
+
         if (firstShot)
         {
             animator.SetTrigger("ready");
@@ -121,5 +126,10 @@ public class Archer : Enemy
     public void ChangeAnimSight(bool status)
     {
         animator.SetBool("sighted", status);
+    }
+
+    public void setFlip(bool flipping)
+    {
+        renderer.flipX = flipping;
     }
 }

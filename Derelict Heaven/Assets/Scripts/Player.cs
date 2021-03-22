@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     public GameObject returnQueue;
 
+    private GameObject camera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,11 +101,16 @@ public class Player : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0)) // && coolDownTimer >= shotCoolDown) commented out for testing
                     {
                         animator.SetTrigger("shoot");
-                        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        Plane xy = new Plane(new Vector3(0, 1, -1), new Vector3(0, 0, transform.GetChild(2).transform.position.z));
+                        float distance;
+                        xy.Raycast(ray, out distance);
+                        Vector2 mousePos = ray.GetPoint(distance);
+
                         Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
                         dir.Normalize();
-                        if (mousePos.x > transform.position.x) renderer.flipX = false;
-                        else renderer.flipX = true;
+                        if (mousePos.x > transform.position.x) controller.ControllerMove(1);
+                        else controller.ControllerMove(-1);
 
                         if (arrowPrefab)
                         {
@@ -162,9 +169,12 @@ public class Player : MonoBehaviour
                          collision.gameObject.GetComponent<CapsuleCollider2D>().offset,
                          form);
 
+
             // Pass enemy variables to the player
             if (form == Form.archer)
             {
+                rb.velocity = new Vector2(0, 0);
+                rb.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
                 Archer archerScript = collision.gameObject.GetComponent<Archer>();
                 arrowPrefab = archerScript.GetArrowObject();
                 shotSpeed = archerScript.shotSpeed;
@@ -195,6 +205,7 @@ public class Player : MonoBehaviour
     {
         if (f == Form.original)
         {
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
             GetComponent<CircleCollider2D>().enabled = true;
             enemyCol.enabled = false;
             animator.runtimeAnimatorController = angelAnim;

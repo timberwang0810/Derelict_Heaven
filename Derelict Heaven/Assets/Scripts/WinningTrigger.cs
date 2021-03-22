@@ -6,6 +6,7 @@ public class WinningTrigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.S.OnLevelWon();
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Player") GameManager.S.OnLevelWon();
     }
 }
