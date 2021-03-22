@@ -154,6 +154,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Key")
+        {
+            GameManager.S.PlayerGotKey();
+            Destroy(collision.gameObject);
+        }
+
         if (collision.gameObject.tag == "Enemy" && possessor.enabled)
         {
             Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
