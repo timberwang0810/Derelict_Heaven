@@ -219,7 +219,7 @@ MonoBehaviour:
   shotCoolDown: 5
   aimImpedeLayers:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 24887
   projectile: {fileID: 4748247779472224364, guid: 94f0c26fabf4d4e18843a5d9d2d39eb3, type: 3}
   shotSpeed: 10
   inaccurateOffset: 1

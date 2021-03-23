@@ -5,12 +5,19 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float destroyTime;
+    private bool hitSomething;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
-        if (collision.gameObject.CompareTag("Player")) GameManager.S.OnLivesLost();
+        if (collision.gameObject.CompareTag("Player") && !hitSomething)
+        {
+            Vector2 dir = collision.gameObject.transform.position - gameObject.transform.position;
+            dir.Normalize();
+            GameManager.S.OnLivesLost(dir);
+        }
         // TODO: Change collider when asset is put in
-        GetComponent<CircleCollider2D>().enabled = false;
+        hitSomething = true;
         Destroy(this.gameObject, destroyTime);
     }
 
