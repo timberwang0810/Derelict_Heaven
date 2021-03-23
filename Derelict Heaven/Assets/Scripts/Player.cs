@@ -70,6 +70,8 @@ public class Player : MonoBehaviour
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
                         possessor.enabled = true;
+                        if (myForm == Form.original)
+                        {  }
                     }
                     if (Input.GetKeyUp(KeyCode.LeftShift))
                     {
@@ -101,6 +103,7 @@ public class Player : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0)) // && coolDownTimer >= shotCoolDown) commented out for testing
                     {
                         animator.SetTrigger("shoot");
+                        SoundManager.S.OnArrowFire();
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                         Plane xy = new Plane(new Vector3(0, 1, -1), new Vector3(0, 0, transform.GetChild(2).transform.position.z));
                         float distance;
@@ -143,7 +146,8 @@ public class Player : MonoBehaviour
         if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift))
         {
             returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
-            changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);  
+            changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
+
         }
     }
 
@@ -215,6 +219,7 @@ public class Player : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = true;
             enemyCol.enabled = false;
             animator.runtimeAnimatorController = angelAnim;
+            SoundManager.S.OnUnConsumeSound();
         } else
         {
             if (f == Form.charger)
@@ -229,6 +234,9 @@ public class Player : MonoBehaviour
             enemyCol.enabled = true;
             enemyCol.size = size;
             enemyCol.offset = offset;
+            SoundManager.S.OnConsumeSound();
+
+
         }
         myForm = f;
         UIManager.S.ShowPopUpForSeconds(formCommands[f], 5);

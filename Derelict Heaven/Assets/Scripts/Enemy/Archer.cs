@@ -18,11 +18,15 @@ public class Archer : Enemy
     public bool firstShot = true;
     private SpriteRenderer renderer;
 
+
+
+
     void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
+
     }
 
     public override void ResetState()
@@ -110,6 +114,7 @@ public class Archer : Enemy
 
     private void ShootAtTarget(GameObject target)
     {
+        SoundManager.S.OnArrowFire();
         animator.SetTrigger("shoot");
         Vector2 offsetLocation = (Vector2) target.transform.position + new Vector2(Random.Range(-inaccurateOffset, inaccurateOffset), Random.Range(-inaccurateOffset, inaccurateOffset));
         Vector2 direction = offsetLocation - (Vector2)transform.position;
