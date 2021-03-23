@@ -12,6 +12,8 @@ public class Charger : Enemy
     private float originalSpeed;
     private bool lockedOnPlayer = false;
     private Animator animator;
+    private bool canAggro = true;
+    private float deAggroDelayTime = 2.0f;
 
     public AudioSource walkAudio;
     public AudioSource runAudio;
@@ -42,7 +44,7 @@ public class Charger : Enemy
 
     protected override void EnemyPhysicsUpdate()
     {
-        if (!isStationary && !lockedOnPlayer)
+        if (!isStationary && !lockedOnPlayer && canAggro)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, aimImpedeLayers);
 
@@ -104,5 +106,13 @@ public class Charger : Enemy
         animator.SetBool("charging", false);
         runAudio.Stop();
         walkAudio.Play();
+        StartCoroutine(DeAggroDelay());
+    }
+
+    private IEnumerator DeAggroDelay()
+    {
+        canAggro = false;
+        yield return new WaitForSeconds(deAggroDelayTime);
+        canAggro = true;
     }
 }
