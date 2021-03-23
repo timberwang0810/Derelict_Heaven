@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
     public void OnLevelLost()
     {
         gameState = GameState.gameOver;
-        Debug.Log("lost");
         UIManager.S.ShowPopUpForSeconds("You Lost!", 3);
     }
 

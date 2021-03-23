@@ -2754,7 +2754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5125294672254206062, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -0.61
       objectReference: {fileID: 0}
     - target: {fileID: 5125294672341979448, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_Enabled
@@ -2813,9 +2813,41 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_WhatIsGround.m_Bits
       value: 8193
       objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 271809851}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLandSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Player, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 992598414}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
 --- !u!1 &746343961
@@ -3018,6 +3050,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5125294672341979454, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
   m_PrefabInstance: {fileID: 745173977}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &992598414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1146012036578403554, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+  m_PrefabInstance: {fileID: 745173977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992598408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b650944d243058447aac631e693875cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1004424181
 GameObject:
   m_ObjectHideFlags: 0

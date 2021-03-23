@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private GameObject floater;
+    private Player playerScript;
 
     public AudioSource ChargerWalking;
     public AudioSource ChargerRunning;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerScript = GetComponent<Player>();
         floater = gameObject.transform.GetChild(3).gameObject;
     }
 
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-            SoundManager.S.OnJumpSound();
+            SoundManager.S.OnJumpSound(playerScript.myForm);
             
         }
 
