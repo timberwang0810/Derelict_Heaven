@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int maxLives;
     private int lives;
     private bool invincible;
+    private bool keyGotten = false;
 
     private void Awake()
     {
@@ -96,9 +97,17 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelWon()
     {
-        gameState = GameState.gameOver;
-        UIManager.S.ShowPopUpForSeconds("You Won!", 3);
-        // TODO: Go to next level or end
+        if (keyGotten)
+        {
+            gameState = GameState.gameOver;
+            UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+            // TODO: Go to next level or end
+        }
+    }
+
+    public void PlayerGotKey()
+    {
+        keyGotten = true;
     }
 
     public bool IsInvincible()
