@@ -13,9 +13,13 @@ public class GameManager : MonoBehaviour
     public GameObject Archer;
     public GameObject Pressurizer;
 
+    // Player
+    public GameObject player;
+
     // Game Variables
     public int maxLives;
     private int lives;
+    private bool invincible;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        lives = maxLives;
         Time.timeScale = 1;
     }
 
@@ -72,10 +77,13 @@ public class GameManager : MonoBehaviour
         gameState = GameState.playing;
     }
 
-    public void OnLivesLost()
+    public void OnLivesLost(Vector2 damageDir)
     {
+        if (invincible) return;
+        player.gameObject.GetComponent<Rigidbody2D>().AddForce(5 * damageDir, ForceMode2D.Impulse);
         lives--;
         if (lives <= 0) OnLevelLost();
+        else StartCoroutine(TakeDamageCoroutine());
     }
 
     public void OnLevelLost()
@@ -90,5 +98,38 @@ public class GameManager : MonoBehaviour
         gameState = GameState.gameOver;
         UIManager.S.ShowPopUpForSeconds("You Won!", 3);
         // TODO: Go to next level or end
+    }
+
+    public bool IsInvincible()
+    {
+        return invincible;
+    }
+
+    private IEnumerator TakeDamageCoroutine()
+    {
+        invincible = true;
+        SpriteRenderer r = player.GetComponent<SpriteRenderer>();
+        Color opaque = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        Color transparent = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        for (int i = 0; i < 3; i++)
+        {
+            float timer = 0;
+            while (timer < 0.1)
+            {
+                timer += Time.deltaTime;
+                r.color = Color.Lerp(opaque, transparent, timer / 1);
+                yield return null;
+
+            }
+            timer = 0;
+            while (timer < 0.1)
+            {
+                timer += Time.deltaTime;
+                r.color = Color.Lerp(transparent, opaque, timer / 1);
+                yield return null;
+            }
+        }
+        r.color = opaque;
+        invincible = false;
     }
 }

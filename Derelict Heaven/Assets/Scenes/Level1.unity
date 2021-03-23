@@ -2612,6 +2612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e95abc3529e4f33adf1ad9c97a6ff1, type: 3}
+--- !u!1 &992598408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5125294672341979454, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+  m_PrefabInstance: {fileID: 745173977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1004424181
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,7 +2963,8 @@ MonoBehaviour:
   Charger: {fileID: 5124579844168765015, guid: 7bbf476723dca15478d55391e313f141, type: 3}
   Archer: {fileID: 9078381884581619065, guid: 0d684497f853d454a96a4a972f703e07, type: 3}
   Pressurizer: {fileID: 705664486752912996, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
-  maxLives: 3
+  player: {fileID: 992598408}
+  maxLives: 100
 --- !u!4 &1254484677
 Transform:
   m_ObjectHideFlags: 0
@@ -3023,7 +3029,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5125294672341979588, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
   m_PrefabInstance: {fileID: 745173977}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 992598408}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35627d8c5b4ce8c4e8db495995747e71, type: 3}

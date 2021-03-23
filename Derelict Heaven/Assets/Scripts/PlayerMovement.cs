@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.S.gameState != GameManager.GameState.playing) return;
+        if (GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         if (GetComponent<Player>().myForm == Form.archer) horizontalMove = 0;
         if (horizontalMove != 0) animator.SetBool("walking", true);
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.S.gameState != GameManager.GameState.playing) return;
+        if (GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         if (GetComponent<Player>().myForm == Form.archer) return;
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         if (jump)

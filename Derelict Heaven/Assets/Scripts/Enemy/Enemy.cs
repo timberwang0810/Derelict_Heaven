@@ -63,7 +63,9 @@ public abstract class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
-            GameManager.S.OnLivesLost();
+            Vector2 dir = collision.gameObject.transform.position - gameObject.transform.position;
+            dir.Normalize();
+            GameManager.S.OnLivesLost(dir);
         }
     }
 
