@@ -35,4 +35,9 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Title");
         Destroy(this.gameObject, 1.0f);
     }
+
+    public void btn_Quit()
+    {
+        Application.Quit();
+    }
 }
