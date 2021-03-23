@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (loading || GameManager.S.gameState != GameManager.GameState.playing) return;
+        if (loading || GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         
         enemyFunctions[myForm].Invoke();
         if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift))
@@ -158,6 +158,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Key")
+        {
+            GameManager.S.PlayerGotKey();
+            Destroy(collision.gameObject);
+        }
+
         if (collision.gameObject.tag == "Enemy" && possessor.enabled)
         {
             Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();

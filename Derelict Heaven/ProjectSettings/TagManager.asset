@@ -8,6 +8,7 @@ TagManager:
   - TurnAround
   - BreakableWall
   - Torch
+  - Key
   layers:
   - Default
   - TransparentFX

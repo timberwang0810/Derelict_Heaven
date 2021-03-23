@@ -7,7 +7,7 @@ public class Charger : Enemy
 {
     public float range;
     public float aggroTime;
-    public LayerMask chargeTrigger;
+    public LayerMask aimImpedeLayers;
 
     private float originalSpeed;
     private bool lockedOnPlayer = false;
@@ -44,7 +44,8 @@ public class Charger : Enemy
     {
         if (!isStationary && !lockedOnPlayer)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, chargeTrigger);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, aimImpedeLayers);
+
             if (hit.collider != null && hit.collider.gameObject.tag == "Player")
             {
                 animator.SetTrigger("chargeup");
@@ -65,13 +66,14 @@ public class Charger : Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "TurnAround")
+        if (collision.gameObject.tag == "TurnAround")
         {
             ResetState();
         }
     }
     protected override void EnemyCollisionEnterEvent(Collision2D collision)
     {
+        Debug.Log("enemy hit something " + lockedOnPlayer);
         if (collision.gameObject.tag == "BreakableWall" && lockedOnPlayer)
         {
             animator.SetTrigger("impact");
@@ -80,6 +82,7 @@ public class Charger : Enemy
             gameObject.GetComponent<Rigidbody2D>().AddForce(pushBackForce, ForceMode2D.Impulse);
             Destroy(collision.gameObject);
             // TODO: Stun state effects (stay stunned forever or for a certain time?)
+            Debug.Log("stunned?");
             isStationary = true;
         }
         else
@@ -95,6 +98,7 @@ public class Charger : Enemy
 
     public override void ResetState()
     {
+        Debug.Log("reset");
         lockedOnPlayer = false;
         speed = originalSpeed;
         animator.SetBool("charging", false);

@@ -89,7 +89,7 @@ public class Archer : Enemy
         }
 
         RaycastHit2D hit = Physics2D.Linecast(transform.position, target.transform.position, aimImpedeLayers);
-        Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
+        //Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
       
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
         {

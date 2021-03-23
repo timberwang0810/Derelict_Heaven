@@ -188,7 +188,7 @@ MonoBehaviour:
   spawn: {x: 0, y: 0, z: 0}
   range: 6
   aggroTime: 10
-  chargeTrigger:
+  aimImpedeLayers:
     serializedVersion: 2
     m_Bits: 256
   walkAudio: {fileID: -8550659875961261296}
