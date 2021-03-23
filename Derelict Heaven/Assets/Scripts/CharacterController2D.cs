@@ -123,6 +123,7 @@ public class CharacterController2D : MonoBehaviour
 				// ... flip the player.
 				Flip();
 			}
+
 		}
 		// If the player should jump...
 		if (m_Grounded && jump)

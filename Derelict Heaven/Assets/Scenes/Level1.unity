@@ -2038,8 +2038,8 @@ MonoBehaviour:
   audio: {fileID: 271809853}
   ConsumeSFX: {fileID: 8300000, guid: 3c64ee7459b76b545af68c96074ff8c4, type: 3}
   UnConsumeSFX: {fileID: 8300000, guid: 6072e4520ea6de4429d948939fb0d9e8, type: 3}
-  ChargerRunSFX: {fileID: 0}
-  ChargerWalkSFX: {fileID: 0}
+  ChargerRunSFX: {fileID: 8300000, guid: 75b7e9207f24fe54ba0169a737688c13, type: 3}
+  ChargerWalkSFX: {fileID: 8300000, guid: 179ee908d0b3e214ba47eb07b42aad16, type: 3}
   ChargerJumpSFX: {fileID: 0}
   ChargerLandSFX: {fileID: 0}
   ChargerDeathSFX: {fileID: 0}
@@ -2077,7 +2077,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

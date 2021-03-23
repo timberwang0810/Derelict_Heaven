@@ -112,6 +112,50 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void OnRunSound(Form f)
+    {
+        switch (f)
+        {
+            case Form.original:
+                break;
+            case Form.charger:
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                break;
+        }
+    }
+
+    public void OnWalkSound(Form f)
+    {
+        switch (f)
+        {
+            case Form.original:
+                break;
+            case Form.charger:
+                OnChargerWalkSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                break;
+        }
+    }
+
+    public void OnStopWalkSound(Form f)
+    {
+        switch (f)
+        {
+            case Form.original:
+                break;
+            case Form.charger:
+                OnStopChargerWalkSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                break;
+        }
+    }
+
     public void OnConsumeSound()
     {
         audio.PlayOneShot(ConsumeSFX, 0.5f);
@@ -120,7 +164,6 @@ public class SoundManager : MonoBehaviour
     {
         audio.PlayOneShot(UnConsumeSFX, 0.5f);
     }
-
 
     // Charger Sounds
     public void OnChargerLandSound()
@@ -137,7 +180,14 @@ public class SoundManager : MonoBehaviour
     }
     public void OnChargerWalkSound()
     {
-        audio.PlayOneShot(ChargerWalkSFX);
+        audio.clip = ChargerWalkSFX;
+        audio.Play();
+    }
+
+    public void OnStopChargerWalkSound()
+    {
+        audio.Stop();
+        audio.clip = null;
     }
 
     // Arrow Sounds
