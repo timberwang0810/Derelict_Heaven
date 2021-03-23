@@ -7,7 +7,7 @@ public class Charger : Enemy
 {
     public float range;
     public float aggroTime;
-    public LayerMask chargeTrigger;
+    public LayerMask aimImpedeLayers;
 
     private float originalSpeed;
     private bool lockedOnPlayer = false;
@@ -38,7 +38,8 @@ public class Charger : Enemy
     {
         if (!isStationary && !lockedOnPlayer)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, chargeTrigger);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, aimImpedeLayers);
+
             if (hit.collider != null && hit.collider.gameObject.tag == "Player")
             {
                 animator.SetTrigger("chargeup");
