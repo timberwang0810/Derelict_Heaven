@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8590543041778147026}
   - component: {fileID: 3206121793281668044}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpritePack_29 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8549449358275997084}
   - component: {fileID: 8631555203923414991}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpritePack_29 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9181055432392012452}
   - component: {fileID: 1192642406312351965}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SpritePack_29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 9166564467245219350}
   - component: {fileID: 615458650444571383}
   - component: {fileID: 8052765612747325071}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BreakableWall
   m_TagString: BreakableWall
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ Animator:
   m_GameObject: {fileID: 6749416735833242659}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 414d7fdfb52ec154fa84f20c9c7fab53, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

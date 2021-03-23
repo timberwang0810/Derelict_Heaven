@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     public void ResetLevel()
     {
         // Reset any variables necessary in the level
+        // Don't know if we need if player don't get destroyed upon losing life
         gameState = GameState.playing;
     }
 
