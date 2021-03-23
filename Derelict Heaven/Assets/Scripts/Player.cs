@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
 using System;
 
 public class Player : MonoBehaviour
@@ -37,7 +36,7 @@ public class Player : MonoBehaviour
     
     public AnimatorOverrideController chargerAnim;
     public AnimatorOverrideController archerAnim;
-    public AnimatorController angelAnim;
+    public RuntimeAnimatorController angelAnim;
     private Animator animator;
 
     public GameObject returnQueue;
