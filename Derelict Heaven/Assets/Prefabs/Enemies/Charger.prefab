@@ -190,7 +190,7 @@ MonoBehaviour:
   aggroTime: 10
   aimImpedeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 26935
   walkAudio: {fileID: -8550659875961261296}
   runAudio: {fileID: -748680489315689481}
 --- !u!95 &1151590068408949560

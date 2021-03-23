@@ -12,6 +12,8 @@ public class Charger : Enemy
     private float originalSpeed;
     private bool lockedOnPlayer = false;
     private Animator animator;
+    private bool canAggro = true;
+    private float deAggroDelayTime = 2.0f;
 
     public AudioSource walkAudio;
     public AudioSource runAudio;
@@ -32,7 +34,6 @@ public class Charger : Enemy
     protected override void EnemyStart()
     {
         originalSpeed = speed;
-        Debug.Log("original speed: " + originalSpeed);
         walkAudio.Play();
     }
     protected override void EnemyUpdate()
@@ -42,7 +43,7 @@ public class Charger : Enemy
 
     protected override void EnemyPhysicsUpdate()
     {
-        if (!isStationary && !lockedOnPlayer)
+        if (!isStationary && !lockedOnPlayer && canAggro)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, (faceLeft ? Vector2.left : Vector2.right) * range, 10, aimImpedeLayers);
 
@@ -73,7 +74,6 @@ public class Charger : Enemy
     }
     protected override void EnemyCollisionEnterEvent(Collision2D collision)
     {
-        Debug.Log("enemy hit something " + lockedOnPlayer);
         if (collision.gameObject.tag == "BreakableWall" && lockedOnPlayer)
         {
             animator.SetTrigger("impact");
@@ -82,7 +82,6 @@ public class Charger : Enemy
             gameObject.GetComponent<Rigidbody2D>().AddForce(pushBackForce, ForceMode2D.Impulse);
             Destroy(collision.gameObject);
             // TODO: Stun state effects (stay stunned forever or for a certain time?)
-            Debug.Log("stunned?");
             isStationary = true;
         }
         else
@@ -98,11 +97,18 @@ public class Charger : Enemy
 
     public override void ResetState()
     {
-        Debug.Log("reset");
         lockedOnPlayer = false;
         speed = originalSpeed;
         animator.SetBool("charging", false);
         runAudio.Stop();
         walkAudio.Play();
+        StartCoroutine(DeAggroDelay());
+    }
+
+    private IEnumerator DeAggroDelay()
+    {
+        canAggro = false;
+        yield return new WaitForSeconds(deAggroDelayTime);
+        canAggro = true;
     }
 }

@@ -60,17 +60,100 @@ public class SoundManager : MonoBehaviour
     }
 
     // Angel Sounds
-    public void OnLandSound()
+    public void OnLandSound(Player p)
     {
-        audio.PlayOneShot(LandSFX);
+        Debug.Log("fired");
+        if (!LandSFX) return;// TODO: DELETE
+        switch (p.myForm)
+        {
+            case Form.original:
+                audio.PlayOneShot(LandSFX);
+                break;
+            case Form.charger:
+                OnChargerLandSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                audio.PlayOneShot(LandSFX);
+                break;
+        }
     }
-    public void OnJumpSound()
+    public void OnJumpSound(Form f)
     {
-        audio.PlayOneShot(JumpSFX, 0.5f);
+        switch (f)
+        {
+            case Form.original:
+                audio.PlayOneShot(JumpSFX, 0.5f);
+                break;
+            case Form.charger:
+                OnChargerJumpSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                audio.PlayOneShot(JumpSFX, 0.5f);
+                break;
+        }
     }
-    public void OnDeathSound()
+    public void OnDeathSound(Form f)
     {
-        audio.PlayOneShot(DeathSFX);
+        if (!DeathSFX) return;// TODO: DELETE
+        switch (f)
+        {
+            case Form.original:
+                audio.PlayOneShot(DeathSFX);
+                break;
+            case Form.charger:
+                OnChargerDeathSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                audio.PlayOneShot(DeathSFX);
+                break;
+        }
+    }
+
+    public void OnRunSound(Form f)
+    {
+        switch (f)
+        {
+            case Form.original:
+                break;
+            case Form.charger:
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                break;
+        }
+    }
+
+    public void OnWalkSound(Form f)
+    {
+        switch (f)
+        {
+            case Form.original:
+                break;
+            case Form.charger:
+                OnChargerWalkSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                break;
+        }
+    }
+
+    public void OnStopWalkSound(Form f)
+    {
+        switch (f)
+        {
+            case Form.original:
+                break;
+            case Form.charger:
+                OnStopChargerWalkSound();
+                break;
+            // TODO: Follow this format for other characters
+            default:
+                break;
+        }
     }
 
     public void OnConsumeSound()
@@ -81,7 +164,6 @@ public class SoundManager : MonoBehaviour
     {
         audio.PlayOneShot(UnConsumeSFX, 0.5f);
     }
-
 
     // Charger Sounds
     public void OnChargerLandSound()
@@ -98,7 +180,14 @@ public class SoundManager : MonoBehaviour
     }
     public void OnChargerWalkSound()
     {
-        audio.PlayOneShot(ChargerWalkSFX);
+        audio.clip = ChargerWalkSFX;
+        audio.Play();
+    }
+
+    public void OnStopChargerWalkSound()
+    {
+        audio.Stop();
+        audio.clip = null;
     }
 
     // Arrow Sounds

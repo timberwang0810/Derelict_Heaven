@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private float horizontalMove = 0.0f;
     private bool jump = false;
+    private bool isMoving = false;
 
     bool dir = false;
     private Rigidbody2D rb;
     private Animator animator;
     private GameObject floater;
+    private Player playerScript;
 
     public AudioSource ChargerWalking;
     public AudioSource ChargerRunning;
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerScript = GetComponent<Player>();
         floater = gameObject.transform.GetChild(3).gameObject;
     }
 
@@ -40,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-            SoundManager.S.OnJumpSound();
+            SoundManager.S.OnJumpSound(playerScript.myForm);
             
         }
 
@@ -67,7 +70,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         if (GetComponent<Player>().myForm == Form.archer) return;
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+        float move = horizontalMove * Time.fixedDeltaTime;
+        if (move != 0 && !isMoving)
+        {
+            SoundManager.S.OnWalkSound(playerScript.myForm);
+            isMoving = true;
+        }
+        else if (move == 0 && isMoving)
+        {
+            SoundManager.S.OnStopWalkSound(playerScript.myForm);
+            isMoving = false;
+        }
+        controller.Move(move, false, jump);
+
         if (jump)
         {
             Vector3 curPos = transform.position;

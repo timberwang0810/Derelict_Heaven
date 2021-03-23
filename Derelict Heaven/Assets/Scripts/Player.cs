@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
                 () =>
                 {
                     coolDownTimer += Time.deltaTime;
-                    if (Input.GetKeyDown(KeyCode.Mouse0)) // && coolDownTimer >= shotCoolDown) commented out for testing
+                    if (Input.GetKeyDown(KeyCode.Mouse0)) // && coolDownTimer >= shotCoolDown) commented out for testing //TODO: Uncomment
                     {
                         animator.SetTrigger("shoot");
                         SoundManager.S.OnArrowFire();
