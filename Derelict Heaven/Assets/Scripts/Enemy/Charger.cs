@@ -62,21 +62,16 @@ public class Charger : Enemy
 
     public void SetChargeTrue()
     {
+        gameObject.tag = "EnemyAttack";
         animator.SetBool("charging", true);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "TurnAround")
-        {
-            ResetState();
-        }
-    }
     protected override void EnemyCollisionEnterEvent(Collision2D collision)
     {
         if (collision.gameObject.tag == "BreakableWall" && lockedOnPlayer)
         {
             animator.SetTrigger("impact");
+            gameObject.tag = "Enemy";
             animator.SetBool("charging", false);
             Vector2 pushBackForce = new Vector2(faceLeft ? 3 : -3, 3);
             gameObject.GetComponent<Rigidbody2D>().AddForce(pushBackForce, ForceMode2D.Impulse);
@@ -99,6 +94,7 @@ public class Charger : Enemy
     {
         lockedOnPlayer = false;
         speed = originalSpeed;
+        gameObject.tag = "Enemy";
         animator.SetBool("charging", false);
         runAudio.Stop();
         walkAudio.Play();
