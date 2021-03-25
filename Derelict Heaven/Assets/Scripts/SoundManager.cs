@@ -119,6 +119,7 @@ public class SoundManager : MonoBehaviour
             case Form.original:
                 break;
             case Form.charger:
+                OnChargerRunSound();
                 break;
             // TODO: Follow this format for other characters
             default:
@@ -141,19 +142,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void OnStopWalkSound(Form f)
+    public void OnStopCurrentSound()
     {
-        switch (f)
-        {
-            case Form.original:
-                break;
-            case Form.charger:
-                OnStopChargerWalkSound();
-                break;
-            // TODO: Follow this format for other characters
-            default:
-                break;
-        }
+        audio.Stop();
+        audio.clip = null;
     }
 
     public void OnConsumeSound()
@@ -180,14 +172,16 @@ public class SoundManager : MonoBehaviour
     }
     public void OnChargerWalkSound()
     {
+        if (audio.clip && audio.clip.Equals(ChargerRunSFX)) return;
         audio.clip = ChargerWalkSFX;
         audio.Play();
     }
 
-    public void OnStopChargerWalkSound()
+    public void OnChargerRunSound()
     {
-        audio.Stop();
-        audio.clip = null;
+        audio.clip = ChargerRunSFX;
+        Debug.Log("playing");
+        audio.Play();
     }
 
     // Arrow Sounds

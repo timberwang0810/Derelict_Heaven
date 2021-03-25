@@ -82,14 +82,22 @@ public class Player : MonoBehaviour
                 Form.charger,
                 () =>
                 {
+                    
                     if (Input.GetKey("c"))
                     {
                         controller.speed = originalSpeed * 2;
                         if (rb.velocity.magnitude > 0) animator.SetBool("charge", true);
                     }
+
+                    if (Input.GetKeyDown("c"))
+                    {
+                        SoundManager.S.OnChargerRunSound();
+                    }
                     else if (Input.GetKeyUp("c"))
                     {
                         controller.speed = originalSpeed;
+                        SoundManager.S.OnStopCurrentSound();
+                        if (controller.IsPlayerMoving()) SoundManager.S.OnChargerWalkSound();
                         animator.SetBool("charge", false);
                     }
                 }
@@ -146,7 +154,7 @@ public class Player : MonoBehaviour
         {
             returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
-
+            SoundManager.S.OnStopCurrentSound();
         }
     }
 
