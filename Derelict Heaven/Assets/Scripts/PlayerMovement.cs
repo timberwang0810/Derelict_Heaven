@@ -16,9 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private GameObject floater;
     private Player playerScript;
 
-    public AudioSource ChargerWalking;
-    public AudioSource ChargerRunning;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (move == 0 && isMoving)
         {
-            SoundManager.S.OnStopWalkSound(playerScript.myForm);
+            SoundManager.S.OnStopCurrentSound();
             isMoving = false;
         }
         controller.Move(move, false, jump);
@@ -95,5 +92,10 @@ public class PlayerMovement : MonoBehaviour
     public void ControllerMove(int move)
     {
         controller.Move(move, false, false);
+    }
+
+    public bool IsPlayerMoving()
+    {
+        return isMoving;
     }
 }
