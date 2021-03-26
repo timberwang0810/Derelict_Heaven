@@ -9,6 +9,11 @@ public class Door : Mechanism
         Debug.Log("Door Activated");
         //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         // disable entire thing for now
+        CameraManager.S.SolvePuzzlePan(gameObject);
+    }
+
+    public void PlayDeactivateAnim()
+    {
         gameObject.SetActive(false);
     }
 

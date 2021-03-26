@@ -9,6 +9,7 @@ TagManager:
   - BreakableWall
   - Torch
   - Key
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX

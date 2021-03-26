@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private float originalRadius;
 
     private BoxCollider2D possessor;
+    public float embodyCooldown;
+    private bool changeBack = false;
 
     // Archer enemy variables
     private Rigidbody2D rb;
@@ -150,7 +152,7 @@ public class Player : MonoBehaviour
         if (loading || GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         
         enemyFunctions[myForm].Invoke();
-        if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift))
+        if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift) && changeBack)
         {
             returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
@@ -171,13 +173,15 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "Enemy" && possessor.enabled)
+        if ((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyAttack") && possessor.enabled)
         {
             Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
             possessor.enabled = false;
-            
-            collision.gameObject.SetActive(false);
+
+            Debug.Log("getting form");
             Form form = enemyScript.GetForm();
+            Debug.Log("form is " + form);
+            collision.gameObject.SetActive(false);
 
             returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, collision.gameObject.GetComponent<Enemy>().spawn);
 
@@ -201,8 +205,16 @@ public class Player : MonoBehaviour
 
             Vector3 newPos = collision.transform.position;
             transform.position = newPos;
+            StartCoroutine(embodyCooldownCount());
             Destroy(collision.gameObject);
         }
+    }
+
+    IEnumerator embodyCooldownCount()
+    {
+        changeBack = false;
+        yield return new WaitForSeconds(embodyCooldown);
+        changeBack = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -39,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
             float horizontalMove = speed * Time.fixedDeltaTime;
            
             if (faceLeft) { horizontalMove *= -1.0f; }
+            //Debug.Log(horizontalMove + " " + faceLeft);
             controller.Move(horizontalMove, false, false);
         }
         EnemyPhysicsUpdate();
@@ -61,7 +62,7 @@ public abstract class Enemy : MonoBehaviour
         {
             faceLeft = !faceLeft;
         }
-        else if (collision.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == "Player" && gameObject.tag == "Enemy")
         {
             Vector2 dir = collision.gameObject.transform.position - gameObject.transform.position;
             dir.Normalize();
