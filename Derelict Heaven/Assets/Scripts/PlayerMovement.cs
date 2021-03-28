@@ -31,8 +31,9 @@ public class PlayerMovement : MonoBehaviour
         if (GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         if (GetComponent<Player>().myForm == Form.archer) horizontalMove = 0;
+        if (animator.GetBool("activate")) horizontalMove = 0;
         if (horizontalMove != 0) animator.SetBool("walking", true);
-        if (horizontalMove !=0 && GetComponent<Player>().myForm == Form.charger) { }
+        if (horizontalMove != 0 && (GetComponent<Player>().myForm == Form.charger || GetComponent<Player>().myForm == Form.pressurizer)) { }
         else animator.SetBool("walking", false);
 
         floater.SetActive(controller.CheckGrounded());
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.S.gameState != GameManager.GameState.playing || GameManager.S.IsInvincible()) return;
         if (GetComponent<Player>().myForm == Form.archer) return;
+        if (animator.GetBool("activate")) return;
         float move = horizontalMove * Time.fixedDeltaTime;
         if (move != 0 && !isMoving)
         {

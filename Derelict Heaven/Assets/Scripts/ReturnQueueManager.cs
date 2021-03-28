@@ -36,6 +36,11 @@ public class ReturnQueueManager : MonoBehaviour
         returnQueue.Enqueue(new ReturnEnemy(form, spawn));
     }
 
+    public void deleteEnemy()
+    {
+        returnQueue.Dequeue();
+    }
+
     public void returnEnemy()
     {
         StartCoroutine(returnEnemyDelay());

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 705664486752912998}
   - component: {fileID: 705664486752913019}
   - component: {fileID: 705664486752913018}
+  - component: {fileID: 8727348509216834202}
   m_Layer: 9
   m_Name: Pressurizer
   m_TagString: Enemy
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705664486752912996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.82, y: 8.91, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 705664487459748301}
   - {fileID: 705664486961212650}
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -7739030041084173944, guid: 63c4bddde63b58e4da105e99aba38a38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,8 +151,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.16, y: 0.16}
+  m_Offset: {x: 0, y: -0.11}
+  m_Size: {x: 0.6, y: 1.26}
   m_Direction: 0
 --- !u!114 &705664486752913018
 MonoBehaviour:
@@ -168,8 +169,26 @@ MonoBehaviour:
   speed: 10
   faceLeft: 1
   isStationary: 0
-  score: 100
   spawn: {x: 15, y: 9, z: 0}
+--- !u!95 &8727348509216834202
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705664486752912996}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f53c0da5f4008e47ab8b7bd58e55077, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &705664486961212649
 GameObject:
   m_ObjectHideFlags: 0

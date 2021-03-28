@@ -62,7 +62,7 @@ public abstract class Enemy : MonoBehaviour
         {
             faceLeft = !faceLeft;
         }
-        else if (collision.gameObject.tag == "Player" && gameObject.tag == "Enemy")
+        else if (collision.gameObject.tag == "Player" && gameObject.tag == "EnemyAttack")
         {
             Vector2 dir = collision.gameObject.transform.position - gameObject.transform.position;
             dir.Normalize();
