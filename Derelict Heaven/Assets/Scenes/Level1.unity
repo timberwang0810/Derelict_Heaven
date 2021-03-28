@@ -2585,6 +2585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Charger
       objectReference: {fileID: 0}
+    - target: {fileID: 5124579844168765015, guid: 7bbf476723dca15478d55391e313f141, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5124579844168765017, guid: 7bbf476723dca15478d55391e313f141, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.4533978
@@ -2789,6 +2793,10 @@ PrefabInstance:
       propertyPath: embodyCooldown
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1146012036578403554, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: bishopAnim
+      value: 
+      objectReference: {fileID: 22100000, guid: 976df9aa89af96442b483a8f04268a17, type: 2}
     - target: {fileID: 1174066182812707598, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3376,7 +3384,7 @@ Transform:
   - {fileID: 1959118087}
   - {fileID: 1709926136}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1232485585
 PrefabInstance:
@@ -3483,7 +3491,7 @@ Transform:
   m_Children:
   - {fileID: 1095587132}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1285585865
 GameObject:
@@ -5340,7 +5348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347919410873413628, guid: a5032e7be18534d9c90594a76caf4060, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4347919410873413628, guid: a5032e7be18534d9c90594a76caf4060, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

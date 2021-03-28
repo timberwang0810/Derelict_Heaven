@@ -10,6 +10,7 @@ TagManager:
   - Torch
   - Key
   - EnemyAttack
+  - PressurePlate
   layers:
   - Default
   - TransparentFX

@@ -38,12 +38,15 @@ public class Player : MonoBehaviour
     
     public AnimatorOverrideController chargerAnim;
     public AnimatorOverrideController archerAnim;
+    public AnimatorOverrideController bishopAnim;
     public RuntimeAnimatorController angelAnim;
     private Animator animator;
 
     public GameObject returnQueue;
 
     private GameObject camera;
+
+    private GameObject pressurePlate = null;
 
     // Start is called before the first frame update
     void Start()
@@ -139,7 +142,14 @@ public class Player : MonoBehaviour
                 Form.pressurizer,
                 () =>
                 {
-
+                    if (Input.GetKeyDown("c"))
+                    {
+                        if (pressurePlate != null)
+                        {
+                            animator.SetBool("activate", true);
+                            pressurePlate.GetComponent<PressurePlate>().Activate();
+                        }
+                    }
                 }
             }
         };
@@ -154,7 +164,20 @@ public class Player : MonoBehaviour
         enemyFunctions[myForm].Invoke();
         if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift) && changeBack)
         {
-            returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
+            if (myForm == Form.pressurizer)
+            {
+                if (animator.GetBool("activate"))
+                {
+                    returnQueue.GetComponent<ReturnQueueManager>().deleteEnemy();
+                } else
+                {
+                    returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
+                }
+            } else
+            {
+                returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
+            }
+            animator.SetBool("activate", false);
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
             SoundManager.S.OnStopCurrentSound();
         }
@@ -165,8 +188,21 @@ public class Player : MonoBehaviour
         return myForm;
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PressurePlate")
+        {
+            pressurePlate = null;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "PressurePlate")
+        {
+            pressurePlate = collision.gameObject;
+        }
+
         if (collision.gameObject.tag == "Key")
         {
             GameManager.S.PlayerGotKey();
@@ -248,6 +284,9 @@ public class Player : MonoBehaviour
             {
                 animator.runtimeAnimatorController = archerAnim;
                 animator.SetBool("walking", false);
+            } else if (f == Form.pressurizer)
+            {
+                animator.runtimeAnimatorController = bishopAnim;
             }
             GetComponent<CircleCollider2D>().enabled = false;
             enemyCol.enabled = true;
