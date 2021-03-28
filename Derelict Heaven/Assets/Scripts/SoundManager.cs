@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager S;
 
     public AudioSource audio;
+    public AudioSource levelBGM;
 
     public AudioClip ConsumeSFX;
     public AudioClip UnConsumeSFX;
@@ -26,9 +27,6 @@ public class SoundManager : MonoBehaviour
     public AudioClip JumpSFX;
     public AudioClip DeathSFX;
     public AudioClip LandSFX;
-
-
-
 
     private void Awake()
     {
@@ -50,13 +48,18 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void AdjustVolume(float volume)
+    {
+        audio.volume = volume;
+        levelBGM.volume = volume;
     }
 
     // Angel Sounds
@@ -180,7 +183,6 @@ public class SoundManager : MonoBehaviour
     public void OnChargerRunSound()
     {
         audio.clip = ChargerRunSFX;
-        Debug.Log("playing");
         audio.Play();
     }
 

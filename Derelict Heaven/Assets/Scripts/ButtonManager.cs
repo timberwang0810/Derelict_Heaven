@@ -15,25 +15,34 @@ public class ButtonManager : MonoBehaviour
     {
         if (GameManager.S) Destroy(GameManager.S.gameObject);
         SceneManager.LoadScene("Level1");
-        Destroy(this.gameObject, 1.0f);
+        Destroy(this.gameObject);
     }
 
     public void btn_Instructions()
     {
         SceneManager.LoadScene("Instructions");
-        Destroy(this.gameObject, 1.0f);
+        Destroy(this.gameObject);
     }
 
     public void btn_Credits()
     {
         SceneManager.LoadScene("Credits");
-        Destroy(this.gameObject, 1.0f);
+        Destroy(this.gameObject);
+    }
+
+    public void btn_Settings()
+    {
+        SceneManager.LoadScene("Settings");
+        Destroy(this.gameObject);
     }
 
     public void btn_Back()
     {
+        if (GameManager.S) Destroy(GameManager.S.gameObject);
+        if (UIManager.S) Destroy(UIManager.S.gameObject);
+        if (SoundManager.S) Destroy(SoundManager.S.gameObject);
         SceneManager.LoadScene("Title");
-        Destroy(this.gameObject, 1.0f);
+        Destroy(this.gameObject);
     }
 
     public void btn_Quit()
