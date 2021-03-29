@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Door : Mechanism
 {
-    public override void Activate()
+    public override void Activate(float animTime)
     {
         Debug.Log("Door Activated");
         //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         // disable entire thing for now
-        CameraManager.S.SolvePuzzlePan(gameObject);
+        CameraManager.S.SolvePuzzlePan(gameObject, animTime);
     }
 
     public void PlayDeactivateAnim()

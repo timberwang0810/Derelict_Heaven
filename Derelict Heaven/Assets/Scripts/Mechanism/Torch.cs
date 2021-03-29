@@ -21,7 +21,7 @@ public class Torch : MonoBehaviour
     public void lightTorch()
     {
         if (lit) return;
-        Debug.Log("ive been lit");
+        GetComponent<Animator>().SetBool("on", true);
         lit = true;
         GetComponentInParent<TorchSet>().OnTorchLit();
     }
@@ -29,6 +29,7 @@ public class Torch : MonoBehaviour
     public void putOutTorch()
     {
         if (!lit) return;
+        GetComponent<Animator>().SetBool("on", false);
         lit = false;
         GetComponentInParent<TorchSet>().OnTorchUnlit();
     }
