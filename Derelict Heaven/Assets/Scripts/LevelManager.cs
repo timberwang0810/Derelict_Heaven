@@ -8,10 +8,15 @@ public class LevelManager : MonoBehaviour
     public static LevelManager S;
     public int currLevel;
     public string currLevelName;
+    public AudioSource levelBGM;
 
     private void Awake()
     {
         S = this;
+        if (SoundManager.S)
+        {
+            SoundManager.S.OnNewLevel();
+        }
     }
 
     private void Start()
