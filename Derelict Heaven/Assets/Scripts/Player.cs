@@ -180,6 +180,7 @@ public class Player : MonoBehaviour
             animator.SetBool("activate", false);
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
             SoundManager.S.OnStopCurrentSound();
+            SoundManager.S.OnUnConsumeSound();
         }
     }
 
@@ -276,7 +277,6 @@ public class Player : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = true;
             enemyCol.enabled = false;
             animator.runtimeAnimatorController = angelAnim;
-            SoundManager.S.OnUnConsumeSound();
         } else
         {
             if (f == Form.charger)
