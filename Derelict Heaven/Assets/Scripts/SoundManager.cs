@@ -8,7 +8,6 @@ public class SoundManager : MonoBehaviour
     public static SoundManager S;
 
     public AudioSource audio;
-    public AudioSource levelBGM;
 
     public AudioClip ConsumeSFX;
     public AudioClip UnConsumeSFX;
@@ -27,6 +26,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip JumpSFX;
     public AudioClip DeathSFX;
     public AudioClip LandSFX;
+
+    private AudioSource currLevelBGM;
 
     private void Awake()
     {
@@ -59,7 +60,13 @@ public class SoundManager : MonoBehaviour
     public void AdjustVolume(float volume)
     {
         audio.volume = volume;
-        levelBGM.volume = volume;
+        currLevelBGM.volume = volume;
+    }
+
+    public void OnNewLevel()
+    {
+        currLevelBGM = LevelManager.S.levelBGM;
+        currLevelBGM.volume = audio.volume;
     }
 
     // Angel Sounds

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     // Game Variables
     public int maxLives;
+    public int maxLevels;
     private int lives;
     private bool invincible;
     private bool keyGotten = false;
@@ -99,7 +100,14 @@ public class GameManager : MonoBehaviour
         if (keyGotten)
         {
             gameState = GameState.gameOver;
-            UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+            if (LevelManager.S.currLevel >= maxLevels)
+            {
+                UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+            }
+            else
+            {
+                LevelManager.S.GoToNextLevel();
+            }
             // TODO: Go to next level or end
         }
     }

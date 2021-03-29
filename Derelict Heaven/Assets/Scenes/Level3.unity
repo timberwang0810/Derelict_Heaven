@@ -4617,7 +4617,7 @@ MonoBehaviour:
   Pressurizer: {fileID: 705664486752912996, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
   player: {fileID: 992598408}
   maxLives: 100
-  maxLevels: 4
+  maxLevels: 0
 --- !u!4 &1254484677
 Transform:
   m_ObjectHideFlags: 0
@@ -6642,9 +6642,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deea27eb7e3584d3385a5ddc2897cdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currLevel: 1
-  currLevelName: Level 1
-  levelBGM: {fileID: 664199674}
+  currLevel: 3
+  currLevelName: Level 3
+  levelBGM: {fileID: 0}
 --- !u!4 &2030569532
 Transform:
   m_ObjectHideFlags: 0
