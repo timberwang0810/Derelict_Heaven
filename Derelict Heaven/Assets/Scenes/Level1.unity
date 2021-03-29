@@ -2338,7 +2338,7 @@ MonoBehaviour:
   ChargerDeathSFX: {fileID: 0}
   ArrowChargeSFX: {fileID: 0}
   ArrowFireSFX: {fileID: 8300000, guid: 3cd12ac97c14c0b4eab391933d1e00f9, type: 3}
-  WallBreakSFX: {fileID: 0}
+  WallBreakSFX: {fileID: 8300000, guid: 8c5e9e5a37ef80145a029ed68f480e3b, type: 3}
   JumpSFX: {fileID: 8300000, guid: 8110122518f4b184985bc239d3ae769a, type: 3}
   DeathSFX: {fileID: 0}
   LandSFX: {fileID: 0}
