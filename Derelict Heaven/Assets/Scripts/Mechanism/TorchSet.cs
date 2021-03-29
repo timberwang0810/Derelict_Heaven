@@ -8,9 +8,14 @@ public class TorchSet : MonoBehaviour
     private Torch[] torches;
     private int numLit;
 
+    public AudioSource audio;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         torches = GetComponentsInChildren<Torch>(); 
     }
 
@@ -22,11 +27,14 @@ public class TorchSet : MonoBehaviour
         {
             Debug.Log("open torch mechanism");
             connectedMechanism.Activate();
+            audio.Play();
+            SoundManager.S.OnHittingTorch();
         }
     }
 
     public void OnTorchUnlit()
     {
+        audio.Stop();
         numLit--;
         connectedMechanism.Deactivate();
     }

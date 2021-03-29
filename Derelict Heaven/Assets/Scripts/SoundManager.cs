@@ -28,6 +28,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip DeathSFX;
     public AudioClip LandSFX;
 
+    public AudioClip TorchHitSFX;
+
     private AudioSource currLevelBGM;
 
     private void Awake()
@@ -208,5 +210,10 @@ public class SoundManager : MonoBehaviour
     public void OnWallBreak()
     {
         sfxAudio.PlayOneShot(WallBreakSFX);
+    }
+
+    public void OnHittingTorch()
+    {
+        sfxAudio.PlayOneShot(TorchHitSFX);
     }
 }

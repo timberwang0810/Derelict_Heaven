@@ -2335,8 +2335,8 @@ MonoBehaviour:
   UnConsumeSFX: {fileID: 8300000, guid: 6072e4520ea6de4429d948939fb0d9e8, type: 3}
   ChargerRunSFX: {fileID: 8300000, guid: 75b7e9207f24fe54ba0169a737688c13, type: 3}
   ChargerWalkSFX: {fileID: 8300000, guid: 179ee908d0b3e214ba47eb07b42aad16, type: 3}
-  ChargerJumpSFX: {fileID: 0}
-  ChargerLandSFX: {fileID: 0}
+  ChargerJumpSFX: {fileID: 8300000, guid: 2e25ccc7b64435a41950d16803f74d83, type: 3}
+  ChargerLandSFX: {fileID: 8300000, guid: 7ce458939084c864892b5633da5d9749, type: 3}
   ChargerDeathSFX: {fileID: 0}
   ArrowChargeSFX: {fileID: 0}
   ArrowFireSFX: {fileID: 8300000, guid: 3cd12ac97c14c0b4eab391933d1e00f9, type: 3}
@@ -2344,6 +2344,7 @@ MonoBehaviour:
   JumpSFX: {fileID: 8300000, guid: 8110122518f4b184985bc239d3ae769a, type: 3}
   DeathSFX: {fileID: 0}
   LandSFX: {fileID: 0}
+  TorchHitSFX: {fileID: 8300000, guid: 55961af8f65dba5448f381b18c5493ec, type: 3}
 --- !u!4 &271809852
 Transform:
   m_ObjectHideFlags: 0
@@ -3239,7 +3240,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ab8867181612458429a158f09c991624, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.582
   m_Pitch: 1
   Loop: 1
   Mute: 0
