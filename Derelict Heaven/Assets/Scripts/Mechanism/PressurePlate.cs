@@ -8,7 +8,7 @@ public class PressurePlate : MonoBehaviour
 
     public void Activate()
     {
-        connectedMechanism.Activate();
+        connectedMechanism.Activate(1.3f);
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     public void OnLivesLost(Vector2 damageDir)
     {
         if (invincible) return;
-        player.gameObject.GetComponent<Rigidbody2D>().AddForce(5 * damageDir, ForceMode2D.Impulse);
+        player.gameObject.GetComponent<Rigidbody2D>().AddForce(damageDir, ForceMode2D.Impulse);
         lives--;
         if (lives <= 0) OnLevelLost();
         else StartCoroutine(TakeDamageCoroutine());

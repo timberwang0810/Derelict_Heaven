@@ -121,6 +121,8 @@ public class Player : MonoBehaviour
                         float distance;
                         xy.Raycast(ray, out distance);
                         Vector2 mousePos = ray.GetPoint(distance);
+                        
+                        float angle = Mathf.Atan2(transform.position.y - mousePos.y, transform.position.x - mousePos.x) * Mathf.Rad2Deg;
 
                         Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
                         dir.Normalize();
@@ -130,7 +132,8 @@ public class Player : MonoBehaviour
                         if (arrowPrefab)
                         {
                             Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
-                            GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.identity);
+                            GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+                            arrowObject.GetComponent<SpriteRenderer>().flipX = true;
                             arrowObject.layer = 8;
                             arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
                             coolDownTimer = 0;
@@ -142,7 +145,7 @@ public class Player : MonoBehaviour
                 Form.pressurizer,
                 () =>
                 {
-                    if (Input.GetKeyDown("c"))
+                    if (Input.GetKeyDown("c") && !animator.GetBool("activate"))
                     {
                         if (pressurePlate != null)
                         {
@@ -227,7 +230,6 @@ public class Player : MonoBehaviour
                          collision.gameObject.GetComponent<CapsuleCollider2D>().offset,
                          form);
 
-
             // Pass enemy variables to the player
             if (form == Form.archer)
             {
@@ -277,8 +279,10 @@ public class Player : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = true;
             enemyCol.enabled = false;
             animator.runtimeAnimatorController = angelAnim;
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
         } else
         {
+            gameObject.transform.GetChild(2).gameObject.SetActive(true);
             if (f == Form.charger)
             {
                 animator.runtimeAnimatorController = chargerAnim;

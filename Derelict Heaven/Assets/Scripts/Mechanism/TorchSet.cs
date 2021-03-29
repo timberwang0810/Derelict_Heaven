@@ -26,7 +26,7 @@ public class TorchSet : MonoBehaviour
         if (numLit >= torches.Length)
         {
             Debug.Log("open torch mechanism");
-            connectedMechanism.Activate();
+            connectedMechanism.Activate(0.3f);
             audio.Play();
             SoundManager.S.OnHittingTorch();
         }
