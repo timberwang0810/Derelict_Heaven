@@ -2329,7 +2329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625e706ec929f80498b2f59d7a6958c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 271809853}
+  sfxAudio: {fileID: 271809853}
   movementAudio: {fileID: 271809854}
   ConsumeSFX: {fileID: 8300000, guid: 3c64ee7459b76b545af68c96074ff8c4, type: 3}
   UnConsumeSFX: {fileID: 8300000, guid: 6072e4520ea6de4429d948939fb0d9e8, type: 3}
