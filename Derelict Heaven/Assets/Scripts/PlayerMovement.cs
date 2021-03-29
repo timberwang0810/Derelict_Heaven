@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (move == 0 && isMoving)
         {
-            SoundManager.S.OnStopCurrentSound();
+            SoundManager.S.OnStopMovementSound();
             isMoving = false;
         }
         controller.Move(move, false, jump);

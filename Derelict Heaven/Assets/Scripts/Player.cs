@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
                     else if (Input.GetKeyUp("c"))
                     {
                         controller.speed = originalSpeed;
-                        SoundManager.S.OnStopCurrentSound();
+                        SoundManager.S.OnStopMovementSound();
                         if (controller.IsPlayerMoving()) SoundManager.S.OnChargerWalkSound();
                         animator.SetBool("charge", false);
                     }
@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
             }
             animator.SetBool("activate", false);
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
-            SoundManager.S.OnStopCurrentSound();
+            SoundManager.S.OnStopMovementSound();
             SoundManager.S.OnUnConsumeSound();
         }
     }

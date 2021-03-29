@@ -7,7 +7,8 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager S;
 
-    public AudioSource audio;
+    public AudioSource sfxAudio;
+    public AudioSource movementAudio;
 
     public AudioClip ConsumeSFX;
     public AudioClip UnConsumeSFX;
@@ -48,7 +49,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -59,14 +60,15 @@ public class SoundManager : MonoBehaviour
 
     public void AdjustVolume(float volume)
     {
-        audio.volume = volume;
+        sfxAudio.volume = volume;
+        movementAudio.volume = volume;
         currLevelBGM.volume = volume;
     }
 
     public void OnNewLevel()
     {
         currLevelBGM = LevelManager.S.levelBGM;
-        currLevelBGM.volume = audio.volume;
+        currLevelBGM.volume = sfxAudio.volume;
     }
 
     // Angel Sounds
@@ -77,14 +79,14 @@ public class SoundManager : MonoBehaviour
         switch (p.myForm)
         {
             case Form.original:
-                audio.PlayOneShot(LandSFX);
+                sfxAudio.PlayOneShot(LandSFX);
                 break;
             case Form.charger:
                 OnChargerLandSound();
                 break;
             // TODO: Follow this format for other characters
             default:
-                audio.PlayOneShot(LandSFX);
+                sfxAudio.PlayOneShot(LandSFX);
                 break;
         }
     }
@@ -93,14 +95,14 @@ public class SoundManager : MonoBehaviour
         switch (f)
         {
             case Form.original:
-                audio.PlayOneShot(JumpSFX, 0.5f);
+                sfxAudio.PlayOneShot(JumpSFX, 0.5f);
                 break;
             case Form.charger:
                 OnChargerJumpSound();
                 break;
             // TODO: Follow this format for other characters
             default:
-                audio.PlayOneShot(JumpSFX, 0.5f);
+                sfxAudio.PlayOneShot(JumpSFX, 0.5f);
                 break;
         }
     }
@@ -110,14 +112,14 @@ public class SoundManager : MonoBehaviour
         switch (f)
         {
             case Form.original:
-                audio.PlayOneShot(DeathSFX);
+                sfxAudio.PlayOneShot(DeathSFX);
                 break;
             case Form.charger:
                 OnChargerDeathSound();
                 break;
             // TODO: Follow this format for other characters
             default:
-                audio.PlayOneShot(DeathSFX);
+                sfxAudio.PlayOneShot(DeathSFX);
                 break;
         }
     }
@@ -152,59 +154,59 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void OnStopCurrentSound()
+    public void OnStopMovementSound()
     {
-        audio.Stop();
-        audio.clip = null;
+        movementAudio.Stop();
+        movementAudio.clip = null;
     }
 
     public void OnConsumeSound()
     {
-        audio.PlayOneShot(ConsumeSFX, 0.5f);
+        sfxAudio.PlayOneShot(ConsumeSFX, 0.5f);
     }
     public void OnUnConsumeSound()
     {
-        audio.PlayOneShot(UnConsumeSFX, 0.5f);
+        sfxAudio.PlayOneShot(UnConsumeSFX, 0.5f);
     }
 
     // Charger Sounds
     public void OnChargerLandSound()
     {
-        audio.PlayOneShot(ChargerLandSFX);
+        sfxAudio.PlayOneShot(ChargerLandSFX);
     }
     public void OnChargerJumpSound()
     {
-        audio.PlayOneShot(ChargerJumpSFX);
+        sfxAudio.PlayOneShot(ChargerJumpSFX);
     }
     public void OnChargerDeathSound()
     {
-        audio.PlayOneShot(ChargerDeathSFX);
+        sfxAudio.PlayOneShot(ChargerDeathSFX);
     }
     public void OnChargerWalkSound()
     {
-        if (audio.clip && audio.clip.Equals(ChargerRunSFX)) return;
-        audio.clip = ChargerWalkSFX;
-        audio.Play();
+        if (movementAudio.clip && movementAudio.clip.Equals(ChargerRunSFX)) return;
+        movementAudio.clip = ChargerWalkSFX;
+        movementAudio.Play();
     }
 
     public void OnChargerRunSound()
     {
-        audio.clip = ChargerRunSFX;
-        audio.Play();
+        movementAudio.clip = ChargerRunSFX;
+        movementAudio.Play();
     }
 
     // Arrow Sounds
     public void OnArrowCharge()
     {
-        audio.PlayOneShot(ArrowChargeSFX);
+        sfxAudio.PlayOneShot(ArrowChargeSFX);
     }
     public void OnArrowFire()
     {
-        audio.PlayOneShot(ArrowFireSFX);
+        sfxAudio.PlayOneShot(ArrowFireSFX);
     }
 
     public void OnWallBreak()
     {
-        audio.PlayOneShot(WallBreakSFX);
+        sfxAudio.PlayOneShot(WallBreakSFX);
     }
 }
