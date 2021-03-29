@@ -202,4 +202,9 @@ public class SoundManager : MonoBehaviour
     {
         audio.PlayOneShot(ArrowFireSFX);
     }
+
+    public void OnWallBreak()
+    {
+        audio.PlayOneShot(WallBreakSFX);
+    }
 }

@@ -70,12 +70,17 @@ public class Charger : Enemy
     {
         if (collision.gameObject.tag == "BreakableWall" && lockedOnPlayer)
         {
+
             animator.SetTrigger("impact");
             gameObject.tag = "Enemy";
             animator.SetBool("charging", false);
             Vector2 pushBackForce = new Vector2(faceLeft ? 3 : -3, 3);
             gameObject.GetComponent<Rigidbody2D>().AddForce(pushBackForce, ForceMode2D.Impulse);
             Destroy(collision.gameObject);
+
+            // Wall break SFX
+            SoundManager.S.OnWallBreak();
+
             // TODO: Stun state effects (stay stunned forever or for a certain time?)
             isStationary = true;
         }

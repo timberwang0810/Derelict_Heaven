@@ -259,6 +259,8 @@ public class Player : MonoBehaviour
         {
             if (myForm == Form.charger && controller.speed == originalSpeed * 2)
             {
+                // Wall break SFX
+                SoundManager.S.OnWallBreak();
                 Destroy(collision.gameObject);
             }
         }
