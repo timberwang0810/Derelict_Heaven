@@ -38,7 +38,20 @@ public class UIManager : MonoBehaviour
     public void ShowPopUpForSeconds(string message, float duration)
     {
         if (message == "") return;
+        StopAllCoroutines();
         StartCoroutine(ShowPopUpForSecondsCoroutine(message, duration));
+    }
+
+    public void ShowPopUp(string message, bool hasNext)
+    {
+        chatPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = message;
+        chatPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].enabled = hasNext;
+        chatPanel.SetActive(true);
+    }
+
+    public void HidePopUp()
+    {
+        chatPanel.SetActive(false);
     }
 
     public void ShowPausePanel()
@@ -68,9 +81,8 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator ShowPopUpForSecondsCoroutine(string message, float duration)
     {
-        chatPanel.GetComponentInChildren<TextMeshProUGUI>().text = message;
-        chatPanel.SetActive(true);
+        ShowPopUp(message, false);
         yield return new WaitForSeconds(duration);
-        chatPanel.SetActive(false);
+        HidePopUp();
     }
 }

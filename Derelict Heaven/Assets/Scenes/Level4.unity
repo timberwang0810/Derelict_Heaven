@@ -2328,7 +2328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625e706ec929f80498b2f59d7a6958c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 271809853}
+  sfxAudio: {fileID: 0}
+  movementAudio: {fileID: 0}
   ConsumeSFX: {fileID: 8300000, guid: 3c64ee7459b76b545af68c96074ff8c4, type: 3}
   UnConsumeSFX: {fileID: 8300000, guid: 6072e4520ea6de4429d948939fb0d9e8, type: 3}
   ChargerRunSFX: {fileID: 8300000, guid: 75b7e9207f24fe54ba0169a737688c13, type: 3}
@@ -2342,6 +2343,7 @@ MonoBehaviour:
   JumpSFX: {fileID: 8300000, guid: 8110122518f4b184985bc239d3ae769a, type: 3}
   DeathSFX: {fileID: 0}
   LandSFX: {fileID: 0}
+  TorchHitSFX: {fileID: 0}
 --- !u!4 &271809852
 Transform:
   m_ObjectHideFlags: 0
@@ -6643,7 +6645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currLevel: 4
-  currLevelName: Boss
+  currLevelName: Boss Level
   levelBGM: {fileID: 0}
 --- !u!4 &2030569532
 Transform:

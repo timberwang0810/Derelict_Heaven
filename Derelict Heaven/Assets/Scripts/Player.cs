@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
         { Form.original, "Returned to normal!" },
         { Form.charger, "Press 'c' to charge forward!" },
         { Form.archer, "Press LMB to shoot arrows!" },
-        { Form.pressurizer, "" }
+        { Form.pressurizer, "Press 'c' to look cool"  }
     };
 
     private SpriteRenderer renderer;
