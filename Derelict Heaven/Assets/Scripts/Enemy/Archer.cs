@@ -98,7 +98,6 @@ public class Archer : Enemy
         }
         else
         {
-            Debug.Log(hit.collider.gameObject.name);
             aimLaser.enabled = false;
             coolDownTimer = shotCoolDown / 2;
         }
