@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pressurizer : Enemy
 {
+    public AudioSource walkAudio;
+
     public override Form GetForm()
     {
         return Form.pressurizer;
@@ -21,7 +23,7 @@ public class Pressurizer : Enemy
 
     protected override void EnemyStart()
     {
-        // nothing
+        walkAudio.Play();
     }
 
     protected override void EnemyUpdate()
