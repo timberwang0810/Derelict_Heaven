@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     private GameObject camera;
 
     private GameObject pressurePlate = null;
+    private GameObject embodying = null;
 
     // Start is called before the first frame update
     void Start()
@@ -215,38 +216,74 @@ public class Player : MonoBehaviour
 
         if ((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyAttack") && possessor.enabled)
         {
-            Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
-            possessor.enabled = false;
+            Debug.Log("calling..");
+            embodying = collision.gameObject;
+            animator.SetBool("embody", true);
 
-            Debug.Log("getting form");
-            Form form = enemyScript.GetForm();
-            Debug.Log("form is " + form);
-            collision.gameObject.SetActive(false);
+            //collision.gameObject.SetActive(false);
 
-            returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, collision.gameObject.GetComponent<Enemy>().spawn);
+            //returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, collision.gameObject.GetComponent<Enemy>().spawn);
 
-            changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
-                         collision.gameObject.GetComponent<CapsuleCollider2D>().size,
-                         collision.gameObject.GetComponent<CapsuleCollider2D>().offset,
-                         form);
+            //changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
+            //             collision.gameObject.GetComponent<CapsuleCollider2D>().size,
+            //             collision.gameObject.GetComponent<CapsuleCollider2D>().offset,
+            //             form);
 
-            // Pass enemy variables to the player
-            if (form == Form.archer)
-            {
-                rb.velocity = new Vector2(0, 0);
-                rb.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-                Archer archerScript = collision.gameObject.GetComponent<Archer>();
-                arrowPrefab = archerScript.GetArrowObject();
-                shotSpeed = archerScript.shotSpeed;
-                shotCoolDown = archerScript.shotCoolDown;
-                coolDownTimer = shotCoolDown;
-            }
+            //// Pass enemy variables to the player
+            //if (form == Form.archer)
+            //{
+            //    rb.velocity = new Vector2(0, 0);
+            //    rb.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+            //    Archer archerScript = collision.gameObject.GetComponent<Archer>();
+            //    arrowPrefab = archerScript.GetArrowObject();
+            //    shotSpeed = archerScript.shotSpeed;
+            //    shotCoolDown = archerScript.shotCoolDown;
+            //    coolDownTimer = shotCoolDown;
+            //}
 
-            Vector3 newPos = collision.transform.position;
-            transform.position = newPos;
-            StartCoroutine(embodyCooldownCount());
-            Destroy(collision.gameObject);
+            //Vector3 newPos = collision.transform.position;
+            //transform.position = newPos;
+            //StartCoroutine(embodyCooldownCount());
+            //Destroy(collision.gameObject);
         }
+    }
+
+    public void embodyEnemy()
+    {
+        Enemy enemyScript = embodying.GetComponent<Enemy>();
+        possessor.enabled = false;
+
+        Debug.Log("getting form");
+        Form form = enemyScript.GetForm();
+        Debug.Log("form is " + form);
+
+        embodying.SetActive(false);
+
+        returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, embodying.GetComponent<Enemy>().spawn);
+
+        changeValues(embodying.GetComponent<SpriteRenderer>().sprite,
+                     embodying.GetComponent<CapsuleCollider2D>().size,
+                     embodying.GetComponent<CapsuleCollider2D>().offset,
+                     form);
+
+        // Pass enemy variables to the player
+        if (form == Form.archer)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+            Archer archerScript = embodying.GetComponent<Archer>();
+            arrowPrefab = archerScript.GetArrowObject();
+            shotSpeed = archerScript.shotSpeed;
+            shotCoolDown = archerScript.shotCoolDown;
+            coolDownTimer = shotCoolDown;
+        }
+
+        Vector3 newPos = embodying.transform.position;
+        transform.position = newPos;
+        StartCoroutine(embodyCooldownCount());
+        Destroy(embodying);
+        embodying = null;
+        animator.SetBool("embody", false);
     }
 
     IEnumerator embodyCooldownCount()
