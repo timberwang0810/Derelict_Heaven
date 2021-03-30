@@ -47,7 +47,6 @@ public abstract class Enemy : MonoBehaviour
 
     public void TurnAround()
     {
-        Debug.Log("turning");
         faceLeft = !faceLeft;
     }
 
