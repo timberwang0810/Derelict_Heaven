@@ -18,9 +18,6 @@ public class Archer : Enemy
     public bool firstShot = true;
     private SpriteRenderer renderer;
 
-
-
-
     void Start()
     {
         base.Start();
