@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     public void ShowPopUpForSeconds(string message, float duration)
     {
         if (message == "") return;
+        StopAllCoroutines();
         StartCoroutine(ShowPopUpForSecondsCoroutine(message, duration));
     }
 
