@@ -13,12 +13,17 @@ public class SoundManager : MonoBehaviour
     public AudioClip ConsumeSFX;
     public AudioClip UnConsumeSFX;
 
+    [Header("Charger Sounds")]
     public AudioClip ChargerRunSFX;
     public AudioClip ChargerWalkSFX;
     public AudioClip ChargerJumpSFX;
     public AudioClip ChargerLandSFX;
     public AudioClip ChargerDeathSFX;
 
+    [Header("Pressurizer Sounds")]
+    public AudioClip PressurizerWalkSFX;
+
+    [Header("Archer Sounds")]
     public AudioClip ArrowChargeSFX;
     public AudioClip ArrowFireSFX;
 
@@ -150,6 +155,9 @@ public class SoundManager : MonoBehaviour
             case Form.charger:
                 OnChargerWalkSound();
                 break;
+            case Form.pressurizer:
+                OnPressurizerWalkSound();
+                break;
             // TODO: Follow this format for other characters
             default:
                 break;
@@ -194,6 +202,12 @@ public class SoundManager : MonoBehaviour
     public void OnChargerRunSound()
     {
         movementAudio.clip = ChargerRunSFX;
+        movementAudio.Play();
+    }
+
+    public void OnPressurizerWalkSound()
+    {
+        movementAudio.clip = PressurizerWalkSFX;
         movementAudio.Play();
     }
 
