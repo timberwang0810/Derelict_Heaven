@@ -64,12 +64,18 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
+        if (Input.GetKeyDown(KeyCode.R) && gameState == GameState.gameOver)
+        {
+            LevelManager.S.RestartLevel();
+        }
     }
 
     public void StartNewGame()
     {
         gameState = GameState.getReady;
         // TODO: put any setup + coroutines here
+        lives = maxLives;
+        player = GameObject.Find("Player");
         ResetLevel();
     }
 
@@ -93,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void OnLevelLost()
     {
         gameState = GameState.gameOver;
-        UIManager.S.ShowPopUpForSeconds("You Lost!", 3);
+        UIManager.S.ShowPopUp("You Lost! Press R to restart", false);
     }
 
     public void OnLevelWon()

@@ -3777,7 +3777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5125294672082636509, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: field of view
-      value: 50
+      value: 55.5
       objectReference: {fileID: 0}
     - target: {fileID: 5125294672254206062, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4340,7 +4340,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.613361, y: 2.3309693, z: -34.36672}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1095587132}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4712,7 +4713,7 @@ RectTransform:
   - {fileID: 1510753802}
   - {fileID: 1787744567}
   - {fileID: 9331731}
-  m_Father: {fileID: 1254484677}
+  m_Father: {fileID: 1004424183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5175,7 +5176,7 @@ MonoBehaviour:
   Archer: {fileID: 9078381884581619065, guid: 0d684497f853d454a96a4a972f703e07, type: 3}
   Pressurizer: {fileID: 705664486752912996, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
   player: {fileID: 992598408}
-  maxLives: 100
+  maxLives: 1
   maxLevels: 4
 --- !u!4 &1254484677
 Transform:
@@ -5187,8 +5188,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.7194467, y: 4.0898094, z: -5.684435}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1095587132}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
