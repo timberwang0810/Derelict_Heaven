@@ -90,12 +90,13 @@ public class GameManager : MonoBehaviour
 
     public void OnLivesLost(Vector2 damageDir)
     {
+        Debug.Log("life lost");
         if (invincible) return;
         player.gameObject.GetComponent<Rigidbody2D>().AddForce(damageDir, ForceMode2D.Impulse);
         player.gameObject.GetComponent<Animator>().SetBool("embody", false);
         lives--;
-        if (lives <= 0) OnLevelLost();
-        else StartCoroutine(TakeDamageCoroutine());
+        if (lives <= 0) StartCoroutine(TakeDamageCoroutine(true));
+        else StartCoroutine(TakeDamageCoroutine(false));
     }
 
     public void OnLevelLost()
@@ -104,20 +105,25 @@ public class GameManager : MonoBehaviour
         UIManager.S.ShowPopUp("You Lost! Press R to restart", false);
     }
 
-    public void OnLevelWon()
+    public void OnLevelComplete()
     {
         if (keyGotten)
         {
-            gameState = GameState.gameOver;
-            if (LevelManager.S.currLevel >= maxLevels)
-            {
-                UIManager.S.ShowPopUpForSeconds("You Won!", 3);
-            }
-            else
-            {
-                LevelManager.S.GoToNextLevel();
-            }
+            StartCoroutine(LevelCompleteCoroutine());
             // TODO: Go to next level or end
+        }
+    }
+
+    private void OnLevelWon()
+    {
+        gameState = GameState.gameOver;
+        if (LevelManager.S.currLevel >= maxLevels)
+        {
+            UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+        }
+        else
+        {
+            LevelManager.S.GoToNextLevel();
         }
     }
 
@@ -131,8 +137,29 @@ public class GameManager : MonoBehaviour
         return invincible;
     }
 
-    private IEnumerator TakeDamageCoroutine()
+    private IEnumerator LevelCompleteCoroutine()
     {
+        gameState = GameState.oops;
+        Camera.main.transform.SetParent(null);
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.5f);
+        float timer = 0;
+        rb.velocity = Vector2.up;
+        rb.gravityScale = 0;
+        while (timer < 2.0f)
+        {
+            timer += Time.deltaTime;
+            rb.velocity += new Vector2(0, 4f * Time.deltaTime);
+            yield return null;
+        }
+        OnLevelWon();
+    }
+
+    private IEnumerator TakeDamageCoroutine(bool isDead)
+    {
+        if (isDead) gameState = GameState.oops;
         invincible = true;
         SpriteRenderer r = player.GetComponent<SpriteRenderer>();
         Color opaque = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -157,6 +184,23 @@ public class GameManager : MonoBehaviour
         }
         r.color = opaque;
         invincible = false;
+
+        if (isDead)
+        {
+            float timer = 0;
+            Vector3 playerScale = player.gameObject.transform.localScale;
+            float oldX = playerScale.x;
+            float oldY = playerScale.y;
+            while (timer < 1.5f)
+            {
+                timer += Time.deltaTime;
+                playerScale.x = Mathf.Lerp(oldX, 0, timer / 1.5f);
+                playerScale.y = Mathf.Lerp(oldY, 0, timer / 1.5f);
+                player.gameObject.transform.localScale = playerScale;
+                yield return null;
+            }
+            OnLevelLost();
+        }
     }
 
     public void SpawnUsedBishop(Vector3 pos)
