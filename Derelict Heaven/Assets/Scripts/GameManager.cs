@@ -143,9 +143,15 @@ public class GameManager : MonoBehaviour
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
-        rb.velocity = Vector2.up * 4;
+        float timer = 0;
+        rb.velocity = Vector2.up;
         rb.gravityScale = 0;
-        yield return new WaitForSeconds(2.0f);
+        while (timer < 2.0f)
+        {
+            timer += Time.deltaTime;
+            rb.velocity += new Vector2(0, 4f * Time.deltaTime);
+            yield return null;
+        }
         OnLevelWon();
     }
 
