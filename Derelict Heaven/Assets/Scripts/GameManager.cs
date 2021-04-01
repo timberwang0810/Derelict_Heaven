@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     // Player
     public GameObject player;
 
+    public GameObject usedBishop;
+
     // Game Variables
     public int maxLives;
     public int maxLevels;
@@ -155,5 +157,11 @@ public class GameManager : MonoBehaviour
         }
         r.color = opaque;
         invincible = false;
+    }
+
+    public void SpawnUsedBishop(Vector3 pos)
+    {
+        GameObject newBishop = Instantiate(usedBishop);
+        newBishop.transform.position = pos;
     }
 }
