@@ -164,11 +164,11 @@ public class GameManager : MonoBehaviour
             Vector3 playerScale = player.gameObject.transform.localScale;
             float oldX = playerScale.x;
             float oldY = playerScale.y;
-            while (timer < 3.0f)
+            while (timer < 1.5f)
             {
                 timer += Time.deltaTime;
-                playerScale.x = Mathf.Lerp(oldX, 0, timer / 3);
-                playerScale.y = Mathf.Lerp(oldY, 0, timer / 3);
+                playerScale.x = Mathf.Lerp(oldX, 0, timer / 1.5f);
+                playerScale.y = Mathf.Lerp(oldY, 0, timer / 1.5f);
                 player.gameObject.transform.localScale = playerScale;
                 yield return null;
             }
