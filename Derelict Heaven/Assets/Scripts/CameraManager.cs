@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     public Camera cam;
     public GameObject player;
     private Vector3 moveTo;
+    private bool isMoving;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Vector3.Distance(moveTo, cam.transform.position) > Vector3.kEpsilon) && cam.transform.parent == null)
+        if (isMoving && (Vector3.Distance(moveTo, cam.transform.position) > Vector3.kEpsilon))
         {
             cam.transform.position = Vector3.Lerp(cam.transform.position, moveTo, Time.deltaTime * 3);
         }
@@ -46,12 +47,14 @@ public class CameraManager : MonoBehaviour
     private IEnumerator PanCamera(GameObject door, float animTime)
     {
         yield return new WaitForSeconds(animTime);
+        isMoving = true;
         PanTo(door.transform.position);
         GameManager.S.gameState = GameManager.GameState.paused;
         yield return new WaitForSeconds(2);
         door.GetComponent<Door>().PlayDeactivateAnim();
         yield return new WaitForSeconds(1);
         GameManager.S.gameState = GameManager.GameState.playing;
+        isMoving = false;
         SetToPlayer();
     }
 
@@ -63,7 +66,7 @@ public class CameraManager : MonoBehaviour
 
     private void SetToPlayer()
     {
-        cam.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
         cam.transform.SetParent(player.transform);
+        cam.transform.localPosition = new Vector3(0, 0, -10);
     }
 }

@@ -103,20 +103,25 @@ public class GameManager : MonoBehaviour
         UIManager.S.ShowPopUp("You Lost! Press R to restart", false);
     }
 
-    public void OnLevelWon()
+    public void OnLevelComplete()
     {
         if (keyGotten)
         {
-            gameState = GameState.gameOver;
-            if (LevelManager.S.currLevel >= maxLevels)
-            {
-                UIManager.S.ShowPopUpForSeconds("You Won!", 3);
-            }
-            else
-            {
-                LevelManager.S.GoToNextLevel();
-            }
+            StartCoroutine(LevelCompleteCoroutine());
             // TODO: Go to next level or end
+        }
+    }
+
+    private void OnLevelWon()
+    {
+        gameState = GameState.gameOver;
+        if (LevelManager.S.currLevel >= maxLevels)
+        {
+            UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+        }
+        else
+        {
+            LevelManager.S.GoToNextLevel();
         }
     }
 
@@ -128,6 +133,20 @@ public class GameManager : MonoBehaviour
     public bool IsInvincible()
     {
         return invincible;
+    }
+
+    private IEnumerator LevelCompleteCoroutine()
+    {
+        gameState = GameState.oops;
+        Camera.main.transform.SetParent(null);
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.up * 4;
+        rb.gravityScale = 0;
+        yield return new WaitForSeconds(2.0f);
+        OnLevelWon();
     }
 
     private IEnumerator TakeDamageCoroutine(bool isDead)
