@@ -5325,7 +5325,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ab8867181612458429a158f09c991624, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f38f3474f8b66bb4aa9597ff8edbb326, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -6640,6 +6640,7 @@ MonoBehaviour:
   ChargerJumpSFX: {fileID: 8300000, guid: 2e25ccc7b64435a41950d16803f74d83, type: 3}
   ChargerLandSFX: {fileID: 8300000, guid: 7ce458939084c864892b5633da5d9749, type: 3}
   ChargerDeathSFX: {fileID: 0}
+  PressurizerWalkSFX: {fileID: 0}
   ArrowChargeSFX: {fileID: 0}
   ArrowFireSFX: {fileID: 8300000, guid: 3cd12ac97c14c0b4eab391933d1e00f9, type: 3}
   WallBreakSFX: {fileID: 8300000, guid: 8c5e9e5a37ef80145a029ed68f480e3b, type: 3}
