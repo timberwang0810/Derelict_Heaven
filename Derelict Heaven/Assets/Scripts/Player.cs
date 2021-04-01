@@ -22,7 +22,9 @@ public class Player : MonoBehaviour
 
     private BoxCollider2D possessor;
     public float embodyCooldown;
+    public float originalFormCooldown; //can't immediately embody after turning back
     private bool changeBack = false;
+    private bool enableEmbody = true;
 
     // Archer enemy variables
     private Rigidbody2D rb;
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
 
     private GameObject camera;
 
+    private ParticleSystem particles; 
+
     private GameObject pressurePlate = null;
     private GameObject embodying = null;
 
@@ -60,6 +64,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemyCol = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
+        particles = GetComponent<ParticleSystem>();
+        particles.Stop();
         PopulateFunctions();
     }
 
@@ -72,14 +78,16 @@ public class Player : MonoBehaviour
                 Form.original,
                 () =>
                 {
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetKey(KeyCode.LeftShift) && enableEmbody)
                     {
                         possessor.enabled = true;
+                        if (!particles.isPlaying) particles.Play();
                         if (myForm == Form.original)
                         {  }
                     }
                     if (Input.GetKeyUp(KeyCode.LeftShift))
                     {
+                        particles.Stop();
                         possessor.enabled = false;
                     }
                 }
@@ -173,6 +181,7 @@ public class Player : MonoBehaviour
                 if (animator.GetBool("activate"))
                 {
                     returnQueue.GetComponent<ReturnQueueManager>().deleteEnemy();
+                    GameManager.S.SpawnUsedBishop(transform.position);
                 } else
                 {
                     returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
@@ -185,6 +194,7 @@ public class Player : MonoBehaviour
             changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
             SoundManager.S.OnStopMovementSound();
             SoundManager.S.OnUnConsumeSound();
+            StartCoroutine(originalFormCount());
         }
     }
 
@@ -248,8 +258,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void embodyEnemy()
+    public void stopParticles()
     {
+        particles.Stop();
+    }
+
+    public void embodyEnemy()
+    {   
         Enemy enemyScript = embodying.GetComponent<Enemy>();
         possessor.enabled = false;
 
@@ -291,6 +306,13 @@ public class Player : MonoBehaviour
         changeBack = false;
         yield return new WaitForSeconds(embodyCooldown);
         changeBack = true;
+    }
+
+    IEnumerator originalFormCount()
+    {
+        enableEmbody = false;
+        yield return new WaitForSeconds(originalFormCooldown);
+        enableEmbody = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

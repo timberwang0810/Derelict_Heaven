@@ -3743,6 +3743,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 195570043655180354, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1146012036578403554, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: controller
       value: 
@@ -3759,6 +3763,10 @@ PrefabInstance:
       propertyPath: bishopAnim
       value: 
       objectReference: {fileID: 22100000, guid: 976df9aa89af96442b483a8f04268a17, type: 2}
+    - target: {fileID: 1146012036578403554, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
+      propertyPath: originalFormCooldown
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1174066182812707598, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5176,6 +5184,7 @@ MonoBehaviour:
   Archer: {fileID: 9078381884581619065, guid: 0d684497f853d454a96a4a972f703e07, type: 3}
   Pressurizer: {fileID: 705664486752912996, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
   player: {fileID: 992598408}
+  usedBishop: {fileID: 7074047405471664496, guid: 0b8043a05175aaa48a6bd5debfe539e6, type: 3}
   maxLives: 1
   maxLevels: 4
 --- !u!4 &1254484677

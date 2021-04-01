@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         floater.SetActive(controller.CheckGrounded());
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && GetComponent<Player>().myForm == Form.original)
         {
             jump = true;
             SoundManager.S.OnJumpSound(playerScript.myForm);
