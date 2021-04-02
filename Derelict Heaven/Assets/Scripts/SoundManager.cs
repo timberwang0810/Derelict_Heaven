@@ -32,6 +32,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip JumpSFX;
     public AudioClip DeathSFX;
     public AudioClip LandSFX;
+    public AudioClip AscendSFX;
+
+    public AudioClip TorchDoorOpen;
+    public AudioClip PressureDoorOpen;
 
     public AudioClip TorchHitSFX;
 
@@ -172,11 +176,16 @@ public class SoundManager : MonoBehaviour
 
     public void OnConsumeSound()
     {
-        sfxAudio.PlayOneShot(ConsumeSFX, 0.5f);
+        sfxAudio.PlayOneShot(ConsumeSFX, 0.8f);
     }
     public void OnUnConsumeSound()
     {
-        sfxAudio.PlayOneShot(UnConsumeSFX, 0.5f);
+        sfxAudio.PlayOneShot(UnConsumeSFX, 0.8f);
+    }
+
+    public void OnAscendSound()
+    {
+        sfxAudio.PlayOneShot(AscendSFX, 0.5f);
     }
 
     // Charger Sounds
@@ -229,5 +238,15 @@ public class SoundManager : MonoBehaviour
     public void OnHittingTorch()
     {
         sfxAudio.PlayOneShot(TorchHitSFX);
+    }
+
+    public void TorchDoorSFX()
+    {
+        sfxAudio.PlayOneShot(TorchDoorOpen);
+    }
+
+    public void PressureDoorSFX()
+    {
+        sfxAudio.PlayOneShot(PressureDoorOpen);
     }
 }

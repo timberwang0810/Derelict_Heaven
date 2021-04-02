@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.oops;
         Camera.main.transform.SetParent(null);
 
+        SoundManager.S.OnAscendSound();
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
