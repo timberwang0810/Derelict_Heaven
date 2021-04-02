@@ -176,6 +176,7 @@ public class Player : MonoBehaviour
         enemyFunctions[myForm].Invoke();
         if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift) && changeBack)
         {
+            controller.speed = originalSpeed;
             if (myForm == Form.pressurizer)
             {
                 if (animator.GetBool("activate"))
