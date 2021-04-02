@@ -50,9 +50,9 @@ public class CameraManager : MonoBehaviour
         isMoving = true;
         PanTo(door.transform.position);
         GameManager.S.gameState = GameManager.GameState.paused;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.75f);
         door.GetComponent<Door>().PlayDeactivateAnim();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
         GameManager.S.gameState = GameManager.GameState.playing;
         isMoving = false;
         SetToPlayer();

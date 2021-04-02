@@ -176,6 +176,7 @@ public class Player : MonoBehaviour
         enemyFunctions[myForm].Invoke();
         if (myForm != Form.original && Input.GetKeyDown(KeyCode.LeftShift) && changeBack)
         {
+            controller.speed = originalSpeed;
             if (myForm == Form.pressurizer)
             {
                 if (animator.GetBool("activate"))
@@ -322,8 +323,8 @@ public class Player : MonoBehaviour
             if (myForm == Form.charger && controller.speed == originalSpeed * 2)
             {
                 // Wall break SFX
+                collision.gameObject.GetComponent<Animator>().SetTrigger("open");
                 SoundManager.S.OnWallBreak();
-                Destroy(collision.gameObject);
             }
         }
     }

@@ -14,7 +14,8 @@ public class Door : Mechanism
 
     public void PlayDeactivateAnim()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        GetComponent<Animator>().SetTrigger("open");
     }
 
     public override void Deactivate()
