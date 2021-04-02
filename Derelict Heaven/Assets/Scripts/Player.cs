@@ -158,8 +158,10 @@ public class Player : MonoBehaviour
                     {
                         if (pressurePlate != null)
                         {
+                            SoundManager.S.OnPressurizerUseSound();
                             animator.SetBool("activate", true);
                             pressurePlate.GetComponent<PressurePlate>().Activate();
+
                         }
                     }
                 }
@@ -222,6 +224,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Key")
         {
             GameManager.S.PlayerGotKey();
+            SoundManager.S.OnObtainKeySound();
+
             Destroy(collision.gameObject);
         }
 

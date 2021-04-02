@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("Pressurizer Sounds")]
     public AudioClip PressurizerWalkSFX;
+    public AudioClip PressurizerUseSFX;
 
     [Header("Archer Sounds")]
     public AudioClip ArrowChargeSFX;
@@ -36,6 +37,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip TorchDoorOpen;
     public AudioClip PressureDoorOpen;
+    public AudioClip GetKeySFX;
 
     public AudioClip TorchHitSFX;
 
@@ -168,6 +170,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void OnObtainKeySound()
+    {
+        sfxAudio.PlayOneShot(GetKeySFX, 0.5f);
+    }
+
     public void OnStopMovementSound()
     {
         movementAudio.Stop();
@@ -220,6 +227,11 @@ public class SoundManager : MonoBehaviour
         movementAudio.Play();
     }
 
+    public void OnPressurizerUseSound()
+    {
+        sfxAudio.PlayOneShot(PressurizerUseSFX);
+    }
+
     // Arrow Sounds
     public void OnArrowCharge()
     {
@@ -242,7 +254,7 @@ public class SoundManager : MonoBehaviour
 
     public void TorchDoorSFX()
     {
-        sfxAudio.PlayOneShot(TorchDoorOpen);
+        sfxAudio.PlayOneShot(TorchDoorOpen, 0.8f);
     }
 
     public void PressureDoorSFX()
