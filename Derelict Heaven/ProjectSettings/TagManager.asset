@@ -11,6 +11,8 @@ TagManager:
   - Key
   - EnemyAttack
   - PressurePlate
+  - TorchDoor
+  - PressureDoor
   layers:
   - Default
   - TransparentFX

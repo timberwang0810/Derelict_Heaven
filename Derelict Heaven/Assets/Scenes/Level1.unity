@@ -2405,12 +2405,17 @@ MonoBehaviour:
   ChargerLandSFX: {fileID: 8300000, guid: 7ce458939084c864892b5633da5d9749, type: 3}
   ChargerDeathSFX: {fileID: 0}
   PressurizerWalkSFX: {fileID: 8300000, guid: 18b6191249baee7499e58da471e7e98d, type: 3}
+  PressurizerUseSFX: {fileID: 8300000, guid: 5f5660e79fd7b3349ae2cb23e655309f, type: 3}
   ArrowChargeSFX: {fileID: 0}
   ArrowFireSFX: {fileID: 8300000, guid: 3cd12ac97c14c0b4eab391933d1e00f9, type: 3}
   WallBreakSFX: {fileID: 8300000, guid: 8c5e9e5a37ef80145a029ed68f480e3b, type: 3}
   JumpSFX: {fileID: 8300000, guid: 8110122518f4b184985bc239d3ae769a, type: 3}
-  DeathSFX: {fileID: 0}
+  DeathSFX: {fileID: 8300000, guid: a4e20e596af400846bad21c425597b51, type: 3}
   LandSFX: {fileID: 0}
+  AscendSFX: {fileID: 8300000, guid: e2d74d0af90e9444ea4ea1a8fe0346ef, type: 3}
+  TorchDoorOpen: {fileID: 8300000, guid: 6f3ae5ee8cc95c041a425e950db4372d, type: 3}
+  PressureDoorOpen: {fileID: 8300000, guid: af7cb34381516184e93341306b951605, type: 3}
+  GetKeySFX: {fileID: 8300000, guid: e651799ce5e0a3e4a9732b2e6a86c276, type: 3}
   TorchHitSFX: {fileID: 8300000, guid: 55961af8f65dba5448f381b18c5493ec, type: 3}
 --- !u!4 &271809852
 Transform:

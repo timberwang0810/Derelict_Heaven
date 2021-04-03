@@ -16,6 +16,13 @@ public class Door : Mechanism
     {
         //gameObject.SetActive(false);
         GetComponent<Animator>().SetTrigger("open");
+        if (this.tag == "TorchDoor")
+        {
+            SoundManager.S.TorchDoorSFX();
+        }else if(this.tag == "PressureDoor")
+        {
+            SoundManager.S.PressureDoorSFX();
+        }
     }
 
     public override void Deactivate()
