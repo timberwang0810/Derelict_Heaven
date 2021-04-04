@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    [Serializable]
+    public struct FormCommand
+    {
+        public Form form;
+        public Sprite commandSprite;
+    }
+    public FormCommand[] formCommandsArray;
+    public Dictionary<Form, Sprite> formCommands;
     public enum GameState { menu, getReady, playing, paused, oops, gameOver };
+
     public GameState gameState;
     public static GameManager S;
 
@@ -45,6 +55,16 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         lives = maxLives;
         Time.timeScale = 1;
+        PopulateCommands();
+
+    }
+    private void PopulateCommands()
+    {
+        formCommands = new Dictionary<Form, Sprite>();
+        foreach (GameManager.FormCommand fc in formCommandsArray)
+        {
+            formCommands.Add(fc.form, fc.commandSprite);
+        }
     }
 
     // Update is called once per frame

@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject chatPanel;
     public GameObject pausePanel;
     public GameObject settingsPanel;
+    public GameObject popUpImage;
     public Slider volumeSlider;
 
     private void Awake()
@@ -33,6 +34,13 @@ public class UIManager : MonoBehaviour
         chatPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
+        popUpImage.SetActive(false);
+    }
+
+    public void ShowPopUpImageForSeconds(Sprite image, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ShowPopUpImageForSecondsCoroutine(image, duration));
     }
 
     public void ShowPopUpForSeconds(string message, float duration)
@@ -84,5 +92,13 @@ public class UIManager : MonoBehaviour
         ShowPopUp(message, false);
         yield return new WaitForSeconds(duration);
         HidePopUp();
+    }
+
+    private IEnumerator ShowPopUpImageForSecondsCoroutine(Sprite image, float duration)
+    {
+        popUpImage.GetComponent<Image>().sprite = image;
+        popUpImage.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        popUpImage.SetActive(false);
     }
 }

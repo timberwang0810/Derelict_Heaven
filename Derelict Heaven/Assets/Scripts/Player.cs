@@ -6,15 +6,10 @@ using System;
 public class Player : MonoBehaviour
 {
     public Form myForm = Form.original;
+
     public PlayerMovement controller;
+
     private Dictionary<Form, Action> enemyFunctions;
-    private Dictionary<Form, string> formCommands = new Dictionary<Form, string>()
-    {
-        { Form.original, "Returned to normal!" },
-        { Form.charger, "Press 'c' to charge forward!" },
-        { Form.archer, "Press LMB to shoot arrows!" },
-        { Form.pressurizer, "Press 'c' to hold down your weight"  }
-    };
 
     private SpriteRenderer renderer;
     private Sprite originalSprite;
@@ -367,6 +362,7 @@ public class Player : MonoBehaviour
 
         }
         myForm = f;
-        UIManager.S.ShowPopUpForSeconds(formCommands[f], 5);
+        if (GameManager.S.formCommands[f] == null) UIManager.S.ShowPopUpForSeconds("Return to Normal!", 5);
+        else UIManager.S.ShowPopUpImageForSeconds(GameManager.S.formCommands[f], 5);
     }
 }
