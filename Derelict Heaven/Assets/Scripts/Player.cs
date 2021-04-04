@@ -291,6 +291,7 @@ public class Player : MonoBehaviour
             shotSpeed = archerScript.shotSpeed;
             shotCoolDown = archerScript.shotCoolDown;
             coolDownTimer = shotCoolDown;
+            UIManager.S.ShowAimingCursor();
         }
 
         Vector3 newPos = embodying.transform.position;
@@ -313,6 +314,7 @@ public class Player : MonoBehaviour
         enableEmbody = false;
         yield return new WaitForSeconds(originalFormCooldown);
         enableEmbody = true;
+        UIManager.S.HideAimingCursor();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -4356,6 +4356,7 @@ MonoBehaviour:
   pausePanel: {fileID: 1787744566}
   settingsPanel: {fileID: 9331730}
   popUpImage: {fileID: 2045770601}
+  aimingReticle: {fileID: 2800000, guid: 9e3136b7d21724b8ea30b0077b30c72e, type: 3}
   volumeSlider: {fileID: 1219448796}
 --- !u!4 &1004424183
 Transform:

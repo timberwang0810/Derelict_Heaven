@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject pausePanel;
     public GameObject settingsPanel;
     public GameObject popUpImage;
+    public Texture2D aimingReticle;
     public Slider volumeSlider;
 
     private void Awake()
@@ -85,6 +86,16 @@ public class UIManager : MonoBehaviour
     public float GetSliderVolume()
     {
         return volumeSlider.value;
+    }
+
+    public void ShowAimingCursor()
+    {
+        Cursor.SetCursor(aimingReticle, Vector2.zero, CursorMode.ForceSoftware);
+    }
+
+    public void HideAimingCursor()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
     private IEnumerator ShowPopUpForSecondsCoroutine(string message, float duration)
