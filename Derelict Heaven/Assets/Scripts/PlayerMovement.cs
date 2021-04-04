@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         float move = horizontalMove * Time.fixedDeltaTime;
         if (move != 0 && !isMoving)
         {
-            SoundManager.S.OnWalkSound(playerScript.myForm);
+            SoundManager.S.OnWalkSound(playerScript.GetForm());
             isMoving = true;
         }
         else if (move == 0 && isMoving)
