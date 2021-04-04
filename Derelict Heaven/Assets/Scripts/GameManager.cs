@@ -180,7 +180,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator TakeDamageCoroutine(bool isDead)
     {
-        if (isDead) gameState = GameState.oops;
+        if (isDead)
+        {
+            gameState = GameState.oops;
+            SoundManager.S.OnDeathSound(player.GetComponent<Player>().GetForm());
+        }
         invincible = true;
         SpriteRenderer r = player.GetComponent<SpriteRenderer>();
         Color opaque = new Color(1.0f, 1.0f, 1.0f, 1.0f);
