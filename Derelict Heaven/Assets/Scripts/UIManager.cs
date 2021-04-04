@@ -90,7 +90,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowAimingCursor()
     {
-        Cursor.SetCursor(aimingReticle, Vector2.zero, CursorMode.ForceSoftware);
+        Vector2 offset = new Vector2(aimingReticle.width / 2, aimingReticle.height / 2);
+        Cursor.SetCursor(aimingReticle, offset, CursorMode.Auto);
     }
 
     public void HideAimingCursor()
