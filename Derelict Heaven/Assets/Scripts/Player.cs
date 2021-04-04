@@ -153,6 +153,8 @@ public class Player : MonoBehaviour
                     {
                         if (pressurePlate != null)
                         {
+                            rb.velocity = Vector2.zero;
+                            transform.position = pressurePlate.transform.position;
                             SoundManager.S.OnPressurizerUseSound();
                             animator.SetBool("activate", true);
                             pressurePlate.GetComponent<PressurePlate>().Activate();
