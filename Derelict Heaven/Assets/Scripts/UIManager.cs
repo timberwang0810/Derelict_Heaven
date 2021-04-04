@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject chatPanel;
     public GameObject pausePanel;
     public GameObject settingsPanel;
+    public GameObject popUpImage;
+    public Texture2D aimingReticle;
     public Slider volumeSlider;
 
     private void Awake()
@@ -33,6 +35,13 @@ public class UIManager : MonoBehaviour
         chatPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
+        popUpImage.SetActive(false);
+    }
+
+    public void ShowPopUpImageForSeconds(Sprite image, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ShowPopUpImageForSecondsCoroutine(image, duration));
     }
 
     public void ShowPopUpForSeconds(string message, float duration)
@@ -79,10 +88,28 @@ public class UIManager : MonoBehaviour
         return volumeSlider.value;
     }
 
+    public void ShowAimingCursor()
+    {
+        Cursor.SetCursor(aimingReticle, Vector2.zero, CursorMode.ForceSoftware);
+    }
+
+    public void HideAimingCursor()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
     private IEnumerator ShowPopUpForSecondsCoroutine(string message, float duration)
     {
         ShowPopUp(message, false);
         yield return new WaitForSeconds(duration);
         HidePopUp();
+    }
+
+    private IEnumerator ShowPopUpImageForSecondsCoroutine(Sprite image, float duration)
+    {
+        popUpImage.GetComponent<Image>().sprite = image;
+        popUpImage.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        popUpImage.SetActive(false);
     }
 }
