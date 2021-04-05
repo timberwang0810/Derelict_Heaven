@@ -90,6 +90,10 @@ public class GameManager : MonoBehaviour
         {
             LevelManager.S.RestartLevel();
         }
+        if (Input.GetKeyDown(KeyCode.P) && gameState == GameState.playing)
+        {
+            StartCoroutine(LevelCompleteCoroutine());
+        }
     }
 
     public void StartNewGame()
@@ -162,7 +166,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LevelCompleteCoroutine()
     {
         gameState = GameState.oops;
-        Camera.main.transform.SetParent(null);
+        Camera.main.GetComponent<CameraFollow>().toggleResticted(false);
 
         SoundManager.S.OnAscendSound();
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
