@@ -36,11 +36,13 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        Destroy(GameObject.Find("ButtonManager"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToNextLevel()
     {
+        Destroy(GameObject.Find("ButtonManager"));
         SceneManager.LoadScene("Level" + (currLevel + 1));
         currLevel += 1;
     }

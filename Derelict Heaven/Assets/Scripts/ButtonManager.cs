@@ -13,8 +13,35 @@ public class ButtonManager : MonoBehaviour
 
     public void btn_StartTheGame()
     {
+        SceneManager.LoadScene("LevelSelect");
+        Destroy(this.gameObject);
+    }
+
+    public void btn_Level1()
+    {
         if (GameManager.S) Destroy(GameManager.S.gameObject);
         SceneManager.LoadScene("Level1");
+        Destroy(this.gameObject);
+    }
+
+    public void btn_Level2()
+    {
+        if (GameManager.S) Destroy(GameManager.S.gameObject);
+        SceneManager.LoadScene("Level2");
+        Destroy(this.gameObject);
+    }
+
+    public void btn_Level3()
+    {
+        if (GameManager.S) Destroy(GameManager.S.gameObject);
+        SceneManager.LoadScene("Level3");
+        Destroy(this.gameObject);
+    }
+
+    public void btn_Level4()
+    {
+        if (GameManager.S) Destroy(GameManager.S.gameObject);
+        SceneManager.LoadScene("Level4");
         Destroy(this.gameObject);
     }
 
