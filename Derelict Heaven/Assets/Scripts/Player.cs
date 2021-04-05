@@ -194,12 +194,6 @@ public class Player : MonoBehaviour
             SoundManager.S.OnUnConsumeSound();
             StartCoroutine(originalFormCount());
         }
-
-        if (Input.GetKeyDown("k"))
-        {
-            GameManager.S.PlayerGotKey();
-            GameManager.S.OnLevelComplete();
-        }
     }
 
     public Form GetForm()
@@ -279,8 +273,7 @@ public class Player : MonoBehaviour
         // Last check to see if player has died
         if (GameManager.S.gameState != GameManager.GameState.playing) return;
 
-        changeValues(embodying.GetComponent<SpriteRenderer>().sprite,
-                     embodying.GetComponent<CapsuleCollider2D>().size,
+        changeValues(embodying.GetComponent<CapsuleCollider2D>().size,
                      embodying.GetComponent<CapsuleCollider2D>().offset,
                      form);
 

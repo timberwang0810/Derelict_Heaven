@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         {
             LevelManager.S.RestartLevel();
         }
-        if (Input.GetKeyDown(KeyCode.P) && gameState == GameState.playing)
+        if (Input.GetKeyDown(KeyCode.K) && gameState == GameState.playing)
         {
             StartCoroutine(LevelCompleteCoroutine());
         }
