@@ -240,4 +240,9 @@ public class GameManager : MonoBehaviour
         GameObject newBishop = Instantiate(usedBishop);
         newBishop.transform.position = pos;
     }
+
+    public void RestartLevel()
+    {
+        LevelManager.S.RestartLevel();
+    }
 }

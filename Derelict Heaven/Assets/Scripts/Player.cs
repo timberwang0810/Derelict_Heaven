@@ -151,7 +151,8 @@ public class Player : MonoBehaviour
                     {
                         if (pressurePlate != null)
                         {
-                            rb.velocity = Vector2.zero;
+                            rb.velocity = Vector3.zero;
+                            rb.angularVelocity = 0;
                             transform.position = pressurePlate.transform.position;
                             SoundManager.S.OnPressurizerUseSound();
                             animator.SetBool("activate", true);
