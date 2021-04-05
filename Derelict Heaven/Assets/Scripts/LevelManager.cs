@@ -23,6 +23,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        if (SoundManager.S)
+        {
+            SoundManager.S.OnNewLevel();
+        }
         if (GameManager.S)
         {
             Debug.Log("starting");

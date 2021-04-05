@@ -56,7 +56,6 @@ public class SoundManager : MonoBehaviour
         {
             S = this;
         }
-
     }
 
     // Start is called before the first frame update
@@ -75,7 +74,7 @@ public class SoundManager : MonoBehaviour
     {
         sfxAudio.volume = volume;
         movementAudio.volume = volume;
-        currLevelBGM.volume = volume;
+        if (currLevelBGM) currLevelBGM.volume = volume;
     }
 
     public void OnNewLevel()
