@@ -41,8 +41,6 @@ public class Player : MonoBehaviour
 
     public GameObject returnQueue;
 
-    private GameObject camera;
-
     private ParticleSystem particles; 
 
     private GameObject pressurePlate = null;

@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public string currLevelName;
     public AudioSource levelBGM;
 
+    public float minY;
+
     private void Awake()
     {
         S = this;
