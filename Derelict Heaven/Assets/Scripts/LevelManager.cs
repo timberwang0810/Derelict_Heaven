@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     {
         if (GameManager.S)
         {
+            Debug.Log("starting");
             GameManager.S.StartNewGame();
         }
     }

@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         gameState = GameState.getReady;
+        Time.timeScale = 1;
         // TODO: put any setup + coroutines here
         lives = maxLives;
         player = GameObject.Find("Player");
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
     {
         // Reset any variables necessary in the level
         // Don't know if we need if player don't get destroyed upon losing life
+        Debug.Log("reached");
         gameState = GameState.playing;
     }
 
