@@ -5973,7 +5973,7 @@ PrefabInstance:
     - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1465550625}
     - target: {fileID: 5125294672341979589, guid: 60be1446f6a76a64fad89a21eaf1d466, type: 3}
       propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SoundManager, Assembly-CSharp
@@ -8018,6 +8018,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a89dd80e229a5cc418d0cb73c102db5e, type: 3}
+--- !u!114 &1465550625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3914784919199371424, guid: a89dd80e229a5cc418d0cb73c102db5e, type: 3}
+  m_PrefabInstance: {fileID: 1465550624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625e706ec929f80498b2f59d7a6958c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1500573405
 PrefabInstance:
   m_ObjectHideFlags: 0

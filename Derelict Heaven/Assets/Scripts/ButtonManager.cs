@@ -45,12 +45,6 @@ public class ButtonManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void btn_Restart()
-    {
-        LevelManager.S.RestartLevel();
-        Destroy(this.gameObject);
-    }
-
     public void btn_Quit()
     {
         Application.Quit();
