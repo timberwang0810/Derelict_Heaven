@@ -42,14 +42,12 @@ public class UIManager : MonoBehaviour
 
     public void ShowPopUpImageForSeconds(Sprite image, float duration)
     {
-        StopAllCoroutines();
         StartCoroutine(ShowPopUpImageForSecondsCoroutine(image, duration));
     }
 
     public void ShowPopUpForSeconds(string message, float duration)
     {
         if (message == "") return;
-        StopAllCoroutines();
         StartCoroutine(ShowPopUpForSecondsCoroutine(message, duration));
     }
 
