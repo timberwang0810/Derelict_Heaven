@@ -7,6 +7,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager S;
     public Camera cam;
     public GameObject player;
+    private Vector3 origPos;
     private Vector3 moveTo;
     private bool isMoving;
 
@@ -46,8 +47,10 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator PanCamera(GameObject door, float animTime)
     {
+        origPos = cam.transform.position;
         yield return new WaitForSeconds(animTime);
         isMoving = true;
+        cam.GetComponent<CameraFollow>().toggleResticted(false);
         PanTo(door.transform.position);
         GameManager.S.gameState = GameManager.GameState.paused;
         yield return new WaitForSeconds(0.75f);
@@ -55,18 +58,12 @@ public class CameraManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GameManager.S.gameState = GameManager.GameState.playing;
         isMoving = false;
-        SetToPlayer();
+        cam.GetComponent<CameraFollow>().toggleResticted(true);
+        cam.transform.position = origPos;
     }
 
     private void PanTo(Vector3 pos)
     {
-        cam.transform.SetParent(null);
         moveTo = new Vector3(pos.x, pos.y, -5);
-    }
-
-    private void SetToPlayer()
-    {
-        cam.transform.SetParent(player.transform);
-        cam.transform.localPosition = new Vector3(0, 0, -10);
     }
 }

@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public string currLevelName;
     public AudioSource levelBGM;
 
+    public float minY;
+
     private void Awake()
     {
         S = this;
@@ -23,6 +25,7 @@ public class LevelManager : MonoBehaviour
     {
         if (GameManager.S)
         {
+            Debug.Log("starting");
             GameManager.S.StartNewGame();
         }
     }

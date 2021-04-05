@@ -90,11 +90,16 @@ public class GameManager : MonoBehaviour
         {
             LevelManager.S.RestartLevel();
         }
+        if (Input.GetKeyDown(KeyCode.P) && gameState == GameState.playing)
+        {
+            StartCoroutine(LevelCompleteCoroutine());
+        }
     }
 
     public void StartNewGame()
     {
         gameState = GameState.getReady;
+        Time.timeScale = 1;
         // TODO: put any setup + coroutines here
         lives = maxLives;
         player = GameObject.Find("Player");
@@ -105,6 +110,7 @@ public class GameManager : MonoBehaviour
     {
         // Reset any variables necessary in the level
         // Don't know if we need if player don't get destroyed upon losing life
+        Debug.Log("reached");
         gameState = GameState.playing;
     }
 
@@ -160,7 +166,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LevelCompleteCoroutine()
     {
         gameState = GameState.oops;
-        Camera.main.transform.SetParent(null);
+        Camera.main.GetComponent<CameraFollow>().toggleResticted(false);
 
         SoundManager.S.OnAscendSound();
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();

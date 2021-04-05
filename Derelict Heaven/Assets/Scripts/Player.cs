@@ -41,8 +41,6 @@ public class Player : MonoBehaviour
 
     public GameObject returnQueue;
 
-    private GameObject camera;
-
     private ParticleSystem particles; 
 
     private GameObject pressurePlate = null;
@@ -277,6 +275,9 @@ public class Player : MonoBehaviour
         embodying.SetActive(false);
 
         returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, embodying.GetComponent<Enemy>().spawn);
+
+        // Last check to see if player has died
+        if (GameManager.S.gameState != GameManager.GameState.playing) return;
 
         changeValues(embodying.GetComponent<SpriteRenderer>().sprite,
                      embodying.GetComponent<CapsuleCollider2D>().size,
