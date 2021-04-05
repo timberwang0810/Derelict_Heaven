@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         if (invincible) return;
         player.gameObject.GetComponent<Rigidbody2D>().AddForce(damageDir, ForceMode2D.Impulse);
         player.gameObject.GetComponent<Animator>().SetBool("embody", false);
+        player.gameObject.GetComponent<Player>().embodying = null;
         lives--;
         if (lives <= 0) StartCoroutine(TakeDamageCoroutine(true));
         else StartCoroutine(TakeDamageCoroutine(false));

@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     private ParticleSystem particles; 
 
     private GameObject pressurePlate = null;
-    private GameObject embodying = null;
+    public GameObject embodying = null;
 
     // Start is called before the first frame update
     void Start()
@@ -191,10 +191,16 @@ public class Player : MonoBehaviour
                 returnQueue.GetComponent<ReturnQueueManager>().returnEnemy();
             }
             animator.SetBool("activate", false);
-            changeValues(originalSprite, new Vector2(0, 0), new Vector2(0, 0), Form.original);
+            changeValues(new Vector2(0, 0), new Vector2(0, 0), Form.original);
             SoundManager.S.OnStopMovementSound();
             SoundManager.S.OnUnConsumeSound();
             StartCoroutine(originalFormCount());
+        }
+
+        if (Input.GetKeyDown("k"))
+        {
+            GameManager.S.PlayerGotKey();
+            GameManager.S.OnLevelComplete();
         }
     }
 
@@ -216,14 +222,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "PressurePlate")
         {
             pressurePlate = collision.gameObject;
-        }
-
-        if (collision.gameObject.tag == "Key")
-        {
-            GameManager.S.PlayerGotKey();
-            SoundManager.S.OnObtainKeySound();
-
-            Destroy(collision.gameObject);
         }
 
         if ((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyAttack") && possessor.enabled)
@@ -266,7 +264,9 @@ public class Player : MonoBehaviour
     }
 
     public void embodyEnemy()
-    {   
+    {
+        if (embodying == null) return;
+
         Enemy enemyScript = embodying.GetComponent<Enemy>();
         possessor.enabled = false;
 
@@ -278,8 +278,7 @@ public class Player : MonoBehaviour
 
         returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, embodying.GetComponent<Enemy>().spawn);
 
-        changeValues(embodying.GetComponent<SpriteRenderer>().sprite,
-                     embodying.GetComponent<CapsuleCollider2D>().size,
+        changeValues(embodying.GetComponent<CapsuleCollider2D>().size,
                      embodying.GetComponent<CapsuleCollider2D>().offset,
                      form);
 
@@ -302,6 +301,7 @@ public class Player : MonoBehaviour
         Destroy(embodying);
         embodying = null;
         animator.SetBool("embody", false);
+        particles.Stop();
     }
 
     IEnumerator embodyCooldownCount()
@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
 
     /** dont change scale, it messes with character controller
      */
-    private void changeValues(Sprite s, Vector2 size, Vector2 offset, Form f)
+    private void changeValues(Vector2 size, Vector2 offset, Form f)
     {
         if (f == Form.original)
         {
