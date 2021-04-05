@@ -276,6 +276,9 @@ public class Player : MonoBehaviour
 
         returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, embodying.GetComponent<Enemy>().spawn);
 
+        // Last check to see if player has died
+        if (GameManager.S.gameState != GameManager.GameState.playing) return;
+
         changeValues(embodying.GetComponent<SpriteRenderer>().sprite,
                      embodying.GetComponent<CapsuleCollider2D>().size,
                      embodying.GetComponent<CapsuleCollider2D>().offset,
