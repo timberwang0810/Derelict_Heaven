@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this);
         chatPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);

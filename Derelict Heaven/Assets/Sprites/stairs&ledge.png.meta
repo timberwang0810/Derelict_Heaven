@@ -1,0 +1,517 @@
+fileFormatVersion: 2
+guid: e622ccfe08275784d8f11c928c7b8313
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3040709487232565161
+    second: stairs&ledge_0
+  - first:
+      213: -4882252426976576803
+    second: stairs&ledge_1
+  - first:
+      213: -1544381271767830277
+    second: stairs&ledge_2
+  - first:
+      213: 8652227713084402300
+    second: stairs&ledge_3
+  - first:
+      213: -2891660426593591487
+    second: stairs&ledge_4
+  - first:
+      213: -551617852832425834
+    second: stairs&ledge_5
+  - first:
+      213: -1171709657721463716
+    second: stairs&ledge_6
+  - first:
+      213: -4924800997868038706
+    second: stairs&ledge_7
+  - first:
+      213: -1710489668140189961
+    second: stairs&ledge_8
+  - first:
+      213: -941045052481244032
+    second: stairs&ledge_9
+  - first:
+      213: 6671213200597546478
+    second: stairs&ledge_10
+  - first:
+      213: -1224691217383278353
+    second: stairs&ledge_11
+  - first:
+      213: 7402285062133471181
+    second: stairs&ledge_12
+  - first:
+      213: 7240623613704025300
+    second: stairs&ledge_13
+  - first:
+      213: 2880895573782446153
+    second: stairs&ledge_14
+  - first:
+      213: 410195285791005865
+    second: stairs&ledge_15
+  - first:
+      213: -7772742717749703291
+    second: stairs&ledge_16
+  - first:
+      213: -3053895792289249154
+    second: stairs&ledge_17
+  - first:
+      213: 2244441999047991891
+    second: stairs&ledge_18
+  - first:
+      213: -4892896008706605931
+    second: stairs&ledge_19
+  - first:
+      213: -6238831501131552257
+    second: stairs&ledge_20
+  - first:
+      213: 2888653155646015159
+    second: stairs&ledge_21
+  - first:
+      213: 5244080026792259520
+    second: stairs&ledge_22
+  - first:
+      213: -5320650404588857379
+    second: stairs&ledge_23
+  - first:
+      213: 7648699815094972746
+    second: stairs&ledge_24
+  - first:
+      213: 7299298932081002972
+    second: stairs&ledge_25
+  - first:
+      213: -489406544410936793
+    second: stairs&ledge_26
+  - first:
+      213: -1679995902950399315
+    second: stairs&ledge_27
+  - first:
+      213: -2081919375888431048
+    second: stairs&ledge_28
+  - first:
+      213: -7105009670634219003
+    second: stairs&ledge_29
+  - first:
+      213: -5054569882878834331
+    second: stairs&ledge_30
+  - first:
+      213: -8356132651608520041
+    second: stairs&ledge_31
+  - first:
+      213: -5288550672749068282
+    second: stairs&ledge_32
+  - first:
+      213: 5009562557254726775
+    second: stairs&ledge_33
+  - first:
+      213: 8677792625503532962
+    second: stairs&ledge_34
+  - first:
+      213: 5998902918201220311
+    second: stairs&ledge_35
+  - first:
+      213: -7440261788717651517
+    second: stairs&ledge_36
+  - first:
+      213: -8143528797788057516
+    second: stairs&ledge_37
+  - first:
+      213: -7141473653268573638
+    second: stairs&ledge_38
+  - first:
+      213: 1545512634239599826
+    second: stairs&ledge_39
+  - first:
+      213: 8382424946179744455
+    second: stairs&ledge_40
+  - first:
+      213: -2124210394225522527
+    second: stairs&ledge_41
+  - first:
+      213: -1041958041175398945
+    second: stairs&ledge_42
+  - first:
+      213: -1477883606902769050
+    second: stairs&ledge_43
+  - first:
+      213: -8298015123385626635
+    second: stairs&ledge_44
+  - first:
+      213: -3396720861602348632
+    second: stairs&ledge_45
+  - first:
+      213: 1854950431973460671
+    second: stairs&ledge_46
+  - first:
+      213: -655567565179518992
+    second: stairs&ledge_47
+  - first:
+      213: 6654411144749388803
+    second: stairs&ledge_48
+  - first:
+      213: -5683972779770509665
+    second: stairs&ledge_49
+  - first:
+      213: 8820695063856843171
+    second: stairs&ledge_50
+  - first:
+      213: -3225858901929602134
+    second: stairs&ledge_51
+  - first:
+      213: 2868622697987985120
+    second: stairs&ledge_52
+  - first:
+      213: -1821270655850690209
+    second: stairs&ledge_53
+  - first:
+      213: 6226184213302650558
+    second: stairs&ledge_54
+  - first:
+      213: -7205945940903113285
+    second: stairs&ledge_55
+  - first:
+      213: 7559165491096446445
+    second: stairs&ledge_56
+  - first:
+      213: 6869302818063232668
+    second: stairs&ledge_57
+  - first:
+      213: 2605125591301466661
+    second: stairs&ledge_58
+  - first:
+      213: -1474619626170608711
+    second: stairs&ledge_59
+  - first:
+      213: -5789884569861006504
+    second: stairs&ledge_60
+  - first:
+      213: -2578691007404878286
+    second: stairs&ledge_61
+  - first:
+      213: -6908079681756519314
+    second: stairs&ledge_62
+  - first:
+      213: -1345383991694099119
+    second: stairs&ledge_63
+  - first:
+      213: 9208441249321463225
+    second: stairs&ledge_64
+  - first:
+      213: -4077123362872109448
+    second: stairs&ledge_65
+  - first:
+      213: -3456930214066189645
+    second: stairs&ledge_66
+  - first:
+      213: 556050547549843667
+    second: stairs&ledge_67
+  - first:
+      213: -5125922385489357648
+    second: stairs&ledge_68
+  - first:
+      213: -96316804912015780
+    second: stairs&ledge_69
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: stairs&ledge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750c75ce4da3dc5d0800000000000000
+      internalID: -3040709487232565161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddab542f841ce3cb0800000000000000
+      internalID: -4882252426976576803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf033827a61419ae0800000000000000
+      internalID: -1544381271767830277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7aaf2a7343e21870800000000000000
+      internalID: 8652227713084402300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f95d5a922ced7d0800000000000000
+      internalID: -2891660426593591487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698d8264c724858f0800000000000000
+      internalID: -551617852832425834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c1e9736404dbfe0800000000000000
+      internalID: -1171709657721463716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5169cc59797abb0800000000000000
+      internalID: -4924800997868038706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stairs&ledge_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f6378a95be1348e0800000000000000
+      internalID: -1710489668140189961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
