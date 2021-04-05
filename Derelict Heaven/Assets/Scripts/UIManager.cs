@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject chatPanel;
     public GameObject pausePanel;
     public GameObject settingsPanel;
+    public GameObject instructionPanel;
     public GameObject popUpImage;
     public Texture2D aimingReticle;
     public Slider volumeSlider;
@@ -35,6 +36,7 @@ public class UIManager : MonoBehaviour
         chatPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
+        instructionPanel.SetActive(false);
         popUpImage.SetActive(false);
     }
 
@@ -81,6 +83,16 @@ public class UIManager : MonoBehaviour
     public void HideSettingsPanel()
     {
         settingsPanel.SetActive(false);
+    }
+
+    public void ShowInstructionPanel()
+    {
+        instructionPanel.SetActive(true);
+    }
+
+    public void HideInstructionPanel()
+    {
+        instructionPanel.SetActive(false);
     }
 
     public float GetSliderVolume()
