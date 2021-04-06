@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     // Game Variables
     public int maxLives;
-    public int maxLevels;
     private int lives;
     private bool invincible;
     private bool keyGotten = false;
@@ -134,19 +133,16 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelComplete()
     {
-        if (keyGotten)
-        {
-            StartCoroutine(LevelCompleteCoroutine());
-            // TODO: Go to next level or end
-        }
+        if (LevelManager.S.isFinalLevel) StartCoroutine(Contemplation());
+        else if (keyGotten) StartCoroutine(LevelCompleteCoroutine());
     }
 
     public void OnLevelWon()
     {
         gameState = GameState.gameOver;
-        if (LevelManager.S.currLevel >= maxLevels)
+        if (LevelManager.S.isFinalLevel)
         {
-            UIManager.S.ShowPopUpForSeconds("You Won!", 3);
+            UIManager.S.ShowWinningPanel();
         }
         else
         {
@@ -183,6 +179,16 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         SoundManager.S.StopBGM();
+        UIManager.S.FadeOut();
+    }
+
+    private IEnumerator Contemplation()
+    {
+        gameState = GameState.oops;
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        Camera.main.GetComponent<CameraFollow>().toggleResticted(false);
+        yield return new WaitForSeconds(3);        
         UIManager.S.FadeOut();
     }
 

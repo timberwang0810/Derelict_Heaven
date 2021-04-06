@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject pausePanel;
     public GameObject settingsPanel;
     public GameObject instructionPanel;
+    public GameObject winningPanel;
     public GameObject popUpImage;
     public Image whiteImage;
     public Texture2D aimingReticle;
@@ -39,6 +40,8 @@ public class UIManager : MonoBehaviour
         settingsPanel.SetActive(false);
         instructionPanel.SetActive(false);
         popUpImage.SetActive(false);
+        whiteImage.gameObject.SetActive(false);
+        if (winningPanel) winningPanel.SetActive(false);
     }
 
     public void ShowPopUpImageForSeconds(Sprite image, float duration)
@@ -94,6 +97,12 @@ public class UIManager : MonoBehaviour
         instructionPanel.SetActive(false);
     }
 
+    public void ShowWinningPanel()
+    {
+        if (!winningPanel) return;
+        StartCoroutine(FadeInWinningPanel());
+    }
+
     public float GetSliderVolume()
     {
         return volumeSlider.value;
@@ -137,6 +146,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator FadeCoroutine(bool isIn)
     {
+        whiteImage.gameObject.SetActive(true);
         Color opaque = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         Color transparent = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         Color start = isIn ? opaque : transparent;
@@ -150,11 +160,35 @@ public class UIManager : MonoBehaviour
         }
         if (isIn)
         {
+            whiteImage.gameObject.SetActive(false);
             GameManager.S.ResetLevel();
         }
         else
         {
             GameManager.S.OnLevelWon();
         }
+    }
+
+    private IEnumerator FadeInWinningPanel()
+    {
+        winningPanel.SetActive(true);
+        GameObject mainMenu = winningPanel.GetComponentInChildren<Button>().gameObject;
+        TextMeshProUGUI winningMsg = winningPanel.GetComponentInChildren<TextMeshProUGUI>();
+        mainMenu.SetActive(false);
+        Color opaque = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        Color transparent = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        float timer = 0;
+        while (timer < 2.5f)
+        {
+            timer += Time.deltaTime;
+            winningMsg.faceColor = Color.Lerp(transparent, opaque, timer / 2.5f);
+            yield return null;
+        }
+        mainMenu.SetActive(true);
+        //DisplayWinningPanel();
+    }
+    private void DisplayWinningPanel()
+    {
+        winningPanel.SetActive(true);
     }
 }
