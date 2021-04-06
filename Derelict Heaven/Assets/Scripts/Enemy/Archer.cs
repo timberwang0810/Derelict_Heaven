@@ -88,7 +88,7 @@ public class Archer : Enemy
         RaycastHit2D hit = Physics2D.Linecast(transform.position, target.transform.position, aimImpedeLayers);
         //Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
       
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Player") && hit.collider.gameObject.GetComponent<Player>().GetForm() == Form.original)
         {
             //Debug.Log(hit.collider.gameObject.name);
             aimLaser.enabled = true;

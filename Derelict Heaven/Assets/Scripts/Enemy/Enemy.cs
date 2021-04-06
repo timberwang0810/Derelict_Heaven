@@ -60,13 +60,20 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "BreakableWall")
         {
-            faceLeft = !faceLeft;
+            TurnAround();
         }
         else if (collision.gameObject.tag == "Player" && gameObject.tag == "EnemyAttack")
         {
-            Vector2 dir = collision.gameObject.transform.position - gameObject.transform.position;
-            dir.Normalize();
-            GameManager.S.OnLivesLost(dir);
+            if (collision.gameObject.GetComponent<Player>().GetForm() != Form.original)
+            {
+                TurnAround();
+            }
+            else
+            {
+                Vector2 dir = collision.gameObject.transform.position - gameObject.transform.position;
+                dir.Normalize();
+                GameManager.S.OnLivesLost(dir);
+            }
         }
     }
 

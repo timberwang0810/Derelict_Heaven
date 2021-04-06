@@ -49,13 +49,16 @@ public class Charger : Enemy
 
             if (hit.collider != null && hit.collider.gameObject.tag == "Player")
             {
-                animator.SetTrigger("chargeup");
-                lockedOnPlayer = true;
-                speed *= 2;
-                walkAudio.Stop();
-                runAudio.Play();
-                StartCoroutine(FreezeForSeconds(1));
-                StartCoroutine(AggroTime(aggroTime));
+                if (hit.collider.gameObject.GetComponent<Player>().GetForm() == Form.original)
+                {
+                    animator.SetTrigger("chargeup");
+                    lockedOnPlayer = true;
+                    speed *= 2;
+                    walkAudio.Stop();
+                    runAudio.Play();
+                    StartCoroutine(FreezeForSeconds(1));
+                    StartCoroutine(AggroTime(aggroTime));
+                }             
             }
         }
     }
