@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject instructionPanel;
     public GameObject popUpImage;
+    public Image whiteImage;
     public Texture2D aimingReticle;
     public Slider volumeSlider;
 
@@ -109,6 +110,16 @@ public class UIManager : MonoBehaviour
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
+    public void FadeIn()
+    {
+        StartCoroutine(FadeCoroutine(true));
+    }
+
+    public void FadeOut()
+    {
+        StartCoroutine(FadeCoroutine(false));
+    }
+
     private IEnumerator ShowPopUpForSecondsCoroutine(string message, float duration)
     {
         ShowPopUp(message, false);
@@ -122,5 +133,28 @@ public class UIManager : MonoBehaviour
         popUpImage.SetActive(true);
         yield return new WaitForSeconds(duration);
         popUpImage.SetActive(false);
+    }
+
+    private IEnumerator FadeCoroutine(bool isIn)
+    {
+        Color opaque = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        Color transparent = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        Color start = isIn ? opaque : transparent;
+        Color target = isIn ? transparent : opaque;
+        float timer = 0;
+        while (timer < 2.5f)
+        {
+            timer += Time.deltaTime;
+            whiteImage.color = Color.Lerp(start, target, timer / 2.5f);
+            yield return null;
+        }
+        if (isIn)
+        {
+            GameManager.S.ResetLevel();
+        }
+        else
+        {
+            GameManager.S.OnLevelWon();
+        }
     }
 }
