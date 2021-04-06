@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GlobalsManager : MonoBehaviour
 {
     public Slider volumeSlider;
-    private static float currentVolume = 1;
+    private static float currentVolume = 0.2f;
 
     // Initial settings
     private void Start()
