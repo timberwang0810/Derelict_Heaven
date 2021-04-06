@@ -60,6 +60,17 @@ public class CameraManager : MonoBehaviour
         {
             child.gameObject.GetComponent<Rigidbody2D>().gravityScale = Random.Range(0.2f, 0.7f);
         }
+        if (chain.tag == "ChainLong1")
+        {
+            SoundManager.S.OnChainLong1Fall();
+        }else if (chain.tag == "ChainLong2")
+        {
+            SoundManager.S.OnChainLong2Fall();
+        }
+        else
+        {
+            SoundManager.S.OnChainShortFall();
+        }
         Destroy(chain, 10);
         boss.GetComponent<Boss>().addChainDown();
         if (boss.GetComponent<Boss>().chainsDown == boss.GetComponent<Boss>().maxChains)

@@ -39,6 +39,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip PressureDoorOpen;
     public AudioClip GetKeySFX;
 
+    [Header("Boss Level Sounds")]
+    public AudioClip ChainLong1SFX;
+    public AudioClip ChainLong2SFX;
+    public AudioClip ChainShortSFX;
+    public AudioClip BossDeathSFX;
+    public AudioClip BossDoorOpenSFX;
+
     public AudioClip TorchHitSFX;
 
     private AudioSource currLevelBGM;
@@ -260,4 +267,26 @@ public class SoundManager : MonoBehaviour
     {
         sfxAudio.PlayOneShot(PressureDoorOpen);
     }
+
+    public void OnChainLong1Fall()
+    {
+        sfxAudio.PlayOneShot(ChainLong1SFX);
+    }
+    public void OnChainLong2Fall()
+    {
+        sfxAudio.PlayOneShot(ChainLong2SFX);
+    }
+    public void OnChainShortFall()
+    {
+        sfxAudio.PlayOneShot(ChainShortSFX);
+    }
+    public void OnBossDeathSound()
+    {
+        sfxAudio.PlayOneShot(BossDeathSFX);
+    }
+    public void onBossDoorOpenSound()
+    {
+        sfxAudio.PlayOneShot(BossDoorOpenSFX);
+    }
+
 }

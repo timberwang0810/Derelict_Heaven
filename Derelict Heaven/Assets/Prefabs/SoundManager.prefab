@@ -66,6 +66,11 @@ MonoBehaviour:
   TorchDoorOpen: {fileID: 8300000, guid: 6f3ae5ee8cc95c041a425e950db4372d, type: 3}
   PressureDoorOpen: {fileID: 8300000, guid: af7cb34381516184e93341306b951605, type: 3}
   GetKeySFX: {fileID: 8300000, guid: e651799ce5e0a3e4a9732b2e6a86c276, type: 3}
+  ChainLong1SFX: {fileID: 8300000, guid: c5d0199bb47c9a14fba1aac31f516ad3, type: 3}
+  ChainLong2SFX: {fileID: 8300000, guid: 358da857df100924797eec7e1b1b40df, type: 3}
+  ChainShortSFX: {fileID: 8300000, guid: 0f6aa0bd2a74f934fa6fce762dc8fba1, type: 3}
+  BossDeathSFX: {fileID: 8300000, guid: a945b853b662da748a0b8a7814cd994d, type: 3}
+  BossDoorOpenSFX: {fileID: 8300000, guid: c29fb8b8800264749b7d9b654daafbf4, type: 3}
   TorchHitSFX: {fileID: 8300000, guid: 55961af8f65dba5448f381b18c5493ec, type: 3}
 --- !u!82 &3914784919199371430
 AudioSource:

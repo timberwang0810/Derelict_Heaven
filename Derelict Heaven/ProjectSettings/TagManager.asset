@@ -13,6 +13,9 @@ TagManager:
   - PressurePlate
   - TorchDoor
   - PressureDoor
+  - ChainLong1
+  - ChainLong2
+  - ChainShort
   layers:
   - Default
   - TransparentFX
