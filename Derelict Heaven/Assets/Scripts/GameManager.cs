@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         // TODO: put any setup + coroutines here
         lives = maxLives;
         player = GameObject.Find("Player");
-        ResetLevel();
+        UIManager.S.FadeIn();
     }
 
     public void ResetLevel()
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnLevelWon()
+    public void OnLevelWon()
     {
         gameState = GameState.gameOver;
         if (LevelManager.S.currLevel >= maxLevels)
@@ -182,7 +182,8 @@ public class GameManager : MonoBehaviour
             rb.velocity += new Vector2(0, 4f * Time.deltaTime);
             yield return null;
         }
-        OnLevelWon();
+        SoundManager.S.StopBGM();
+        UIManager.S.FadeOut();
     }
 
     private IEnumerator TakeDamageCoroutine(bool isDead)
