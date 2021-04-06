@@ -19,7 +19,6 @@ public class CameraFollow : MonoBehaviour
             transform.position = new Vector3(transform.position.x, LevelManager.S.minY, transform.position.z);
         }
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -29,15 +28,24 @@ public class CameraFollow : MonoBehaviour
             Vector3 playerposition = player.transform.position;
             Vector3 cameraposition = transform.position;
 
-            if (playerposition.x != cameraposition.x)
+            if (LevelManager.S.isFinalLevel)
             {
-                cameraposition.x = Mathf.SmoothDamp(cameraposition.x, playerposition.x, ref xVelocity, 0.1f);
+                if (playerposition.x >= cameraposition.x)
+                {
+                    cameraposition.x = Mathf.SmoothDamp(cameraposition.x, playerposition.x, ref xVelocity, 0.1f);
+                }
             }
-            if (playerposition.y != cameraposition.y)
+            else
             {
-                cameraposition.y = Mathf.Clamp(Mathf.SmoothDamp(cameraposition.y, playerposition.y, ref yVelocity, 0.1f), LevelManager.S.minY, 30);
+                if (playerposition.x != cameraposition.x)
+                {
+                    cameraposition.x = Mathf.SmoothDamp(cameraposition.x, playerposition.x, ref xVelocity, 0.1f);
+                }
+                if (playerposition.y != cameraposition.y)
+                {
+                    cameraposition.y = Mathf.Clamp(Mathf.SmoothDamp(cameraposition.y, playerposition.y, ref yVelocity, 0.1f), LevelManager.S.minY, 30);
+                }
             }
-
             transform.position = cameraposition;
         }
     }

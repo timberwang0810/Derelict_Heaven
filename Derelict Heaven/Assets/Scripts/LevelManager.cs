@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public int currLevel;
     public string currLevelName;
     public AudioSource levelBGM;
+    public bool isFinalLevel = false;
 
     public float minY;
 
