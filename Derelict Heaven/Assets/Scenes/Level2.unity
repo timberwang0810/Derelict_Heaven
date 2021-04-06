@@ -2721,6 +2721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 400280639}
   player: {fileID: 992598408}
+  boss: {fileID: 0}
 --- !u!4 &271987589
 Transform:
   m_ObjectHideFlags: 0
