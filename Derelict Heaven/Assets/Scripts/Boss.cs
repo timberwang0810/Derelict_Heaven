@@ -33,10 +33,12 @@ public class Boss : MonoBehaviour
     public void playOpen()
     {
         animator.SetTrigger("open");
+        SoundManager.S.onBossDoorOpenSound();
     }
 
     public void playFall()
     {
+        SoundManager.S.OnBossDeathSound();
         animator.SetTrigger("fall");
     }
 }

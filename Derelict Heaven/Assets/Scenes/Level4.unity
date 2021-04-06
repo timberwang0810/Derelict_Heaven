@@ -5498,7 +5498,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c8d364f502c21eb4495f0002e53843dd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.664
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6175,6 +6175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -25.21
       objectReference: {fileID: 0}
+    - target: {fileID: 4112896594973070407, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
+      propertyPath: m_TagString
+      value: ChainShort
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
 --- !u!1 &778764508
@@ -6324,6 +6328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chains
       objectReference: {fileID: 0}
+    - target: {fileID: 492134063142139474, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 942827689425491852, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.43
@@ -6367,6 +6375,10 @@ PrefabInstance:
     - target: {fileID: 942827689425491852, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -25.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579557136706759542, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
+      propertyPath: m_TagString
+      value: ChainLong2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
@@ -7244,6 +7256,10 @@ PrefabInstance:
     - target: {fileID: 942827689425491852, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112896594973070407, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
+      propertyPath: m_TagString
+      value: ChainLong1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
@@ -10812,6 +10828,10 @@ PrefabInstance:
     - target: {fileID: 942827689425491852, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054829950957809719, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
+      propertyPath: m_TagString
+      value: ChainShort
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf8871ecb6aa7e4095fcf27add00cdb, type: 3}
