@@ -118,25 +118,29 @@ public class Player : MonoBehaviour
                     {
                         animator.SetTrigger("shoot");
                         SoundManager.S.OnArrowFire();
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        Plane xy = new Plane(new Vector3(0, 1, -1), new Vector3(0, 0, transform.GetChild(2).transform.position.z));
-                        float distance;
-                        xy.Raycast(ray, out distance);
-                        Vector2 mousePos = ray.GetPoint(distance);
-                        
-                        float angle = Mathf.Atan2(transform.position.y - mousePos.y, transform.position.x - mousePos.x) * Mathf.Rad2Deg;
-
-                        Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+                        Vector3 rawMousePosition = Input.mousePosition;
+                        rawMousePosition.z = 10;
+                        Vector2 dir = Camera.main.ScreenToWorldPoint(rawMousePosition) - transform.position;
                         dir.Normalize();
-                        if (mousePos.x > transform.position.x) controller.ControllerMove(1);
-                        else controller.ControllerMove(-1);
+                        //Ray ray = Camera.main.ScreenPointToRay(rawMousePosition);
+                        //Plane xy = new Plane(new Vector3(0, 1, -1), new Vector3(0, 0, Camera.main.transform.position.z));
+                        //float distance;
+                        //xy.Raycast(ray, out distance);
+                        //Vector2 mousePos = ray.GetPoint(distance);
+                  
+                        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+                        //Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+                        //dir.Normalize();
+                        //if (mousePos.x > transform.position.x) controller.ControllerMove(1);
+                        //else controller.ControllerMove(-1);
 
                         if (arrowPrefab)
                         {
                             Vector2 instantiateLocation = new Vector2(transform.position.x + dir.x, transform.position.y + dir.y);
                             GameObject arrowObject = Instantiate(arrowPrefab, instantiateLocation, Quaternion.Euler(new Vector3(0f, 0f, angle)));
                             arrowObject.GetComponent<SpriteRenderer>().flipX = true;
-                            arrowObject.layer = 8;
+                            arrowObject.layer = 17;
                             arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
                             coolDownTimer = 0;
                         }
