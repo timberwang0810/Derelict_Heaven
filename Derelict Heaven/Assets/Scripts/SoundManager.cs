@@ -77,6 +77,16 @@ public class SoundManager : MonoBehaviour
         
     }
 
+    public void StopBGM()
+    {
+        if (currLevelBGM) currLevelBGM.Stop();
+    }
+
+    public void PlayBGM()
+    {
+        if (currLevelBGM) currLevelBGM.Play();
+    }
+
     public void AdjustVolume(float volume)
     {
         sfxAudio.volume = volume;

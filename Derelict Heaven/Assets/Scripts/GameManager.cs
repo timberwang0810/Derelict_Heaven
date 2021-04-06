@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
         {
             gameState = GameState.oops;
             SoundManager.S.OnDeathSound(player.GetComponent<Player>().GetForm());
+            SoundManager.S.StopBGM();
         }
         invincible = true;
         SpriteRenderer r = player.GetComponent<SpriteRenderer>();
