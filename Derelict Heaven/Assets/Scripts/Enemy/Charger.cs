@@ -38,7 +38,7 @@ public class Charger : Enemy
     }
     protected override void EnemyUpdate()
     {
-        // Nothing yet
+        walkAudio.volume = SoundManager.S.sfxAudio.volume;
     }
 
     protected override void EnemyPhysicsUpdate()

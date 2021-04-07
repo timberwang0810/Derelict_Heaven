@@ -28,6 +28,6 @@ public class Pressurizer : Enemy
 
     protected override void EnemyUpdate()
     {
-        // nothing
+        walkAudio.volume = SoundManager.S.sfxAudio.volume;
     }
 }
