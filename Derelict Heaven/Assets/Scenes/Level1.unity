@@ -2717,7 +2717,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &319514676
@@ -3834,7 +3834,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &646517981
@@ -4236,6 +4236,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8550659875961261296, guid: 7bbf476723dca15478d55391e313f141, type: 3}
+      propertyPath: m_Volume
+      value: 0.614
+      objectReference: {fileID: 0}
     - target: {fileID: 5124579844168765015, guid: 7bbf476723dca15478d55391e313f141, type: 3}
       propertyPath: m_Name
       value: Charger
@@ -4821,6 +4825,10 @@ PrefabInstance:
     - target: {fileID: 705664486752912996, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
       propertyPath: m_Name
       value: Pressurizer
+      objectReference: {fileID: 0}
+    - target: {fileID: 705664486752912996, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 705664486752913002, guid: 32a99d0c549b246b0aaaac6e6d3dff9f, type: 3}
       propertyPath: m_LocalPosition.x
