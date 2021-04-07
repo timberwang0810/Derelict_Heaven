@@ -99,7 +99,7 @@ public class Archer : Enemy
         else
         {
             aimLaser.enabled = false;
-            coolDownTimer = shotCoolDown / 2;
+            coolDownTimer = 0;
         }
     }
 

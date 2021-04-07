@@ -186,7 +186,7 @@ MonoBehaviour:
   faceLeft: 0
   isStationary: 0
   spawn: {x: 0, y: 0, z: 0}
-  range: 6
+  range: 4
   aggroTime: 10
   aimImpedeLayers:
     serializedVersion: 2
