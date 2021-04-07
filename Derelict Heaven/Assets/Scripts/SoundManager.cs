@@ -87,11 +87,15 @@ public class SoundManager : MonoBehaviour
         if (currLevelBGM) currLevelBGM.Play();
     }
 
-    public void AdjustVolume(float volume)
+    public void AdjustBGMVolume(float bgmVolume)
     {
-        sfxAudio.volume = volume;
-        movementAudio.volume = volume;
-        if (currLevelBGM) currLevelBGM.volume = volume;
+        if (currLevelBGM) currLevelBGM.volume = bgmVolume;
+    }
+
+    public void AdjustSFXVolume(float sfxVolume)
+    {
+        sfxAudio.volume = sfxVolume;
+        movementAudio.volume = sfxVolume;
     }
 
     public void OnNewLevel()

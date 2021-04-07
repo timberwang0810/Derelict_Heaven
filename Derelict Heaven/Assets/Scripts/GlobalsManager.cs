@@ -5,19 +5,28 @@ using UnityEngine.UI;
 
 public class GlobalsManager : MonoBehaviour
 {
-    public Slider volumeSlider;
-    private static float currentVolume = 0.2f;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+    private static float currentBGMVolume = 0.2f;
+    private static float currentSFXVolume = 1.0f;
 
     // Initial settings
     private void Start()
     {
-        if (SoundManager.S) SoundManager.S.AdjustVolume(currentVolume);
-        volumeSlider.value = currentVolume;
+        if (SoundManager.S) SoundManager.S.AdjustBGMVolume(currentBGMVolume);
+        bgmSlider.value = currentBGMVolume;
+        sfxSlider.value = currentSFXVolume;
     }
 
-    public void OnVolumeAdjusted()
+    public void OnBGMVolumeAdjusted()
     {
-        currentVolume = volumeSlider.value;
-        if (SoundManager.S) SoundManager.S.AdjustVolume(currentVolume);
+        currentBGMVolume = bgmSlider.value;
+        if (SoundManager.S) SoundManager.S.AdjustBGMVolume(currentBGMVolume);
+    }
+
+    public void OnSFXVolumeAdjusted()
+    {
+        currentSFXVolume = sfxSlider.value;
+        if (SoundManager.S) SoundManager.S.AdjustSFXVolume(currentSFXVolume);
     }
 }
