@@ -27,10 +27,6 @@ public class Sign : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        foreach (string msg in messages)
-        {
-            Debug.Log(msg + " ");
-        }
         UIManager.S.ShowPopUp(messages[0], messages.Length > 1);
         currIndex++;
         isInTrigger = true;

@@ -16,7 +16,6 @@ public class Projectile : MonoBehaviour
             dir.Normalize();
             GameManager.S.OnLivesLost(dir);
         }
-        // TODO: Change collider when asset is put in
         hitSomething = true;
         Destroy(this.gameObject, destroyTime);
     }

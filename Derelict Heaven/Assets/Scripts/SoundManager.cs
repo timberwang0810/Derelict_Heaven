@@ -10,9 +10,6 @@ public class SoundManager : MonoBehaviour
     public AudioSource sfxAudio;
     public AudioSource movementAudio;
 
-    public AudioClip ConsumeSFX;
-    public AudioClip UnConsumeSFX;
-
     [Header("Charger Sounds")]
     public AudioClip ChargerRunSFX;
     public AudioClip ChargerWalkSFX;
@@ -30,10 +27,13 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip WallBreakSFX;
 
+    [Header("Angel Sounds")]
     public AudioClip JumpSFX;
     public AudioClip DeathSFX;
     public AudioClip LandSFX;
     public AudioClip AscendSFX;
+    public AudioClip ConsumeSFX;
+    public AudioClip UnConsumeSFX;
 
     public AudioClip TorchDoorOpen;
     public AudioClip PressureDoorOpen;
@@ -107,19 +107,16 @@ public class SoundManager : MonoBehaviour
     // Angel Sounds
     public void OnLandSound(Player p)
     {
-        Debug.Log("fired");
-        if (!LandSFX) return;// TODO: DELETE
         switch (p.myForm)
         {
             case Form.original:
-                sfxAudio.PlayOneShot(LandSFX);
+                if (LandSFX) sfxAudio.PlayOneShot(LandSFX);
                 break;
             case Form.charger:
                 OnChargerLandSound();
                 break;
-            // TODO: Follow this format for other characters
             default:
-                sfxAudio.PlayOneShot(LandSFX);
+                if (LandSFX) sfxAudio.PlayOneShot(LandSFX);
                 break;
         }
     }
@@ -133,7 +130,6 @@ public class SoundManager : MonoBehaviour
             case Form.charger:
                 OnChargerJumpSound();
                 break;
-            // TODO: Follow this format for other characters
             default:
                 sfxAudio.PlayOneShot(JumpSFX, 0.5f);
                 break;
@@ -141,7 +137,6 @@ public class SoundManager : MonoBehaviour
     }
     public void OnDeathSound(Form f)
     {
-        if (!DeathSFX) return;// TODO: DELETE
         switch (f)
         {
             case Form.original:
@@ -150,7 +145,6 @@ public class SoundManager : MonoBehaviour
             case Form.charger:
                 OnChargerDeathSound();
                 break;
-            // TODO: Follow this format for other characters
             default:
                 sfxAudio.PlayOneShot(DeathSFX);
                 break;
@@ -166,7 +160,6 @@ public class SoundManager : MonoBehaviour
             case Form.charger:
                 OnChargerRunSound();
                 break;
-            // TODO: Follow this format for other characters
             default:
                 break;
         }
@@ -184,7 +177,6 @@ public class SoundManager : MonoBehaviour
             case Form.pressurizer:
                 OnPressurizerWalkSound();
                 break;
-            // TODO: Follow this format for other characters
             default:
                 break;
         }
@@ -226,7 +218,7 @@ public class SoundManager : MonoBehaviour
     }
     public void OnChargerDeathSound()
     {
-        sfxAudio.PlayOneShot(ChargerDeathSFX);
+        if (ChargerDeathSFX) sfxAudio.PlayOneShot(ChargerDeathSFX);
     }
     public void OnChargerWalkSound()
     {

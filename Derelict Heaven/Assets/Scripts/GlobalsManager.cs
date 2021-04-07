@@ -7,7 +7,7 @@ public class GlobalsManager : MonoBehaviour
 {
     public Slider bgmSlider;
     public Slider sfxSlider;
-    private static float currentBGMVolume = 0.2f;
+    private static float currentBGMVolume = 0.25f;
     private static float currentSFXVolume = 1.0f;
 
     // Initial settings

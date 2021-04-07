@@ -8,7 +8,6 @@ public class Door : Mechanism
 
     public override void Activate(float animTime)
     {
-        Debug.Log("Door Activated");
         //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         // disable entire thing for now
         if (chain == null) CameraManager.S.SolvePuzzlePan(gameObject, animTime, -5);
@@ -21,10 +20,10 @@ public class Door : Mechanism
     {
         //gameObject.SetActive(false);
         GetComponent<Animator>().SetTrigger("open");
-        if (this.tag == "TorchDoor")
+        if (this.CompareTag( "TorchDoor"))
         {
             SoundManager.S.TorchDoorSFX();
-        }else if(this.tag == "PressureDoor")
+        }else if(this.CompareTag("PressureDoor"))
         {
             SoundManager.S.PressureDoorSFX();
         }
@@ -32,7 +31,6 @@ public class Door : Mechanism
 
     public override void Deactivate()
     {
-        Debug.Log("Door Deactivated");
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
     }
 }

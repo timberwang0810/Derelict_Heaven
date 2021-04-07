@@ -84,7 +84,6 @@ public class Charger : Enemy
             // Wall break SFX
             SoundManager.S.OnWallBreak();
 
-            // TODO: Stun state effects (stay stunned forever or for a certain time?)
             isStationary = true;
         }
         else

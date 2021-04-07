@@ -11,10 +11,6 @@ public class Player : MonoBehaviour
 
     private Dictionary<Form, Action> enemyFunctions;
 
-    private SpriteRenderer renderer;
-    private Sprite originalSprite;
-    private float originalRadius;
-
     private BoxCollider2D possessor;
     public float embodyCooldown;
     public float originalFormCooldown; //can't immediately embody after turning back
@@ -25,8 +21,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject arrowPrefab;
     private float shotSpeed;
-    private float shotCoolDown;
-    private float coolDownTimer;
     private CapsuleCollider2D enemyCol;
 
     private bool loading = true;
@@ -49,11 +43,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
         possessor = GetComponent<BoxCollider2D>();
         originalSpeed = controller.speed;
-        originalSprite = renderer.sprite;
-        originalRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
         enemyCol = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
@@ -113,8 +104,7 @@ public class Player : MonoBehaviour
                 Form.archer,
                 () =>
                 {
-                    coolDownTimer += Time.deltaTime;
-                    if (Input.GetKeyDown(KeyCode.Mouse0)) // && coolDownTimer >= shotCoolDown) commented out for testing //TODO: Uncomment
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         animator.SetTrigger("shoot");
                         SoundManager.S.OnArrowFire();
@@ -122,18 +112,8 @@ public class Player : MonoBehaviour
                         rawMousePosition.z = 10;
                         Vector2 dir = Camera.main.ScreenToWorldPoint(rawMousePosition) - transform.position;
                         dir.Normalize();
-                        //Ray ray = Camera.main.ScreenPointToRay(rawMousePosition);
-                        //Plane xy = new Plane(new Vector3(0, 1, -1), new Vector3(0, 0, Camera.main.transform.position.z));
-                        //float distance;
-                        //xy.Raycast(ray, out distance);
-                        //Vector2 mousePos = ray.GetPoint(distance);
-                  
+              
                         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-                        //Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-                        //dir.Normalize();
-                        //if (mousePos.x > transform.position.x) controller.ControllerMove(1);
-                        //else controller.ControllerMove(-1);
 
                         if (arrowPrefab)
                         {
@@ -142,7 +122,6 @@ public class Player : MonoBehaviour
                             arrowObject.GetComponent<SpriteRenderer>().flipX = true;
                             arrowObject.layer = 17;
                             arrowObject.GetComponent<Rigidbody2D>().velocity = dir * shotSpeed;
-                            coolDownTimer = 0;
                         }
                     }
                 }
@@ -223,35 +202,8 @@ public class Player : MonoBehaviour
 
         if ((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyAttack") && possessor.enabled)
         {
-            Debug.Log("calling..");
             embodying = collision.gameObject;
             animator.SetBool("embody", true);
-
-            //collision.gameObject.SetActive(false);
-
-            //returnQueue.GetComponent<ReturnQueueManager>().AddToQueue(form, collision.gameObject.GetComponent<Enemy>().spawn);
-
-            //changeValues(collision.gameObject.GetComponent<SpriteRenderer>().sprite,
-            //             collision.gameObject.GetComponent<CapsuleCollider2D>().size,
-            //             collision.gameObject.GetComponent<CapsuleCollider2D>().offset,
-            //             form);
-
-            //// Pass enemy variables to the player
-            //if (form == Form.archer)
-            //{
-            //    rb.velocity = new Vector2(0, 0);
-            //    rb.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-            //    Archer archerScript = collision.gameObject.GetComponent<Archer>();
-            //    arrowPrefab = archerScript.GetArrowObject();
-            //    shotSpeed = archerScript.shotSpeed;
-            //    shotCoolDown = archerScript.shotCoolDown;
-            //    coolDownTimer = shotCoolDown;
-            //}
-
-            //Vector3 newPos = collision.transform.position;
-            //transform.position = newPos;
-            //StartCoroutine(embodyCooldownCount());
-            //Destroy(collision.gameObject);
         }
     }
 
@@ -267,9 +219,7 @@ public class Player : MonoBehaviour
         Enemy enemyScript = embodying.GetComponent<Enemy>();
         possessor.enabled = false;
 
-        Debug.Log("getting form");
         Form form = enemyScript.GetForm();
-        Debug.Log("form is " + form);
 
         embodying.SetActive(false);
 
@@ -290,8 +240,6 @@ public class Player : MonoBehaviour
             Archer archerScript = embodying.GetComponent<Archer>();
             arrowPrefab = archerScript.GetArrowObject();
             shotSpeed = archerScript.shotSpeed;
-            shotCoolDown = archerScript.shotCoolDown;
-            coolDownTimer = shotCoolDown;
             UIManager.S.ShowAimingCursor();
         }
 
@@ -332,8 +280,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    /** dont change scale, it messes with character controller
-     */
+    // Change form
     private void changeValues(Vector2 size, Vector2 offset, Form f)
     {
         if (f == Form.original)

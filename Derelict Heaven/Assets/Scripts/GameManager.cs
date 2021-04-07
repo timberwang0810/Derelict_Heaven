@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
         PopulateCommands();
 
     }
+
+    // Make a dictionary of commands for each enemy form
     private void PopulateCommands()
     {
         formCommands = new Dictionary<Form, Sprite>();
@@ -109,13 +111,11 @@ public class GameManager : MonoBehaviour
     {
         // Reset any variables necessary in the level
         // Don't know if we need if player don't get destroyed upon losing life
-        Debug.Log("reached");
         gameState = GameState.playing;
     }
 
     public void OnLivesLost(Vector2 damageDir)
     {
-        Debug.Log("life lost");
         if (invincible || player.GetComponent<Player>().GetForm() != Form.original) return;
         player.gameObject.GetComponent<Rigidbody2D>().AddForce(damageDir, ForceMode2D.Impulse);
         player.gameObject.GetComponent<Animator>().SetBool("embody", false);
@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
         UIManager.S.FadeOut();
     }
 
+    // Only for final level...
     private IEnumerator Contemplation()
     {
         gameState = GameState.oops;

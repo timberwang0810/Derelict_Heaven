@@ -10,8 +10,6 @@ public class TorchSet : MonoBehaviour
 
     public AudioSource audio;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +23,6 @@ public class TorchSet : MonoBehaviour
         numLit++;
         if (numLit >= torches.Length)
         {
-            Debug.Log("open torch mechanism");
             connectedMechanism.Activate(0.3f);
             audio.Play();
             SoundManager.S.OnHittingTorch();
